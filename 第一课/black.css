@@ -1,0 +1,10 @@
+.warp #navs #black{
+	border-color: black;
+	background-color: #fff;
+}
+body{
+	background-color: #ccc;
+}
+#bans li{
+	background-color: black;
+}

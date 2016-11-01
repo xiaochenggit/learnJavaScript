@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>改变div样式</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+</head>
+<style type="text/css">
+	.warp{
+		margin-top: 40px;
+		text-align: center;
+	}
+	.warp div{
+		display: inline-block;
+	}
+	#div{
+		width: 100px;
+		height: 100px;
+		background-color: black;
+	}
+</style>
+<body>
+	<div class="warp">
+		<div id="btns">
+			<input type="button" value="变宽">
+			<input type="button" value="变高">
+			<input type="button" value="变色">
+			<input type="button" value="隐藏">
+			<input type="button" value="重置">
+		</div>
+	</div>
+	<div class="warp">
+		<div id="div">
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function(){
+			var btns = document.getElementById('btns').getElementsByTagName('input');
+			var div = document.getElementById("div");
+			var arrSty = ["width","height","backgroundColor","display"];
+			var arrVal = ["200px","200px","red","none"];
+			for(var i = 0,len = btns.length;i<len;i++){
+				btns[i].index = i;
+				btns[i].onclick = function(){
+					if(this.index == len-1){
+						div.style.cssText = '';
+					}else{
+						changeStyle(div,arrSty[this.index],arrVal[this.index]);
+					}
+				}
+			}
+			function changeStyle(ele,sty,val){
+				ele.style[sty] = val;
+			}
+		}
+	</script>
+</body>
+</html>

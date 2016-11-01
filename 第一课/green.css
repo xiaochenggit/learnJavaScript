@@ -1,0 +1,10 @@
+.warp #navs #green{
+	border-color: green;
+	background-color: #fff;
+}
+body{
+	background-color: #A3C5A8;
+}
+#bans li{
+	background-color: green;
+}
