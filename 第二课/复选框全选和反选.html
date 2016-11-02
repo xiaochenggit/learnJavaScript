@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复选框全选和反选</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			line-height: 30px;
+			text-align: center;
+			margin: 20px;
+		}
+		#content{
+			display: inline-block;
+		}
+		#content ul{
+			width: 100px;
+			text-align: left;
+			border: 1px solid #000;
+			border-radius: 4px;
+			padding: 10px;
+		}
+		#first{
+			border-bottom: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<div id="content">
+			<ul>
+				<li id="first">
+					<label><input type="checkbox"><span>全选</span></label><a href="javascript:void(0)">反选</a>
+				</li>
+				<li><label><input type="checkbox">选项一</label></li>
+				<li><label><input type="checkbox">选项二</label></li>
+				<li><label><input type="checkbox">选项三</label></li>
+				<li><label><input type="checkbox">选项四</label></li>
+				<li><label><input type="checkbox">选项五</label></li>
+				<li><label><input type="checkbox">选项六</label></li>
+				<li><label><input type="checkbox">选项七</label></li>
+				<li><label><input type="checkbox">选项八</label></li>
+				<li><label><input type="checkbox">选项九</label></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function(){
+			var cont = document.getElementById('content');
+			var lis = cont.getElementsByTagName('input');
+			var first = document.getElementById('first').getElementsByTagName('input')[0];
+			var a =  document.getElementById('first').getElementsByTagName('span')[0];
+			var rebtn = document.getElementById('first').getElementsByTagName('a')[0];
+			first.onclick = function (){
+				if (this.checked) {
+					chageAll(true)
+					a.innerHTML = '全不选';
+				}else{
+					chageAll(false)
+					a.innerHTML = '全选';
+				}
+			}
+			rebtn.onclick = function (){
+				returnAll();
+			}
+			function chageAll(val){
+				for(var i = 1,len = lis.length;i<len;i++){
+					lis[i].checked = val;
+				}
+			}
+			function returnAll(){
+				for(var i = 1,len = lis.length;i<len;i++){
+					lis[i].checked = !lis[i].checked;
+				}
+			}
+		}
+	</script>
+</body>
+</html>
