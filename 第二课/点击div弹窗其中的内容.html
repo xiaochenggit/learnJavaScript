@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击div弹出里面的内容</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		body{
+			font: 14px/30px "微软雅黑";
+		}
+		div{
+			cursor: pointer;
+			width: 400px;
+			margin: 10px auto;
+			border: 2px solid #f60;
+		}
+	</style>
+</head>
+<body>
+	<div>
+	1
+		我也不知道我想要写一些什么<strong>我也不知道我想要写一些什么</strong>
+		我也不知道我想要写一些什么<strong>我也不知道我想要写一些什么</strong>
+	</div>
+	<div>
+	2
+		我也不知道我想要写一些什么<strong>我也不知道我想要写一些什么</strong>
+		我也不知道我想要写一些什么<strong>我也不知道我想要写一些什么</strong>
+	</div>
+	<div>
+	3
+		我也不知道我想要写一些什么<strong>我也不知道我想要写一些什么</strong>
+		我也不知道我想要写一些什么<strong>我也不知道我想要写一些什么</strong>
+	</div>
+	<div>
+	4
+		我也不知道我想要写一些什么<strong>我也不知道我想要写一些什么</strong>
+		我也不知道我想要写一些什么<strong>我也不知道我想要写一些什么</strong>
+	</div>
+	<script type="text/javascript">
+		window.onload = function  () {
+			var divs = document.getElementsByTagName('div');
+			for( var i = 0, len = divs.length; i < len; i++ ){
+				divs[i].index = i;
+				divs[i].onclick = function (){
+					alert(divs[this.index].innerHTML);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

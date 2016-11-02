@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弹出层效果</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		body{
+			height: 3000px;
+			text-align: center;
+			position: relative;
+		}
+		#bg{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: #000;
+			opacity: 0.2;
+			z-index: 2;	
+			display: none;
+		}
+		#cloth{
+			position: fixed;
+			z-index: 3;
+			width: 400px;
+			height: 200px;
+			border: 2px solid #f60;
+			top: 50%;
+			left: 50%;
+			margin-left: -202px;
+			margin-top: -102px;
+			display: none;
+		}
+		#cloth h2{
+			height: 28px;
+			border-bottom: 2px solid #f60;
+		}
+		#close{
+			background-color: pink;
+			padding:0 4px;
+			border: 1px solid #f60;
+			color: #f60;
+			line-height: 18px;
+			float: right;
+			margin: 5px 5px 0px 0px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="bg"></div>
+	<div id="cloth">
+		<h2><span id="close">X</span></h2>
+		<div id="content">
+		</div>
+	</div>
+	<button>弹出</button>
+	<script type="text/javascript">
+		window.onload = function () {
+			var bg = document.getElementById('bg');
+			var cloth = document.getElementById('cloth');
+			function alertBg (){
+				bg.style.display = "block";
+				cloth.style.display = "block";
+			}
+			var btn = document.getElementsByTagName('button')[0];
+			btn.onclick = function (){
+				alertBg();
+			}
+			var close = document.getElementById('close');
+			close.onclick = function(){
+				bg.style.display = "none";
+				cloth.style.display = "none";
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>提示框功能</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		body{
+			font: 14px/24px '微软雅黑';
+		}
+		#warp{
+			width: 202px;
+			margin: 0 auto;
+		}
+		#tips{
+			display: inline-block;
+			width: 200px;
+			border: 1px #f60 solid;
+			background-color: pink; 
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<label id="lab"><input type="checkbox" name="">两周内自动登录</label>
+		<div id="tips">
+			请注意不要再公共场合使用此功能！
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var label = document.getElementById('lab');
+			var tips = document.getElementById('tips');
+			label.onmouseover = function (){
+				tips.style.display = 'block';
+			}
+			label.onmouseout = function (){
+				tips.style.display = 'none';
+			}
+		}
+	</script>
+</body>
+</html>

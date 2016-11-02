@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>输入法切换效果</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		body{
+			font: 14px/30px "微软雅黑";
+		}
+		#warp{
+			width: 72px;
+			margin: 0 auto;
+		}
+		#warp ul {
+			border: 1px solid blue;
+			color: blue;
+			text-indent: 5px;
+			display: none;
+		}
+		#warp ul li:hover{
+			background-color: #ccc;
+		}
+		#close{
+			border-top: 1px solid blue;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<button id="btn">输入法</button>
+		<ul id="ul">
+			<li>手写</li>
+			<li>拼音</li>
+			<li id="close">关闭</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		window.onload = function () {
+			var btn = document.getElementById("btn");
+			var ul = document.getElementById("ul");
+			var close = document.getElementById("close");
+			btn.onclick = function (){
+				if (ul.style.display=="none"||ul.style.display=="") {
+					ul.style.display = "block";
+				}else{
+					ul.style.display = "none";
+				}
+			}
+			close.onclick = function (){
+				ul.style.display = "none";
+			}
+		}
+	</script>
+</body>
+</html>

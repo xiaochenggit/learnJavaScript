@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>求数组中的和</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			width: 450px;
+			margin: 10px auto;
+		}
+		#warp p {
+			margin: 10px 0px;
+		}
+		#sum{
+			color: red;
+			font:600 18px/30px "微软雅黑";
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<label><input type="text" name="" value="1,2,3,4,5,6,7" id="text">输入数字英文,分开点击按钮求和</label>
+		<p><button>求和</button></p>
+		<p id="sum"></p>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var btn = document.getElementsByTagName("button")[0];
+			var sum = document.getElementById('sum');
+			var text = document.getElementById('text');
+			text.onkeyup = function (){
+				this.value = this.value.replace(/[^(\d)|(,)]/,"");
+				//只能输入,和数字
+			}
+			btn.onclick = function (){
+				var arr = text.value.split(',');
+				var arrsum =0;
+				for (variable in arr) {
+					if (arr[variable]!=="") {
+						arrsum += parseInt(arr[variable]);
+					}
+				}
+				sum.innerHTML = arrsum;
+			}
+		}
+	</script>
+</body>
+</html>
