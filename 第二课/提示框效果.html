@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>提示框效果</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			border: 1px solid #000;
+			width: 570px;
+			margin: 20px auto;
+			font-size: 12px;
+			line-height: 24px;
+		}
+		h2{
+			text-align: center;
+			line-height: 40px;
+			font-weight: 600;
+		}
+		#warp li{
+			position: relative;
+			width: 80px;
+			height: 80px;
+			border: 1px solid #000;
+			padding: 10px;
+			margin: 0px 10px 10px 0px;
+			float: left;
+			z-index: 10;
+		}
+		#warp ul {
+			height: 224px;
+			padding-left: 10px;
+		}
+		#img{
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			border: 1px solid #000;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<h2>名車車標展示-鼠標移過顯示車標</h2>
+		<ul>
+			<li>
+				<p>BMW</p>
+				<P>寶馬汽車</P>
+			</li>
+			<li>
+				<p>Alfa Romeo</p>
+				<P>阿尔法-罗米欧</P>
+			</li>
+			<li>
+				<p>Skoda</p>
+				<P>斯柯达</P>
+			</li>
+			<li>
+				<p>Volkswagen</p>
+				<P> 大众汽车</P>
+			</li>
+			<li>
+				<p>Saab</p>
+				<P>萨布牌轿车</P>
+			</li>
+			<li>
+				<p>Lamborghini</p>
+				<P> 兰博基尼</P>
+			</li>
+			<li>
+				<p>Porsche</p>
+				<P> 保时捷</P>
+			</li>
+			<li>
+				<p>Peugeot</p>
+				<P>标致</P>
+			</li>
+			<li>
+				<p>Mercedes1</p>
+				<P>梅赛德斯 奔驰</P>
+			</li>
+			<li>
+				<p>Buick</p>
+				<P>别克汽车</P>
+			</li>
+		</ul>
+	</div>
+	<img src="" id="img">
+	<script type="text/javascript">
+		window.onload = function (){
+			var img = document.getElementById('img');
+			var ul =  document.getElementById('warp').getElementsByTagName('ul')[0];
+			var lis = document.getElementById('warp').getElementsByTagName('li');
+			for(var i = 0,len = lis.length;i<len;i++){
+				lis[i].index = i;	
+				lis[i].onmouseover = function(){
+					this.appendChild(img);
+					img.src = "../img/"+(this.index+1)+".jpg";
+					img.style.top = -14+'px';
+					img.style.left = -14+'px';
+					this.style.zIndex = 11;
+					img.style.display = "block";
+				}
+				lis[i].onmouseout = function(){
+					this.style.zIndex = 9;
+					img.style.display = "none";
+				}
+			}
+			ul.onmouseout = function (){
+				img.style.display = "none";
+			}
+		}
+	</script>
+</body>
+</html>

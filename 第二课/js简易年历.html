@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js简易年历</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#month li{
+			float: left;
+			line-height: 25px;
+			width: 50px;
+			height: 50px;
+			border: 1px solid #000;
+			background-color: #000;
+			color: #fff;
+			text-align: center;
+			font-size: 16px;
+			font-weight: bold;
+			margin: 10px 10px 0px 0px;
+			cursor: pointer;
+		}
+		#month{
+			overflow: hidden;
+		}
+		#month li.active{
+			color: #f60;
+			background-color: #fff;
+		}
+		#month li p{
+			font-size: 18px;
+		}
+		#warp{
+			overflow: hidden;
+			padding: 0px 0px 10px 10px;
+			background-color: #eaeaea;
+			width: 248px;
+			margin: 20px auto;
+		}
+		#msg{
+			line-height: 30px;
+			background-color:#f1f1f1; 
+			color: #333;
+			width: 232px;
+			padding: 4px;	
+			margin-top: 10px;
+		}
+		#msg h3{
+			font-weight: 600;
+			color: #666;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<ul id="month">
+			<li class="active"><p>1</p>JAN</li>
+			<li><p>2</p>FER</li>
+			<li><p>3</p>MAR</li>
+			<li><p>4</p>APR</li>
+			<li><p>5</p>MAY</li>
+			<li><p>6</p>JUN</li>
+			<li><p>7</p>JUL</li>
+			<li><p>8</p>AUG</li>
+			<li><p>9</p>SEP</li>
+			<li><p>10</p>OCT</li>
+			<li><p>11</p>NOV</li>
+			<li><p>12</p>DEC</li>
+		</ul>
+		<div id="msg">
+			<h3><strong>1</strong>月节日</h3>
+			<p>元旦：1月1日至3日放假三天。</p>
+		</div>
+	</div>
+<script type="text/javascript">
+	window.onload = function (){
+		var oArray = [
+			"元旦：1月1日至3日放假三天。",
+			"春节：2月2日至8日放假7天。",
+			"妇女节：3月8日妇女节，与我无关。",
+			"清明节：4月3日至5日放假3天",
+			"劳动节：4月30日至5月2日放假3天。",
+			"端午节：6月4日至6日放假3天。",
+			"小暑：7月7日小暑。不放假。",
+			"七夕节：8月6日七夕节。不放假。",
+			"中秋节：9月10日至12日放假3天。",
+			"国庆节：10月1日至7日放假7天。",
+			"立冬：11月8日立冬。不放假。",
+			"艾滋病日:12月1日<br />废除奴隶制国际日:12月2日。"
+		];
+		var months = document.getElementById("month").getElementsByTagName('li');
+		var msg = document.getElementById('msg');
+		var oP = msg.getElementsByTagName('p')[0];
+		var oStrong = msg.getElementsByTagName('strong')[0];
+		for(var i = 0 ,len = months.length;i<len;i++){
+			months[i].index = i;
+			months[i].onmouseover = function (){
+				for(var n = 0;n<len;n++){
+					months[n].className = "";
+				}
+				this.className = "active";
+				oStrong.innerHTML = this.index+1;
+				oP.innerHTML = oArray[this.index];
+			}
+		}
+	}	
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数传参改变任意属性值</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			text-align: center;
+		}
+		#warp p{
+			margin: 10px;
+		}
+		button{
+			margin: 0px 10px;
+		}
+		#div{
+			width: 200px;
+			height: 200px;
+			background-color: #000;
+			display:inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<p><label>属性名:<input type="text" name="" value="background" id="style"></label></p>
+		<p><label>属性值:<input type="text" name="" value="blue" id="value"></label></p>
+		<p><button id="srue">确定</button><button id="reset">重置</button></p>
+		<div id="div">
+			
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function () {
+			var div = document.getElementById('div');
+			var srue = document.getElementById('srue');
+			var reset = document.getElementById('reset');
+			var sty = document.getElementById('style');
+			var val = document.getElementById('value');
+			function changeSty(sty,val){
+				div.style[sty] = val;
+			}
+			srue.onclick = function (){
+				changeSty(sty.value,val.value);
+			}
+			reset.onclick = function(){
+				div.style.cssText = "";
+			}
+		}
+	</script>
+</body>
+</html>

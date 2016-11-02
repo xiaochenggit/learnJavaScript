@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简易选项卡</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		.warp {
+			width: 400px;
+			margin: 20px auto;
+			overflow: hidden;
+			border: 1px solid #000;
+			line-height: 30px;
+		}
+		#content ul {
+			display: none;
+			padding: 0px 10px;
+		}
+		#content .active{
+			display: block;
+		}
+		#content li{
+			list-style-position: inside;
+			list-style-type: disc;
+		}
+		#navs{
+			overflow: hidden;
+			background-color: #000;
+			border-bottom: 1px solid #000;
+		}
+		#navs li{
+			float: left;
+			width: 80px;
+			line-height: 30px;
+			text-align: center;
+			color: #fff;
+			cursor: pointer;
+		}
+		#navs li.active{
+			background-color: #ccc;
+			color: #000;
+		}
+	</style>
+</head>
+<body>
+	<div class="warp">
+		<ul id="navs">
+			<li class="active">第一课</li>
+			<li>第二课</li>
+			<li>第三课</li>
+		</ul>
+		<div id="content">
+			<ul class="active">
+				<li>第一课时的东西</li>
+				<li>第一课时的东西</li>
+				<li>第一课时的东西</li>
+				<li>第一课时的东西</li>
+				<li>第一课时的东西</li>
+				<li>第一课时的东西</li>
+			</ul>
+			<ul>
+				<li>第二课时的东西</li>
+				<li>第二课时的东西</li>
+				<li>第二课时的东西</li>
+				<li>第二课时的东西</li>
+				<li>第二课时的东西</li>
+				<li>第二课时的东西</li>
+				<li>第二课时的东西</li>
+				<li>第二课时的东西</li>
+			</ul>
+			<ul>
+				<li>第三课时的东西</li>
+				<li>第三课时的东西</li>
+				<li>第三课时的东西</li>
+				<li>第三课时的东西</li>
+				<li>第三课时的东西</li>
+				<li>第三课时的东西</li>
+				<li>第三课时的东西</li>
+				<li>第三课时的东西</li>
+				<li>第三课时的东西</li>
+				<li>第三课时的东西</li>
+				<li>第三课时的东西</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var navli = document.getElementById('navs').getElementsByTagName('li');
+			var contul = document.getElementById('content').getElementsByTagName('ul');
+			for(var i = 0,len = navli.length;i<len;i++ ){
+				navli[i].index = i;
+				navli[i].onmouseover = function (){
+					for(var j = 0,len = navli.length;j<len;j++ ){
+						navli[j].className ="";
+					}
+					this.className = "active";
+					contuls(this.index);
+				}
+			}
+			function contuls(index){
+				for(var i = 0 , len = contul.length ;i<len;i++){
+					contul[i].className = "";
+				}
+					contul[index].className = "active";
+			}
+		}
+		
+	</script>
+</body>
+</html>

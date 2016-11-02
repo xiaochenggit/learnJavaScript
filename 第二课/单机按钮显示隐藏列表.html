@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单机按钮显示隐藏列表</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			width: 200px;
+			margin: 20px auto;
+			border: #000 solid 1px;
+			font: 12px/24px "微軟雅黑";
+ 		}
+ 		#warp ul{
+ 			padding: 5px 0px;
+ 			background-color: #e9edf2;
+ 			display: none;
+ 		}
+ 		#warp ul a{
+ 			text-decoration: none;
+ 			color: #666;
+ 		}
+ 		#warp ul li{
+ 			padding:0 5px;
+ 		}
+ 		#warp ul li:hover{
+			background-color: #fff;	
+ 		}
+ 		#warp h2{
+ 			cursor: pointer;
+ 			line-height: 30px;
+ 			font-size: 14px;
+ 			text-indent: 5px;
+ 			border: 1px solid #fff;
+ 			color: #57646E;
+ 			background: #ced3d7 url('../img/ico.gif') 180px 15px no-repeat;
+ 		}
+ 		#warp h2.open{
+ 			background-position: 180px -12px;
+ 		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<h2>播放列表...</h2>
+		<ul>
+        	<li><a href="javascript:;">玩家之徒 - 蔡依林</a></li>
+        	<li><a href="javascript:;">原谅我就是这样的女生 - 戴佩妮</a></li>
+        	<li><a href="javascript:;">猜不透 - 丁当</a></li>
+        	<li><a href="javascript:;">自导自演 - 周杰伦</a></li>
+        	<li><a href="javascript:;">浪漫窝 - 弦子</a></li>
+        	<li><a href="javascript:;">流年 - 王菲</a></li>
+    	</ul>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var warp = document.getElementById('warp');
+			var oH = warp.getElementsByTagName('h2')[0];
+			var oUl = warp.getElementsByTagName('ul')[0];
+			oH.onclick = function (){
+				var sty = oUl.style.display;
+				if (sty == ''||sty == 'none') {
+					oUl.style.display = "block";
+					this.className = "open";
+				}else{
+					oUl.style.display = "none"
+					this.className = "";
+				}
+			}
+		}
+	</script>
+</body>
+</html>
