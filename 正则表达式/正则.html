@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var reg = /\bis\b/g;//实例化一个正则表达式(g 表示全局。不加g只匹配第一个)
+		var str = "he display this is body whis is his";
+		str1 = str.replace(reg,"IS");
+		console.log(str1);
+		//把 字符串的is 都替换为 IS \b表示单词边界 g表示全局匹配
+		//构造函数的方式
+		var reg1 = new RegExp("\\bis\\b","g");
+		str2 = str.replace(reg1,"IS");
+		console.log(str2);
+		//i 为忽略大小写
+		var str3 = "he is a boy , Is he?";
+		str3 = str3.replace(/\bis\b/gi,"0");
+		console.log(str3); 
+		// [abc] 取反[^abc]
+		//"a1b1x1n1p1".replace(/[a-z]/g,"Q");//"Q1Q1Q1Q1Q1"//[a-zA-Z]大小写a-z [0-9-]数字 或者斜杠
+		// 范围类 [a-z]
+	</script>
+</body>
+</html>
