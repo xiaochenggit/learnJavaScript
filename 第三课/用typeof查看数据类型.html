@@ -7,22 +7,26 @@
 	<style type="text/css">
 		pre{
 			background-color: #f0f0f0;
-			padding: 10 15px;
+			padding: 10px 15px;
 			border: dashed 1px #f60;
 			margin: 20px;
 		}
 	</style>
 </head>
 <body>
-	<pre>&lt;script type="text/javascript"&gt;
-    alert(typeof 12345);	<span>//输出number</span>
-    alert(typeof "abc");	<span>//输出string</span>
-    alert(typeof document);	<span>//输出object</span>
-&lt;/script&gt;
-</pre>
+	<pre>
+		&lt;script type="text/javascript"&gt;
+	    alert(typeof 12345);	<span>//输出number</span>
+	    alert(typeof "abc");	<span>//输出string</span>
+	    alert(typeof document);	<span>//输出object</span>
+		&lt;/script&gt;
+	</pre>
 <script>
 	alert("typeof 12345 → " + typeof 12345 + "\ntypeof \"abc\" → " + typeof "abc" + "\ntypeof document → " + typeof document
 	  );
+	console.log(typeof 12345);
+	console.log(typeof "abc");
+	console.log(typeof document);
 </script>
 </body>
 </html>

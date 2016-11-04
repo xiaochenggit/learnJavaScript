@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时时钟效果</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			width: 200px;
+			padding: 20px;
+			border-radius: 10px;
+			background-color: #000;
+			margin: 20px auto;
+			text-align: center;
+			font-size: 16px;
+			color: #fff;
+		}
+		#warp input{
+			border: none;
+			background-color: #fff;
+			text-align: center;
+			width: 60px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 16px;
+			margin-right: 10px;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+		}
+		button{
+			margin: 20px;
+			width: 120px;
+			line-height: 30px;
+			background-color: blue;
+			color: #fff;
+			border: 2px #000 solid;
+			text-align: center;
+			border-radius: 4px;
+			font-weight: 600;
+		}
+		button.active{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<input type="text" name="" value="">分钟
+		<input type="text" name="" value="">秒
+		<p><button>启动</button></p>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var time = 100;
+			var input = document.getElementsByTagName('input');
+			var btn = document.getElementsByTagName('button')[0];
+			var timer;
+			Min();
+			btn.onclick = function(){
+				if (this.className=="active") {
+					clearInterval(timer);
+					this.className="";
+					return false;
+				}else{
+					setTime();
+					this.className= "active";
+					return false;
+				}
+			}
+			function setTime(){
+				timer = setInterval(goTime,1000);
+			}
+			function goTime(){
+				time--;
+				Min();
+			}
+			function Min(){
+				var min = parseInt(time/60);
+				var sec = parseInt(time%60);
+				input[0].value = reNum(min);
+				input[1].value = reNum(sec);
+				if (time<=0) {
+					clearInterval(timer);
+					alert("倒计时结束");
+				}
+			}
+			function reNum(num){
+				if (num<=9) {
+					num = "0"+num;
+				}
+				return num;
+			}
+		}
+	</script>
+</body>
+</html>

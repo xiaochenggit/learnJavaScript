@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+</head>
+<body>
+	<input type="text" id="input">
+	<script type="text/javascript">
+		var input  = document.getElementById('input');
+		input.onkeyup = function (){
+			this.value = this.value.replace(/[^0-9.]/g,"");
+		}
+	</script>
+</body>
+</html>

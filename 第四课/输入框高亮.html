@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>输入框高亮</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#goin{
+			width: 300px;
+			margin: 20px auto;
+			border: 2px solid #f60;
+		}
+		#goin h2{
+			border-bottom: 2px solid #f60;
+			line-height: 30px;
+			font-size: 14px;
+			text-indent: 10px;
+			font-weight: 600;
+			color: #f60;
+			background-color: #FFEBD7;
+		}
+		#goin .content{
+			padding: 20px 20px;
+		}
+		#goin .content p{
+			padding: 5px 0px;
+			line-height: 24px;
+			font-size: 14px;
+			color: #666;
+		}
+		#goin .content p span{
+			display: inline-block;
+			width: 60px;
+			text-align: right;
+		}
+		#goin .content input{
+			width: 180px;
+			margin-left: 5px;
+			border:1px solid #ccc ;
+			background-color: #FFFDEC;
+			border-radius: 2px;
+			outline: none;
+			height: 24px;
+			text-indent: 5px;
+			line-height: 24px;
+		}
+	</style>
+</head>
+<body>
+	<div id="goin">
+		<h2>用户登录</h2>
+		<div class="content">
+			<p><label><span>用户名:</span><input type="text" name=""></label></p>
+			<p><label><span>密码:</span><input type="password" name=""></label></p>
+			<p><span></span><a>登录</a></p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function  () {
+			var input = document.getElementsByTagName('input');
+			for(var i = 0;i<input.length;i++){
+				input[i].onfocus = function(){
+					this.style.backgroundColor = "#64B5DD";
+					this.style.borderColor = "blue";
+				}
+				input[i].onblur = function (){
+					this.style.cssText = "";
+				}
+			}
+		}
+	</script>
+</body>
+</html>

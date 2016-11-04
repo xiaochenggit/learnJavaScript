@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>输入数字比较大小</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp {
+			margin: 20px 0px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<input type="text" name="">vs
+		<input type="text">
+		<input type="button" name="" value="比较大小">
+		<span>？</span>
+	</div>
+	<script type="text/javascript">
+		var input = document.getElementsByTagName('input');
+		var span = document.getElementsByTagName('span')[0];
+		for(var i = 0 ,len = input.length;i<len-1;i++){
+			input[i].onkeyup = function (){
+				this.value = this.value.replace(/[^\d]/,"");
+			}
+		}
+		input[2].onclick = function (){
+			if (input[0].value==''||input[1].value=="") {
+				alert("请输入数字");
+			}else{
+				span.innerHTML = parseInt(input[0].value)>parseInt(input[1].value)?parseInt(input[0].value):parseInt(input[1].value);
+			}
+		}
+	</script>
+</body>
+</html>

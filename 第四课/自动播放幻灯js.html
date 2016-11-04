@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动播放幻灯js</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		body{
+			background-color: #000;
+			text-align: center;
+		}
+		#banner{
+			display: inline-block;
+			overflow: hidden;
+			position: relative;
+		}
+		#banner .list{
+			position: relative;
+			width: 490px;
+			height: 170px;
+			border-radius: 8px;
+			border: 10px solid #fff;
+		}
+		#banner .list img{
+		}
+		#banner .list li{
+			border: 1px solid #ccc;
+			position: absolute;
+			height: 170px;
+			overflow: hidden;
+			opacity: 0;
+			filter: alpha(opacity=0);	
+		}
+		#banner .list li.active{
+			opacity: 1;
+			filter: alpha(opacity=100);
+		}
+		.btn{
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+		}
+		.btn li{
+			float: left;
+			line-height: 24px;
+			width: 24px;
+			border-radius: 24px;
+			background-color: orange;
+			color: #f60;
+			cursor: pointer;
+			margin-right: 5px;
+		}
+		.btn li.active{
+			color: #fff;
+			background-color: #f60;
+		}
+	</style>
+</head>
+<body>
+	<div id="banner">
+		<ul class="list">
+			<li class="active">
+				<a href="#">
+					<img src="../img/01.jpg">
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="../img/02.jpg">
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="../img/03.jpg">
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="../img/04.jpg">
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="../img/05.jpg">
+				</a>
+			</li>
+		</ul>
+		<ul class="btn">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var banner = document.getElementById("banner");
+			var lists = banner.getElementsByTagName('ul')[0].getElementsByTagName('li');
+			var btns = banner.getElementsByTagName('ul')[1].getElementsByTagName('li');
+			var num = 0;
+			var timer = null;
+		    var	timeOp = null;
+			play();//跑起来
+			//点击切换
+			for(var i = 0,len = btns.length;i<len;i++){
+				btns[i].index = i;
+				btns[i].onclick = function (){
+					clearInterval(timer); //清空
+					num = this.index;
+					returnM(this.index);
+				}
+			}
+			//移入移出清除定时器
+			banner.onmouseover = function(){
+				clearInterval(timer);
+			}
+			banner.onmouseout = function(){
+				timer = setInterval(btnqie,3000);
+			}
+			function returnM(index){
+				for(var i = 0,len = btns.length;i<len;i++){
+					btns[i].className = "";
+					lists[i].style.opacity = 0;
+					lists[i].style.filter = "alpha(opacity=0)";
+				}
+				btns[index].className = "active";
+				opacityR(index)//带动定时器
+			}
+			//透明度
+			function opacityR(index){
+				clearInterval(timeOp);//先清空定时器
+				var op = 0;
+				timeOp = setInterval(function(){
+					op += 2;
+					var opc = op/100;
+					lists[index].style.opacity = opc;
+					lists[index].style.filter = "alpha(opacity="+op+")";
+					if (op>=100) {
+						clearInterval(timeOp);
+					}
+				},20)
+			}
+			//运动起来
+			function play(){
+				timer = setInterval(btnqie,3000);
+			}
+			//最大值
+			function btnqie(){
+				num++;
+				if (num>=btns.length) {
+					num = 0;
+				}
+				returnM(num);
+			}
+		}
+	</script>
+</body>
+</html>

@@ -13,8 +13,12 @@
 </head>
 <body>
 	<div id="warp">
-<input type="text" class="f-text"><strong>+</strong><input type="text" class="f-text"><strong>=</strong><span>?</span><input type="button" value="求和">
-
+		<input type="text" class="f-text">
+		<strong>+</strong>
+		<input type="text" class="f-text">
+		<strong>=</strong>
+		<span>?</span>
+		<input type="button" value="求和">
 	</div>
 	<script type="text/javascript">
 window.onload = function ()
@@ -30,11 +34,12 @@ window.onload = function ()
 			this.value = this.value.replace(/[^\d]/,"")
 		}	
 	}
-	aInput[2].onclick = function ()
-	{
-		(aInput[0].value == "" || aInput[1].value == "") ?
-		alert("请输入数字！") :
-		aSpan.innerHTML = parseInt(aInput[0].value) + parseInt(aInput[1].value);
+	aInput[2].onclick = function (){
+		if (aInput[0].value==""||aInput[1].value=="") {
+			alert("请输入数字");
+		}else{
+			aSpan.innerHTML = parseInt(aInput[0].value)+parseInt(aInput[1].value);
+		}
 	}
 };
 </script>

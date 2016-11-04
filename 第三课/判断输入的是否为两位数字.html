@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断输入的是否为两位数字</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			margin: 20px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<input type="text" name="">
+		<button>检测</button>
+	</div>
+	<script type="text/javascript">
+		var input = document.getElementsByTagName('input')[0];
+		var btn = document.getElementsByTagName('button')[0];
+		input.onkeyup = function (){
+			this.value = this.value.replace(/[^\d]/,"");
+		}
+		btn.onclick = function (){
+			if(input.value.trim()==""){
+				alert("请填入数字");
+			}else{
+				if(/^\d{2}$/.test(parseInt(input.value))){
+					alert("√是两位数");
+				}else{
+					alert(input.value.length);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

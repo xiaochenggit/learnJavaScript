@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>setTimeout应用</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#nav{
+			font:14px/30px '微软雅黑';
+		}
+		#nav li{
+			overflow: hidden;
+			float: left;
+		}
+		#nav ul ul{
+			position: absolute;
+			top: 35px;
+		}
+		#nav ul ul li{
+			overflow: hidden;
+			float: left;
+		}
+		#nav ul ul a{
+			color: blue;
+			border-bottom: 2px solid #fff;
+		}
+		#nav ul ul a:hover{
+			border-bottom: 2px solid #f60;
+			border-radius: 0px;
+			background-color: #fff;
+		}
+		#nav ul ul{
+			border: 1px solid blue;
+			border-radius: 4px;
+			visibility: hidden;
+		}
+		#nav1{
+			width: 768px;
+			margin: 0 auto;
+			border-radius: 5px;
+			padding: 0 20px;
+			background-color: #5985B1;
+			zoom: 1;
+			min-height: 40px;
+			position: relative;
+		}
+		#nav li a{
+			margin: 5px 10px;
+			color: #fff;
+			display: inline-block;
+			padding: 0px 10px;
+			border-radius: 5px;
+			float: left;
+		}
+		*+html #nav li a{
+			margin: 5px 8.5px;
+		}
+		#nav li a:hover{
+			background-color: #799DC1;
+		}
+		a{
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="nav">
+		<ul id="nav1">
+			<li><a href="#">站长之家</a></li>
+			<li><a href="#">站长之家</a>
+				<ul>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+				</ul>
+			</li>
+			<li><a href="#">站长之家</a>
+				<ul>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+				</ul>
+			</li>
+			<li><a href="#">站长之家</a>
+			<ul>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+				</ul></li>
+			<li><a href="#">站长之家</a>
+			<ul>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+				</ul></li>
+			<li><a href="#">站长之家</a>
+				<ul>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+				</ul>
+			</li>
+			<li><a href="#">站长之家</a>
+			<ul>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+					<li><a href="#">站长之家</a></li>
+				</ul></li>
+			<li><a href="#">站长之家</a></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var get = {
+			byId: function(id){
+				return document.getElementById(id);
+			},
+			byTagName:function(elem,parent){
+				return (parent||document).getElementsByTagName(elem);
+			},
+			byClass:function(classname,parent){
+				var elem = (parent||document).getElementsByTagName("*");
+				var arr = [];
+				for(var i = 0,len = elem.length;i<len;i++){
+					var classArr = [];
+					classArr = elem[i].className.split(" ");
+					for(var j =  0;j<classArr.length;j++){
+						if (classArr[j] == classname) {
+							arr.push(elem[i]);
+						}
+					}
+				}
+				return arr;
+			}
+		};
+		window.onload = function (){
+			var nav1 =  get.byId('nav1');
+			var lis = get.byTagName('li',nav1);
+			for(var i = 0,len = lis.length;i<len;i++){
+				lis[i].onmouseover = function (){
+					var ulnav = get.byTagName('ul',this)[0];
+					if(ulnav){
+						ulnav.style.visibility = "visible";
+						//left + 宽度 超出范围
+						if((ulnav.offsetWidth+this.offsetLeft+10)>nav1.offsetWidth){
+							ulnav.style.right = "10px";
+						}else{
+							ulnav.style.left = this.offsetLeft+10+"px";
+						}
+					}
+				}
+				lis[i].onmouseout = function (){
+					if(get.byTagName('ul',this)[0]){
+						get.byTagName('ul',this)[0].style.visibility = "hidden";
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>

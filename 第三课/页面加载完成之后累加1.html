@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>页面加载完成之后累加1</title>
+	<style type="text/css">
+		body{
+			font: 600 30px/30px "微软雅黑";
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	0
+	<script type="text/javascript">
+		var body = document.body;
+		var i = 0;
+		function add(){
+			body.innerHTML = ++i;
+		}
+		setInterval(add,1000);
+	</script>
+</body>
+</html>

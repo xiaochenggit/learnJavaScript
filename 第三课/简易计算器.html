@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简易计算器</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+		#warp{
+			font-family: "微软雅黑";
+			width: 274px;
+			padding: 10px;
+			background-color: #000;
+			border-radius: 10px;
+			margin: 20px auto;
+		}
+		.top{
+			border-radius: 5px;
+			overflow: hidden;
+		}
+		.top p {
+			height: 30px;
+			font-size: 14px;
+			line-height: 30px;
+			text-align: right;
+			background-color: #f0f0f0;
+			color: #000;
+		}
+		.top #new{
+			height: 40px;
+			font-size: 30px;
+			font-weight: 600;
+			line-height: 40px;
+		}
+		ul{
+			position: relative;
+			overflow: hidden;
+			width: 294px;
+		}
+		ul li {
+			float: left;
+			font-size: 30px;
+			width: 60px;
+			line-height: 40px;
+			color: #f60;
+			text-align: center;
+			background-color: pink;
+			border-radius: 4px;
+			margin: 10px 11px 0px 0px;
+			cursor: pointer;
+		}
+		ul li:hover{
+			background-color: #d796a2;
+			color: #ae724a;
+		}
+		#equal{
+			right: 10px;
+			top: 150px;
+			position: absolute;
+			line-height: 90px;
+			background-color: #f60;
+			color: #fff;
+		}
+		#equal:hover{
+			background-color: #d796a2;
+			color: #ae724a;
+		}
+		#zero{
+			width: 132px;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<div class="top">
+			<p id="old"><span id="oldcloth"></span><span id="sign"></span></p>
+			<p id="new">0</p>
+		</div>
+		<ul>
+			<li class="btn">c</li>
+			<li class="btn">%</li>
+			<li class="btn">÷</li>
+			<li class="btn">×</li>
+			<li class="num">7</li>
+			<li class="num">8</li>
+			<li class="num">9</li>
+			<li class="btn">-</li>
+			<li class="num">4</li>
+			<li class="num">5</li>
+			<li class="num">6</li>
+			<li class="btn">+</li>
+			<li class="num">1</li>
+			<li class="num">2</li>
+			<li class="num">3</li>
+			<li class="btn" id="equal">=</li>
+			<li class="num" id="zero">0</li>
+			<li class="num">.</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var newCloth = document.getElementById('new');//新值的展示地方 初始化为0;
+			var oldCloth = document.getElementById('oldcloth');//老值的展示地方 初始化为空;
+			var equal  = document.getElementById("equal");
+			var lis = document.getElementsByTagName('li');
+			var art = "";//计算符号
+			var eq = false;//新值展示的地方是否为计算的数
+			function reOldCloth(val){
+				if (newCloth.innerHTML=="0") {
+					//新值还在等于0 改变符号 其余的不做改变
+					if(oldCloth.innerHTML!=""){
+						oldCloth.innerHTML = parseFloat(oldCloth.innerHTML)+val;
+						art = val;
+					}
+				}else{
+					if (oldCloth.innerHTML=="") {
+					oldCloth.innerHTML = newCloth.innerHTML;
+					oldCloth.innerHTML +=val;
+					newCloth.innerHTML = 0;
+					art = val;
+				}else{
+					//老值上有值的时候，要模拟一下=号触发事件
+					equal.onclick();
+					oldCloth.innerHTML = newCloth.innerHTML;
+					oldCloth.innerHTML +=val;
+					newCloth.innerHTML = 0;
+					art = val;
+					}
+				}
+				
+			}
+			function reEq(value){
+				if (eq) {//不能连续按=号
+				}else{
+					oldCloth.innerHTML+=newCloth.innerHTML;
+					newCloth.innerHTML = value;
+					eq = true;
+				}
+			}
+			for(var i = 0,len = lis.length;i<len;i++){
+				lis[i].onclick = function (){
+					var val = this.innerHTML;
+					switch (val) {
+						case "c"://归零
+							oldCloth.innerHTML = "";
+							newCloth.innerHTML = 0;
+							eq = false;
+							break;
+						case "%"://余数
+							reOldCloth(val)
+							break;
+						case "÷"://除以
+							reOldCloth(val)
+							break;
+						case "×"://除以
+							reOldCloth(val)
+							break;
+						case "-"://减
+							reOldCloth(val)
+							break;
+						case "+"://加
+							reOldCloth(val)
+							break;
+						case "="://加
+							var oldval = parseFloat(oldCloth.innerHTML);
+							var newval = parseFloat(newCloth.innerHTML);
+							console.log(art)
+							switch (art) {
+								case "+":
+									var value = oldval+newval;
+									reEq(value)
+									break;
+								case "-":
+									var value = oldval-newval;
+									reEq(value)
+									break;
+								case "×":
+									var value = oldval*newval;
+									reEq(value)
+									break;
+								case "÷":
+									var value = oldval/newval;
+									reEq(value)
+									break;
+								case "%":
+									var value = oldval%newval;
+									reEq(value)
+									break;
+								default:
+									// statements_def
+									break;
+							}
+							break;
+						default:
+							if(newCloth.innerHTML=="0"||eq){//为初始值，或者为计算值重赋值
+								newCloth.innerHTML="";
+							}
+							if (newCloth.innerHTML.length<15) {
+								newCloth.innerHTML+=val;
+								eq = false;
+							}
+							break;
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css函数设置读取对象的属性</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			background-color: pink;
+			width: 300px;
+			padding: 20px;
+			border: 1px solid #f60;
+			margin:20px auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<input type="button" name="" value="Get Style">
+		<input type="button" name="" value="Set Style">
+		<input type="button" name="" value="Default Style">
+	</div>
+	<script type="text/javascript">
+		function css(obj,attr,value){
+			switch (arguments.length) {
+				case 2:
+					//设置属性
+					if (typeof arguments[1] == "object") {
+						for (variable in attr) {
+							obj.style[variable] = attr[variable];
+						}
+					//读取属性
+					}else{
+						return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,null)[attr];
+					}
+				break;
+				//设置属性
+				case 3:
+					obj.style[attr] = value;
+				break;
+				default:
+				alert('参数有问题')
+				break;
+			}
+		}
+		window.onload = function (){
+			var warp = document.getElementById('warp');
+			var input = document.getElementsByTagName('input');
+			input[0].onclick = function (){
+				alert("width: "+css(warp,"width")+"\nborder: "+css(warp,"border")+"\nbackgroundColor: "+css(warp,"backgroundColor"));
+			}
+			input[1].onclick = function (){
+				css(warp,{width:'200px',border:'1px solid #ccc',backgroundColor:"red"});
+			}
+			input[2].onclick = function (){
+				warp.style.cssText = "";
+			}
+		}
+	</script>
+</body>
+</html>

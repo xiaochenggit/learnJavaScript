@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组练习</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		div{
+			background-color: pink;
+			line-height: 24px;
+			padding: 10px;
+			margin: 20px 0;
+			color: green;
+		}
+	</style>
+</head>
+<body>
+	<div>January(1),February(2),March(3),April(4),May(5),June(6),July(7),Aguest(8),September(9),October(10),November(11),December(12)</div>
+	<input type="button" name="" value="删除January(1)">
+	<input type="button" name="" value="删除December(12)">
+	<script type="text/javascript">
+		window.onload = function (){
+			var divs = document.getElementsByTagName('div');
+			var btns = document.getElementsByTagName('input');
+			var s1 = s2 =  true;
+			btns[0].onclick = function (){
+				var arr = divs[0].innerHTML.split(",");
+				if (s1) {
+					arr.shift();//删除首项 返回删除值，原数组变化
+					s1 = false;
+					this.value = this.value.replace("删除","添加");
+				}else{
+					arr.unshift("January(1)");//添加首项 严肃组发生变化
+					s1 = true;
+					this.value = this.value.replace("添加","删除");
+				}
+				divs[0].innerHTML = arr.join(",");
+			}
+			btns[1].onclick = function (){
+				var arr = divs[0].innerHTML.split(",");
+				if(s2){
+					arr.pop();
+					s2 = false;
+					this.value = this.value.replace("删除","添加");
+				}else{
+					arr.push("December(12)");
+					s2 = true;
+					this.value = this.value.replace("添加","删除");
+				}
+				divs[0].innerHTML = arr.join(",")
+			}
+		}
+	</script>
+</body>
+</html>

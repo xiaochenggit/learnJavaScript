@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>累加按钮自加1</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			margin: 20px 0px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<button>0</button>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var btn = document.getElementsByTagName("button")[0];
+			var num  = 0;
+			btn.onclick = function (){
+				num+=1;
+				btn.innerHTML = num;
+			}
+		}
+	</script>
+</body>
+</html>
