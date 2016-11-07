@@ -22,6 +22,45 @@
 		// [abc] 取反[^abc]
 		//"a1b1x1n1p1".replace(/[a-z]/g,"Q");//"Q1Q1Q1Q1Q1"//[a-zA-Z]大小写a-z [0-9-]数字 或者斜杠
 		// 范围类 [a-z]
+		//贪婪模式 和非贪婪模式 
+// 		"12345678".replace(/\d{3,6}/,"X")
+// "X78"
+// "12345678".replace(/\d{3,6}?/,"X")加上问好，就是贪婪模式
+// "X45678"
+// "12345678".replace(/\d{3,6}?/g,"X")加上g全局匹配
+// "XX78"
+		//一个字母一个数字连续出现3次的场景
+		// 	"a1b2c3d4".replace(/[a-z]\d{3}/g,"X")
+		// "a1b2c3d4"
+		// "a1b2c3d4".replace(/([a-z]\d){3}/g,"X")
+		// "Xd4"
+		// "xiaocheng".replace(/xiao|cheng/g,"X")
+		// "XX"
+		// "xiaoengxicheng".replace(/xi(ao|ch)eng/g,"X")
+		// "XX"
+		// "2016-11-25".replace(/(\d{4})-(\d{2})-(\d{2})/g,"$2/$3/$1")
+	    //    "11/25/2016"
+// 	    "a1a*3".replace(/\w(?=\d)/g,"X");
+// "X1a*3"
+// "a1a*3d".replace(/\w(?=\d)/g,"X");
+// "X1a*3d"
+// "a1a*3vvv".replace(/\w(?=\d)/g,"X");
+// "X1a*3vvv"
+// "a1a*3v3v3".replace(/\w(?=\d)/g,"X");
+// "X1a*3X3X3"
+// "a1a*3".replace(/\w(?!\d)/g,"X");
+// "aXX*X" 
+		//正则表达式对象
+		//正则表达式中的test 和exec方法
+		// RegExp.prototype.test(str);	//简书里面了
+		// //match 匹配的数据  index 字符位置，orgin 为原字符串
+		// "1d2d3d4d5c".replace(/\d/g,function(match,index,orgin){
+		// 	return parseInt(match)+1;
+		// })
+		// "1d2d3d4d5c".replace(/(\d)(\w)(\d)/g,function(match,group1,group2,group3,index,orgin){
+		// 	return group1+group2;
+		// })
+		// http://www.imooc.com/article/9539
 	</script>
 </body>
 </html>
