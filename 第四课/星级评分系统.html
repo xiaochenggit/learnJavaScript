@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>星级评分系统</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+		  font:14px/19px '微软雅黑';
+		  width: 600px;
+		  margin: 20px auto;
+		}
+		ul{
+			display: inline;
+			float: left;
+			position: relative;
+		}
+		ul li{
+			float: left;
+			width: 19px;
+			height: 19px;
+			background: url('../img/star.png') no-repeat;
+			margin: 0 2px;
+		}
+		ul li.on{
+			background: url('../img/star.png') no-repeat 0px -28px;
+		}
+		span{
+			float: left;
+			display: inline-block;
+		}
+		ul p{
+			display: inline-block;
+			position: absolute;
+			width: 171px;
+			height: 59px;
+			background: url('../img/icon.gif') no-repeat;
+			top: 19px;
+			display: none;
+			padding:4px;
+			line-height: 18px;
+			font-size: 12px;
+		}
+		 p strong{
+			font-weight: 600;
+			display: block;
+			color: #f60;
+		}
+		#scroce strong{
+			display: inline-block;
+		}
+ 	</style>
+</head>
+<body>
+	<div id="warp">
+		<span>点击星星打分</span>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<p></p>
+		</ul>
+		<p id="scroce"></p>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var lis = document.getElementsByTagName("li");
+			var ul = document.getElementsByTagName("ul")[0];
+			var p = ul.getElementsByTagName('p')[0];
+			var scroce = document.getElementById("scroce");
+			var num =-1;
+			var aMsg = [
+				"很不满意|差得太离谱，与卖家描述的严重不符，非常不满",
+				"不满意|部分有破损，与卖家描述的不符，不满意",
+				"一般|质量一般，没有卖家描述的那么好",
+				"满意|质量不错，与卖家描述的基本一致，还是挺满意的",
+				"非常满意|质量非常好，与卖家描述的完全一致，非常满意"
+				];
+			for(var i = 0,len = lis.length;i<len;i++){
+				lis[i].index = i;
+				lis[i].onmouseover=function(event) {
+					for(var j = 0;j<lis.length;j++){
+						if (j<=this.index) {
+							lis[j].className = "on";
+							p.style.left = -90+this.offsetLeft+this.offsetWidth/2+'px';
+							p.innerHTML = "<strong>"+(this.index+1)+"分"+aMsg[this.index].split('|')[0]+"</strong>"+aMsg[this.index].split('|')[1];
+							p.style.display = 'block';
+						}else{
+							lis[j].className = "";
+						}
+					}
+				}
+				lis[i].onclick = function(){
+					num = this.index;
+					scroce.innerHTML = "<strong>"+(this.index+1)+"分"+"</strong>("+aMsg[this.index].split('|')[1]+")";
+				}
+			}
+			ul.onmouseout = function(){
+				for(var i = 0,len = lis.length;i<len;i++){
+					if (i<=num) {
+
+					}else{
+						lis[i].className = '';
+					}
+					p.style.display = 'none';
+				}
+			}
+		}
+	</script>
+</body>
+</html>

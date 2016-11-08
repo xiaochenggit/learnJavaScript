@@ -18,6 +18,15 @@
 	<div>January(1),February(2),March(3),April(4),May(5),June(6),July(7),Aguest(8),September(9),October(10),November(11),December(12)</div>
 	<input type="button" name="" value="删除January(1)">
 	<input type="button" name="" value="删除December(12)">
+	<div>0,1,2,3,4,5,6,7,8,9</div>
+	<input type="button" name="" value="复制">
+	<input type="button" name="" value="还原">
+	<div>red,green,blue,white,yellow,black,brown</div>
+	<input type="button" name="" value="还原">
+	<input type="button" name="" value="删除前三项">
+	<input type="button" name="" value="删除第二至第三项">
+	<input type="button" name="" value="在第二项后插入(orange,purple)">
+	<input type="button" name="" value="替换第二项至第三项">
 	<script type="text/javascript">
 		window.onload = function (){
 			var divs = document.getElementsByTagName('div');
@@ -48,6 +57,40 @@
 					this.value = this.value.replace("添加","删除");
 				}
 				divs[0].innerHTML = arr.join(",")
+			}
+			btns[2].onclick = function(){
+				var arr = divs[1].innerHTML.split(',');
+				divs[1].innerHTML += ",";
+				divs[1].innerHTML += arr.join(",");
+			}
+			btns[3].onclick = function (){
+				var arr = divs[1].innerHTML.split(",");
+				arr.length = 10;
+				divs[1].innerHTML = arr;
+			}
+			var arrZ = divs[2].innerHTML;
+			btns[4].onclick = function(){
+				divs[2].innerHTML = arrZ;
+			}
+			btns[5].onclick = function (){
+				var arr = divs[2].innerHTML.split(",");
+				arr.splice(0,3);
+				divs[2].innerHTML = arr.join(",");
+			}
+			btns[6].onclick = function (){
+				var arr = divs[2].innerHTML.split(",");
+				arr.splice(1,2);
+				divs[2].innerHTML = arr.join(",");
+			}
+			btns[7].onclick = function (){
+				var arr = divs[2].innerHTML.split(",");
+				arr.splice(1,0,["orange,purple"]);
+				divs[2].innerHTML = arr.join(",");
+			}
+			btns[8].onclick = function (){
+				var arr = divs[2].innerHTML.split(",");
+				arr.splice(1,2,["orange,purple"]);
+				divs[2].innerHTML = arr.join(",");
 			}
 		}
 	</script>
