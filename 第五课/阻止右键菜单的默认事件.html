@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>阻止右键菜单的默认事件</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+</head>
+<body>
+	<script type="text/javascript">
+		window.onload = function (){
+			document.oncontextmenu = function(){
+				return false;
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击显示坐标</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+</head>
+<body>
+	<script type="text/javascript">
+	document.onclick = function (event)
+	{
+		var event = event || window.event;	
+		alert("坐标：[" + event.clientX + ", " + event.clientY + "]")
+	}
+	</script>
+</body>
+</html>

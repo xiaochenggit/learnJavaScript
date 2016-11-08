@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户键盘按下显示keyCode</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+</head>
+<body>
+	<div id="div">
+		
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var div = document.getElementById('div');
+			document.onkeydown = function(event){
+				var event = event||window.event;
+				div.innerHTML += event.keyCode+"、";
+			}
+		}
+	</script>
+</body>
+</html>

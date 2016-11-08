@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>完美拖拽</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		body{
+			font:14px/24px '微软雅黑';
+			background-color: #000;
+		}
+		a{
+			text-decoration: none;
+			color: #fff;
+			float: right;
+			margin-right: 10px;
+		}
+		#warp{
+			position: absolute;
+			width: 250px;
+			border: 2px solid #ccc;
+			left: 400px;
+			top: 300px;
+		}
+		#warp div{
+			cursor: crosshair;
+			zoom: 1;
+			background-color: #222;
+			overflow: hidden;
+			border-bottom: 2px solid #ccc;
+		}
+		#warp ul{
+			padding: 0px 10px;
+			background-color: #666;
+		}
+		#warp ul li{
+			color: #fff;
+		}
+		#warp ul li span{
+			color: #f60;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<div>
+			<a href="#">点击回放拖拽</a>
+		</div>
+		<ul>
+			<li>Drag：<span></span></li>
+			<li>offsetLeft：<span></span></li>
+			<li>offsetTop：<span></span></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var div = document.getElementById('warp');
+			var oSpan = document.getElementsByTagName('span');
+			var drag = false;
+			var odiv = div.getElementsByTagName('div')[0];
+			var a = odiv.getElementsByTagName('a')[0];
+			var oldX = 0;
+			var oldY = 0;
+			odiv.onmousedown = function (event){
+				var event = event || window.event;
+				drag = true;
+				oldX = event.clientX;
+				oldY = event.clientY;
+			}
+			document.onmousemove = function (event){
+				var event = event || window.event;
+				if (drag) {
+					var dirX = event.clientX - oldX;
+					var dirY = event.clientY - oldY;
+					div.style.left = (div.offsetLeft + dirX) + 'px';
+					div.style.top = (div.offsetTop + dirY) + 'px';
+					oldX = event.clientX;
+					oldY = event.clientY;
+				}
+				reset();
+				return false;
+			}
+			odiv.onmouseup  = function (){
+				drag = false;
+				reset();
+				return false;
+			}
+			function reset(){
+				oSpan[0].innerHTML = drag;
+				oSpan[1].innerHTML = div.offsetLeft;
+				oSpan[2].innerHTML = div.offsetTop;
+			}
+			//防止事件冒泡
+			a.onmousedown = function (event){
+				var event = event||window.event;
+				event.cancelBubble = true;
+			}
+			//防止越界
+			reset();
+		}
+	</script>
+</body>
+</html>

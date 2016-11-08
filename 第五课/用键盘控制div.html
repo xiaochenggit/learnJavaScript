@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用键盘控制div</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#div{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			top: 300px;
+			left: 300px;
+			position: fixed;
+		}
+	</style>
+</head>
+<body>
+	<div id='div'>
+		
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var div = document.getElementById('div');
+			var oLeft = false;
+			var oRight = false;
+			var oUp = false;
+			var oDown = false;
+			//定时器 监听
+			setInterval(function(){
+				if (oUp) {
+					div.style.top = div.offsetTop-10+"px";
+				}
+				if (oLeft) {
+					div.style.left = div.offsetLeft-10+"px";
+				}
+				if (oRight) {
+					div.style.left = div.offsetLeft+10+"px";
+				}
+				if (oDown) {
+					div.style.top = div.offsetTop+10+"px";
+				}
+				keepW();
+			},30);
+			// 按下键盘
+			document.onkeydown = function(event){
+				var event = event||window.event;
+				var ctrl = event.ctrlKey;
+				console.log(event.keyCode+"/"+event.ctrlKey);
+				switch (event.keyCode) {
+					case 38://上	
+						if (ctrl) {
+							oldWidth = div.offsetWidth;
+							oldHeight = div.offsetHeight;
+							div.style.width = div.offsetWidth*1.5+'px';
+							div.style.height = div.offsetHeight*1.5+'px';
+							div.style.left = (div.offsetLeft-(div.offsetWidth-oldWidth)/2)+"px";
+							console.log(div.style.left);
+							div.style.top = (div.offsetTop-(div.offsetHeight-oldHeight)/2)+"px";
+							break;
+						}
+						oUp = true;
+						break;
+					case 40://下
+						if (ctrl) {
+							oldWidth = div.offsetWidth;
+							oldHeight = div.offsetHeight;
+							div.style.width = div.offsetWidth*0.75+'px';
+							div.style.height = div.offsetHeight*0.75+'px';
+							div.style.left = (div.offsetLeft-(div.offsetWidth-oldWidth)/2)+"px";
+							console.log(div.style.left);
+							div.style.top = (div.offsetTop-(div.offsetHeight-oldHeight)/2)+"px";
+							break;
+						}
+						oDown = true;
+						break;
+					case 37://左
+						oLeft = true;
+						break;
+					case 39://右
+						oRight = true;
+						break;
+					case 49://1
+						if (ctrl) {//触发了ctrl
+							div.style.backgroundColor = "green";
+							break;
+						}
+					break;
+					case 50://1
+						if (ctrl) {//触发了ctrl
+							div.style.backgroundColor = "yellow";
+							break;
+						}
+					break;
+					case 51://1
+						if (ctrl) {//触发了ctrl
+							div.style.backgroundColor = "blue";
+							break;
+						}
+					break;
+					default :
+						break;
+				}
+				return false;
+			}
+			//抬起
+			document.onkeyup = function(){
+				var event = event||window.event;
+				switch (event.keyCode) {
+					case 38://上
+						oUp = false;
+						break;
+					case 40://下
+						oDown = false;
+						break;
+					case 37://左
+						oLeft = false;
+						break;
+					case 39://右
+						oRight = false;
+						break;
+					default :
+						break;
+				}
+			}
+			//是否越界
+			function keepW(){
+				var maxWidth = document.documentElement.clientWidth;
+				var maxHeight = document.documentElement.clientHeight;
+				var width = div.offsetWidth;
+				var left = div.offsetLeft;
+				var height = div.offsetHeight;
+				var top = div.offsetTop;
+				if (left<0) {
+					div.style.left= "0px";
+				}
+				if (top<0) {
+					div.style.top= "0px";
+				}
+				if ((left+width)>=maxWidth){
+					div.style.left  = maxWidth-width+'px';
+				}
+				if ((top+height)>=maxHeight){
+					div.style.top  = maxHeight-height+'px';
+				}
+			}
+			keepW();
+		}
+	</script>
+</body>
+</html>

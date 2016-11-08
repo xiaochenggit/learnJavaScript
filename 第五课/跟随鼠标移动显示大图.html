@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跟随鼠标移动(显示大图)</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp li{
+			float:left;
+			margin-right: 15px;
+			border: 1px solid #000;
+			cursor: pointer;
+		}
+		#warp li:hover{
+			border-color: #f60;
+		}
+		#warp ul{
+			width: 748px;
+			margin: 20px auto;
+		}
+		body{
+			text-align: center;
+		}
+		#div{
+			display: inline-block;
+			position: fixed;
+			border: 1px solid #000;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<ul>
+			<li><img src="../img/shirt_1.jpg"></li>
+			<li><img src="../img/shirt_2.jpg"></li>
+			<li><img src="../img/shirt_3.jpg"></li>
+			<li><img src="../img/shirt_4.jpg"></li>
+		</ul>
+	</div>
+	<div id="div">
+		<img src="">
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var div = document.getElementById('div');
+			var img = div.getElementsByTagName('img')[0];
+			var lis = document.getElementsByTagName('li');
+			for(var i = 0,len = lis.length;i<len;i++){
+				lis[i].onmousemove = function(event){
+					var event = event||window.event;
+					var imghref = this.getElementsByTagName('img')[0].src.replace(".jpg","_big.jpg");
+					img.src = imghref;
+					div.style.left = event.clientX+10+'px';
+					div.style.top = event.clientY+10+'px';
+					div.style.display = 'block';
+				}
+				lis[i].onmouseout = function (){
+					div.style.display = 'none';
+				}
+			}
+		}
+	</script>
+</body>
+</html>

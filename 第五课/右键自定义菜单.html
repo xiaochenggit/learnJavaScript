@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>右键自定义菜单</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		ul{
+			width:90px;
+			padding: 4px;
+			border: 1px solid #000;
+			border-radius: 4px; 
+			font: 14px/24px '微软雅黑';
+			display: none;
+			position: fixed;
+		}
+		ul li{
+			position: relative;
+			padding-left: 34px;
+			line-height: 24px;
+			height: 24px;
+		}
+		ul li:hover,ul li:hover span,ul li:hover a{
+				background-color: #ccc;
+				color: #fff;
+		}
+		ul span{
+			top: 0px;
+			left: 0px;
+			position: absolute;
+			display: inline-block;
+			width: 24px;
+			height: 24px;
+			overflow: hidden;
+			background:pink url('../img/ico.png') no-repeat;
+		}
+		a {
+			text-decoration: none;
+			color: #666;
+		}
+		ul .fz span{
+			background-position: 0px -24px;
+		}
+		ul .nt span{
+			background-position: 0px -48px;
+		}
+	</style>
+</head>
+<body>
+	<ul id="menu">
+		<li><span></span><a href="#">剪切</a></li>
+		<li class="fz"><span></span><a href="#">复制</a></li>
+		<li class="nt"><span></span><a href="#">粘贴</a></li>
+	</ul>
+	<script type="text/javascript">
+		window.onload = function (){
+			var menu = document.getElementById('menu');
+			var lis = menu.getElementsByTagName('li');
+			document.oncontextmenu = function(event){
+				var event = event||window.event;
+				menu.style.left = event.clientX+'px';
+				menu.style.top = event.clientY+'px';
+				menu.style.display = 'block';
+				return false;
+			}
+			document.onclick = function(){
+				menu.style.display = 'none';
+			}
+			for(var i = 0,len = lis.length;i<len;i++){
+				lis[i].onclick = function(){
+					menu.style.display = 'none';
+				}
+			}
+		}
+	</script>
+</body>
+</html>
