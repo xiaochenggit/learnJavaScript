@@ -3,8 +3,389 @@
 <head>
 	<meta charset="UTF-8">
 	<title>仿腾讯微博效果</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		body{
+			background-color: #3c3a3b;
+		}
+		#warp{
+			padding: 10px;
+			background-color: #fff;
+			border: 1px solid #ccc;
+			width: 480px;
+			/* _width: 477px; */
+			margin: 20px auto;
+			font-family: '微软雅黑';
+			border-radius: 4px;
+		}
+		#warp h2{
+			font: 400 18px/1.5 "微软雅黑";
+		}
+		#name{
+			width: 180px;
+			border: none;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			height: 28px;
+			line-height: 28px;
+			text-indent: 10px;
+			color: #666;
+			float: left;
+			outline: none;
+		}
+		#name.active{
+			border-color: green;
+		}
+		.name{
+			overflow: hidden;
+			zoom: 1;
+		}
+		.name ul {
+			float: left;
+		}
+		.name ul img{
+			width: 30px;
+			height: 30px;
+			border:1px solid #fff;
+			border-radius: 4px;
+			opacity: 0.5;
+			filter: alpha(opacity=50);
+		}
+		.name ul img.active{
+			opacity: 1;
+			filter: alpha(opacity=100);
+			border-color: red;
+		}
+		.name ul li{
+			float: left;
+			margin: 0px 2px;
+			_margin: 0px 1px;
+		}
+		textarea{
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			width: 99%;
+			height: 100px;
+			overflow: auto;
+			resize: none;
+			color: #666;
+			/* text-indent: 1em;
+			_text-indent: 0px; */
+			line-height: 28px;
+			margin: 5px 0px;
+			outline: none;
+		}
+		textarea.active{
+			border-color: green;
+		}
+		.textdiv{
+			text-align: right;
+			line-height: 30px;
+			height: 30px;
+			position: relative;
+			padding-right: 120px;
+		}
+		.textdiv span{
+			font-family:  Georgia, Tahoma, Arial;
+			font-size: 26px;
+		}
+		.textdiv input{
+			cursor: pointer;
+			position: absolute;
+			width: 112px;
+			border: none;
+			height: 30px;
+			right: 0px;
+			background: url('../img/btn.png') no-repeat;
+		}
+		.textdiv input.active{
+			background-position: 0px -30px;
+		}
+		.tacktop{
+			height: 40px;
+			background-color: #E3EAEC;
+			border-radius: 4px;
+			margin-top: 10px;
+			position: relative;
+		}
+		.tacktop h3{
+			width: 80px;
+			line-height: 30px;
+			height: 30px;
+			background-color: #fff;
+			color: #000;
+			font-weight: 200;
+			text-align: center;
+			position: absolute;
+			bottom: 0px;
+			left: 20px;
+		}
+		#tackabout{
+			overflow: hidden;
+			zoom: 1;
+		}
+		#tackabout li{
+			padding:10px;
+			overflow: hidden;
+			zoom: 1;
+			border-bottom: 1px dashed #ccc;
+			margin: 0px;
+			float: left;
+			width: 460px;
+		}
+		#tackabout li img{
+			border-radius: 4px;
+			float: left;
+		}
+		#tackabout li .cont{
+			width: 403px;
+			float: right;
+			font: 200 14px/1.5 '微软雅黑';
+		}
+		#tackabout li .cont span{
+			margin-left: 5px;
+		}
+		.cont a{
+			text-decoration: none;
+			color: #2b4a78;
+		}
+		.cont a:hover{
+			text-decoration: underline;
+		}
+		.time{
+			font-size: 12px;
+			color: #889db6;
+			padding: 5px 0px;
+			position: relative;
+		}
+		.time a{
+			color: #889db6;
+			position: absolute;
+			right: 0px;
+			visibility: hidden;
+		}
+		#tackabout li.active{
+			background-color: #f3f3f3;
+		}
+		#tackabout li.active .time a{
+			visibility: visible;
+		}
+	</style>
 </head>
 <body>
-	
+	<div id="warp">
+		<h2>来,说说你在做什么,想什么</h2>
+		<form>
+			<div class="name">
+				<input type="text" name="" value="" id="name">
+				<ul id="imgs">
+					<li><img src="../img/face1.gif" class="active"></li>
+					<li><img src="../img/face2.gif"></li>
+					<li><img src="../img/face3.gif"></li>
+					<li><img src="../img/face4.gif"></li>
+					<li><img src="../img/face5.gif"></li>
+					<li><img src="../img/face6.gif"></li>
+					<li><img src="../img/face7.gif"></li>
+					<li><img src="../img/face8.gif"></li>
+				</ul>
+			</div>
+			<textarea id="text"></textarea>
+			<div class="textdiv">
+				还能输入<span id="zf">140</span>个字<input type="button" name="" id="submit">
+			</div>
+		</form>
+		<div class="tack">
+			<div class="tacktop">
+				<h3>大家在说</h3>
+			</div>
+			<ul id="tackabout">
+				<li>
+					<img src="../img/face.gif">
+					<div class="cont">
+						<p><a href="#">日丶久生情</a>:<span>新增删除广播功能</span></p>
+						<p class="time">07月05日 15:14<a href="#" class="delet">删除</a></p>
+					</div>
+				</li>
+				<li>
+					<img src="../img/face.gif">
+					<div class="cont">
+						<p><a href="#">日丶久生情</a>:<span>新增删除广播功能新增删除广播功能新增删除广播功能新增删除广播功能新增删除广播功能新增删除广播功能新增删除广播功能新增删除广播功能新增删除广播功能新增删除广播功能</span></p>
+						<p class="time">07月05日 15:14<a href="#" class="delet">删除</a></p>
+					</div>
+				</li>
+				<li>
+					<img src="../img/face.gif">
+					<div class="cont">
+						<p><a href="#">日丶久生情</a>:<span>新增删除广播功能</span></p>
+						<p class="time">07月05日 15:14<a href="#" class="delet">删除</a></p>
+					</div>
+				</li>
+				<li>
+					<img src="../img/face.gif">
+					<div class="cont">
+						<p><a href="#">日丶久生情</a>:<span>新增删除广播功能</span></p>
+						<p class="time">07月05日 15:14<a href="#" class="delet">删除</a></p>
+					</div>
+				</li>
+				<li>
+					<img src="../img/face.gif">
+					<div class="cont">
+						<p><a href="#">日丶久生情</a>:<span>新增删除广播功能</span></p>
+						<p class="time">07月05日 15:14<a href="#" class="delet">删除</a></p>
+					</div>
+				</li>
+				<li>
+					<img src="../img/face.gif">
+					<div class="cont">
+						<p><a href="#">日丶久生情</a>:<span>新增删除广播功能</span></p>
+						<p class="time">07月05日 15:14<a href="#" class="delet">删除</a></p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			//头像
+			var imgs = document.getElementById('imgs').getElementsByTagName("img");
+			//广播
+			var submit = document.getElementById('submit');
+			//广播区
+			var tacks = document.getElementById('tackabout').getElementsByTagName('li');
+			var delets = document.getElementById('tackabout').getElementsByTagName('a');
+			//名字
+			var name = document.getElementById('name');
+			//输入的内容
+			var text = document.getElementById('text');
+			//字符
+			var zf = document.getElementById('zf');
+			//名字input 线的切换
+			name.onfocus = function(){
+				this.className = 'active';
+			}
+			name.onblur = function (){
+				this.className = '';
+			}
+			text.onfocus = function(){
+				this.className = 'active';
+			}
+			text.onblur = function (){
+				this.className = '';
+			}
+			//头像切换部分
+			for(var i = 0,len = imgs.length;i<len;i++){
+				imgs[i].onmouseover = function (){
+					this.style.opacity = 1;
+					this.style.filter = 'alpha(opacity=100)';
+					this.style.borderColor = 'red';
+				}
+				imgs[i].onmouseout = function (){
+					this.style.cssText = '';
+				}
+				imgs[i].onclick = function (){
+					for(var j = 0,l = imgs.length;j<l;j++){
+						imgs[j].className = '';
+					}
+					this.className = "active";
+				}
+			}
+			//广播背景切换
+			submit.onmouseover = function(){
+				this.className = "active";
+			}
+			submit.onmouseout = function(){
+				this.className = "";
+			}
+			//tackabout list背景变换
+			function tackbg(){
+				for(var i = 0,len = tacks.length;i<len;i++ ){
+					tacks[i].onmouseover = function (){
+						this.className = 'active';
+					}
+					tacks[i].onmouseout = function (){
+						this.className = '';
+					}
+				}
+			}
+			tackbg();
+			//删除
+			function tackDelet(){
+				for(var i = 0,len = delets.length;i<len;i++){
+					delets[i].onclick = function(){
+						var tacks = document.getElementById('tackabout');
+						var parent = this.parentNode.parentNode.parentNode;
+						var op = 100;
+						var timers = setInterval(function(){
+							 op -= 2;
+							 parent.style.opacity = op/100;
+							 parent.style.filter = "alpha(opacity="+op+")";
+							 if (op <= 0) {
+							 	clearInterval(timers);
+							 	tacks.removeChild(parent);
+							 }
+						},30)
+						return false;
+					}
+				}
+			}
+			tackDelet();
+			//提交
+			submit.onclick = function (){
+				if (name.value == '') {
+					alert("请填写姓名");
+					return;
+				}
+				if (text.value == '') {
+					alert('随便说些什么吧');
+					return;
+				}
+				var imgT ='';
+				for(var i = 0,len = imgs.length;i<len;i++){
+					if (imgs[i].className != "") {
+						imgT = imgs[i].src;
+					}
+				}
+				var time = getTime();
+				var li = "";		
+				li  += "<img src ="+imgT+">";
+				li  += "<div class='cont'>";
+				li  += "<p><a href='#'>"+name.value+"</a>:<span>"+text.value+"</span></p>";
+				li  += "<p class='time'>"+time+"<a href='#' class = 'delet'>删除</a></p>"
+				li  += "</div>";
+				var lis = document.createElement('li');
+				lis.innerHTML = li;
+				var tackabout = document.getElementById('tackabout');
+				tackabout.insertBefore(lis,tackabout.firstChild);
+				text.value = '';
+				zf.innerHTML = 140;
+				tackbg();
+				tackDelet();
+			}
+			function getTime(){
+				var time = '';
+				var date = new Date();
+				var month = date.getMonth()+1;//月
+				var day = date.getDate();//日
+				var hours = date.getHours();//时
+				var min = date.getMinutes();//分
+				time = reTwo(month)+"月"+reTwo(day)+"日"+" "+reTwo(hours)+":"+reTwo(min);
+				return time;
+			}
+			//时间补零
+			function reTwo(num){
+				if (num<=9) {
+					num = "0"+num;
+				}
+				return num;
+			}
+			// 剩余字符更新
+			text.onkeyup = function(){
+				if (this.value.length>=140) {
+					this.value.length=140;
+				}
+				zf.innerHTML = 140-this.value.length;
+			}
+		}
+	</script>
 </body>
 </html>
