@@ -8,6 +8,7 @@
 		body{
 			font:14px/24px '微软雅黑';
 			background-color: #000;
+			overflow: hidden;
 		}
 		a{
 			text-decoration: none;
@@ -59,43 +60,85 @@
 			var drag = false;
 			var odiv = div.getElementsByTagName('div')[0];
 			var a = odiv.getElementsByTagName('a')[0];
+			// 鼠标相对于div的位置，这个位置是点击之后才改变
 			var oldX = 0;
 			var oldY = 0;
+			//用来记录 位置 方便回滚
+			var arr = [{x:div.offsetLeft,y:div.offsetTop}];
+			//按下 准备拖动
 			odiv.onmousedown = function (event){
 				var event = event || window.event;
 				drag = true;
-				oldX = event.clientX;
-				oldY = event.clientY;
+				oldX = event.clientX-div.offsetLeft;
+				oldY = event.clientY-div.offsetTop;
+				arr.push({x:div.offsetLeft,y:div.offsetTop});
 			}
+			//开始拖动
 			document.onmousemove = function (event){
 				var event = event || window.event;
 				if (drag) {
-					var dirX = event.clientX - oldX;
-					var dirY = event.clientY - oldY;
-					div.style.left = (div.offsetLeft + dirX) + 'px';
-					div.style.top = (div.offsetTop + dirY) + 'px';
-					oldX = event.clientX;
-					oldY = event.clientY;
+					//move的位置-鼠标相对的位置，就是left的位
+					div.style.left = event.clientX - oldX+'px';
+					div.style.top = event.clientY - oldY+'px';
+					keep();//边界检测
+					//添加位置信息
+					arr.push({x:div.offsetLeft,y:div.offsetTop});
+					//更新状态
+					reset();
 				}
-				reset();
 				return false;
 			}
-			odiv.onmouseup  = function (){
+			//抬起
+			document.onmouseup  = function (){
 				drag = false;
 				reset();
 				return false;
 			}
+			//状态
 			function reset(){
 				oSpan[0].innerHTML = drag;
 				oSpan[1].innerHTML = div.offsetLeft;
 				oSpan[2].innerHTML = div.offsetTop;
 			}
-			//防止事件冒泡
+			//防止事件冒泡  回滚
 			a.onmousedown = function (event){
 				var event = event||window.event;
+				var i = arr.length-1;
+				var timer = setInterval(function(){
+					if (i<0) {
+						arr.length = 0;
+						clearInterval(timer);
+						return;
+					}
+					div.style.left = arr[i].x+'px';
+					div.style.top = arr[i].y+'px';
+					console.log(arr[0].x+"/"+arr[0].y);
+					i--;
+					reset();
+				},30)
 				event.cancelBubble = true;
 			}
 			//防止越界
+			function keep(){
+				var maxWidth = document.documentElement.clientWidth;
+				var maxHeight = document.documentElement.clientHeight;
+				var width = div.offsetWidth;
+				var left = div.offsetLeft;
+				var height = div.offsetHeight;
+				var top = div.offsetTop;
+				if (left<0) {
+					div.style.left= "0px";
+				}
+				if (top<0) {
+					div.style.top= "0px";
+				}
+				if ((left+width)>=maxWidth){
+					div.style.left  = maxWidth-width+'px';
+				}
+				if ((top+height)>=maxHeight){
+					div.style.top  = maxHeight-height+'px';
+				}
+			}
 			reset();
 		}
 	</script>
