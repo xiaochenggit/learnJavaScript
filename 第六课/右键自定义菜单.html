@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>右键自定义菜单</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			width: 150px;
+			font: 14px/20px '微软雅黑';
+			display: none;
+			position: absolute;
+		}
+		ul{
+			border: 1px solid #666;
+			border-radius: 4px;
+			padding: 5px;
+		}
+		ul li{
+			padding-left: 20px;
+			cursor: pointer;
+			border: 1px solid #fff;
+			border-radius: 4px;
+			position: relative;
+			height: 20px;
+			margin: 2px 0px;
+		}
+		ul li ul{
+			width: 150px;
+			position: absolute;
+			top: 0px;
+			left: 130px;
+			display: none;
+			background-color: #fff;
+			z-index: 2;
+		}
+		ul li.active{
+			border-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<ul>
+			<li>
+				JavaScript
+			</li>
+			<li>
+				第一课
+				<ul>
+					<li>网页效果</li>
+					<li>网页效果
+					<ul>
+						<li>网页效果</li>
+						<li>网页效果</li>
+						<li>网页效果</li>
+						<li>网页效果</li>
+						<li>网页效果</li>
+					</ul>
+					</li>
+					<li>网页效果</li>
+					<li>网页效果</li>
+					<li>网页效果</li>
+				</ul>
+			</li>
+			<li>
+				第二课
+				<ul>
+					<li>网页效果</li>
+					<li>网页效果</li>
+					<li>网页效果</li>
+					<li>网页效果</li>
+					<li>网页效果</li>
+				</ul>
+			</li>
+			<li>
+				第三课
+			</li>
+			<li>
+				第四课
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var warp = document.getElementById('warp');
+			var lis = warp.getElementsByTagName('li');
+			for(var i = 0,len = lis.length;i<len;i++){
+				lis[i].onmouseover = function (){
+					this.className = 'active';
+					var ul = this.getElementsByTagName('ul')[0];
+					if(ul){
+						ul.style.display = 'block';
+					}
+				}
+				lis[i].onmouseout = function (){
+					this.className = '';
+					var ul = this.getElementsByTagName('ul')[0];
+					if(ul){
+						ul.style.display = 'none';
+					}
+				}
+				lis[i].onclick = function(){
+					warp.style.display = 'none';
+				}
+			}
+			document.oncontextmenu = function(event){
+				var event = event||window.event;
+				warp.style.left = event.clientX+'px';
+				warp.style.top = event.clientY+'px';
+				warp.style.display = 'block';
+				return false;
+			}
+		}	
+	</script>
+</body>
+</html>

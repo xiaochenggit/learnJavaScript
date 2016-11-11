@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>按照轨迹移动</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		body{
+			padding: 20px;
+			overflow: hidden;
+		}
+		p{
+			line-height: 30px;
+		}
+		img{
+			position: absolute;
+			top: 100px;
+			left: 100px;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" name="" value="根据鼠标点击位置移动">
+	<input type="button" name="" value="根据鼠标轨迹移动">
+	<p>请点击按钮激活功能</p>
+	<img src="../img/1.gif" id="img">
+<script type="text/javascript">
+	window.onload = function(){
+		var btns = document.getElementsByTagName('input');
+		var info = document.getElementsByTagName("p")[0];
+		var img = document.getElementsByTagName('img')[0];
+		var isClick = isMove = false;//点击、移动是否触发 初始化为false;
+		var setTime = '';
+		//click
+		btns[0].onclick = function(event){
+			this.value +='(已激活)';
+			btns[1].value = "根据鼠标轨迹移动";
+			info.innerHTML = '鼠标点击页面， 人物将移动至鼠标位置！';
+			isClick = true;
+			isMove = false;
+			stopPropagation(event);
+		}
+		btns[1].onclick = function(event){
+			this.value +='(已激活)';
+			btns[0].value = "根据鼠标点击位置移动";
+			info.innerHTML = '按住鼠标左键，在页面划动，人物将按照鼠标轨迹移动。';
+			isClick = false;
+			isMove = true;
+			stopPropagation(event);
+		}
+		document.onclick = function(event){
+			clearInterval(setTime);
+			if (!isClick) {
+				return ;
+			}
+			var event = event||window.event;
+			var clientX = event.clientX;
+			var clientY = event.clientY;
+			setTime = setInterval(function(){
+				img.src = '../img/2.gif';
+				var speedX = (clientX-img.offsetLeft)/5;
+				var speedY = (clientY-img.offsetTop)/5;
+				speedX = speedX > 0?Math.ceil(speedX):Math.floor(speedX);
+				speedY = speedY > 0?Math.ceil(speedY):Math.floor(speedY);
+				img.style.left = img.offsetLeft+speedX+'px';
+				img.style.top = img.offsetTop + speedY+'px';
+				if (img.offsetLeft==clientX && img.offsetTop==clientY) {
+					clearInterval(setTime);
+					img.src = '../img/1.gif';
+				}
+			},30)
+		}
+		//Move
+		var waitMove = false;
+		var arrXY = [];
+		var timeMove  = '';
+		var oldXY = [];
+		document.onmousedown = function(event){
+			if (isMove) {
+				waitMove = true;
+				img.src ='../img/1.gif';
+				console.log('1');
+			}
+		}
+		document.oncontextmenu = function(event){
+			if (isMove) {
+				img.src ='../img/1.gif';
+				return false;
+			}
+		}
+		document.onmouseup = function(){
+			oldXY = arrXY;
+			arrXY = [];
+			waitMove = false;
+			if (oldXY.length>0) {
+				clearInterval(timeMove);
+				img.src ='../img/1.gif';
+				var i = 0
+				timeMove = setInterval(function(){
+					img.style.left = oldXY[i].x+'px';
+					img.style.top = oldXY[i].y+'px';
+					img.src ='../img/2.gif';
+					i++;
+					if (i>=oldXY.length) {
+						clearInterval(timeMove);
+						img.src ='../img/1.gif';
+					}
+				},30)
+			}
+		}
+		document.onmousemove = function(event){
+			if (isMove && waitMove) {
+				var event = event||window.event;
+				arrXY.push({x:event.clientX,y:event.clientY});
+			}
+		}
+		//阻止事件冒泡
+		function stopPropagation(e) {  
+   			 e = e || window.event;  
+    		if(e.stopPropagation) { //W3C阻止冒泡方法  
+        		e.stopPropagation();  
+    		} else {  
+        		e.cancelBubble = true; //IE阻止冒泡方法  
+    		}  
+		}  
+	}
+</script>
+</body>
+</html>

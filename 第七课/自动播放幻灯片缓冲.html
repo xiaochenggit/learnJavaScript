@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动播放幻灯片缓冲</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			width: 490px;
+			height: 170px;
+			overflow: hidden;
+			zoom: 1;
+			margin: 20px auto;
+			border: 10px solid #fff;
+			border-radius: 8px;
+			position: relative;
+		}
+		ul li{
+			width: 490px;
+			height: 170px;
+			overflow: hidden;
+			zoom: 1;
+		}
+		ul{
+			margin-top: 0px;
+		}
+		body{
+			background-color: #666;
+		}
+		#btn{
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			overflow: hidden;
+			zoom: 1;
+		}
+		#btn li{
+			cursor: pointer;
+			font-family: '微软雅黑';
+			width: 24px;
+			height: 24px;
+			line-height: 24px;
+			float: left;
+			text-align: center;
+			background-color: #f60;
+			color: #fff;
+			border-radius: 24px;
+			margin:0px 2px;
+			opacity: 0.6;
+			filter: alpha(opacity=60);
+		}
+		#btn li.active{
+			opacity: 1;
+			filter: alpha(opacity=100);
+			_background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<ul id="banner">
+			<li><img src="../img/01.jpg"></li>
+			<li><img src="../img/02.jpg"></li>
+			<li><img src="../img/03.jpg"></li>
+			<li><img src="../img/04.jpg"></li>
+			<li><img src="../img/05.jpg"></li>
+		</ul>
+		<ul id="btn">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var num = 0;//图片位置信息默认为0
+			var oldnum = 0;//图片上次的位置，判断方向
+			//banner 
+			var banner = document.getElementById('banner');
+			//btns 按钮
+			var btns = document.getElementById("btn").getElementsByTagName("li");
+			var timer = "";
+			var isTime = true;
+			for(var i = 0,len = btns.length;i<len;i++){
+				btns[i].index = i;
+				btns[i].onmouseover = function(){
+					marginTop(this.index);
+				}
+			}
+			banner.onmouseover = function(){
+				clearInterval(timeTrun);
+			}
+			banner.onmouseout = function(){
+				timeGo();
+			}
+			function btnsReturn(num){
+				for(var i = 0,len = btns.length;i<len;i++){
+					if (i==num) {
+						btns[i].className = 'active';
+					}else{
+						btns[i].className = '';
+					}
+				}
+			}
+			function marginTop(num){
+				btnsReturn(num);
+				clearInterval(timer);
+				var target = -170*num;
+				var speed = 0;
+				if (num>oldnum) {
+					speed = -10;
+				}else{
+					speed = 10;
+				}
+				timer = setInterval(function(){
+					if(num>oldnum){
+						if(banner.offsetTop<=target){
+							banner.style.marginTop = target+'px';
+							clearInterval(timer);
+							oldnum = num;
+							return false;
+						}else{
+							banner.style.marginTop = banner.offsetTop+speed+'px';
+						}
+					}else{
+						if(banner.offsetTop>=target){
+							banner.style.marginTop = target+'px';
+							clearInterval(timer);
+							oldnum = num;
+							return false;
+						}else{
+							banner.style.marginTop = banner.offsetTop+speed+'px';
+						}
+					}
+				},30)
+				
+			}
+			// 定时器切换
+			function timeGo(){
+			    timeTrun = setInterval(function(){
+				if (isTime) {
+					num++;
+					if(num>=btns.length-1){
+						isTime = !isTime;
+					}
+				}else{
+					num--;
+					if (num<=0) {
+						isTime = !isTime;
+					}
+				}
+					marginTop(num)
+				},3000)
+			}
+			timeGo();
+		}
+	</script>
+</body>
+</html>
