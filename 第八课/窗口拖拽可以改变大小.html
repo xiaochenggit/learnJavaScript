@@ -194,58 +194,55 @@
 							break;
 						case 'w':
 							sty.width = warp.offsetWidth-12-dirX+"px";
-							document.getElementById('n').style.width = warp.offsetWidth-12-dirX+"px";
-							document.getElementById('s').style.width = warp.offsetWidth-12-dirX+"px";
 							sty.left = warp.offsetLeft+dirX+"px";
 							if (warp.offsetWidth-12<270) {
 								sty.width = 270+"px";
 								document.onmouseup();
 							}
+							document.getElementById('n').style.width = warp.offsetWidth-12+"px";
+							document.getElementById('s').style.width = warp.offsetWidth-12+"px";
 							oldX = newX;
 							oldY = newY;
 
 							break;
 						case 'e':
 							sty.width = warp.offsetWidth-12+dirX+"px";
-							document.getElementById('n').style.width = warp.offsetWidth-12-dirX+"px";
-							document.getElementById('s').style.width = warp.offsetWidth-12-dirX+"px";
 							if (warp.offsetWidth-12<270) {
 								sty.width = 270+"px";
 								document.onmouseup();
 							}
+							document.getElementById('n').style.width = warp.offsetWidth-12+"px";
+							document.getElementById('s').style.width = warp.offsetWidth-12+"px";
 							oldX = newX;
 							oldY = newY;
 							break;
 						case 'n':
 							sty.height = warp.offsetHeight-12-dirY+"px";
-							document.getElementById('w').style.height = warp.offsetHeight-12-dirY+"px";
-							document.getElementById('e').style.height = warp.offsetHeight-12-dirY+"px";
 							sty.top = warp.offsetTop+dirY+"px";
 							if (warp.offsetHeight-12<150) {
 								sty.height = 150+"px";
 								document.onmouseup();
 							}
+							document.getElementById('w').style.height = warp.offsetHeight-12+"px";
+							document.getElementById('e').style.height = warp.offsetHeight-12+"px";
 							oldX = newX;
 							oldY = newY;
 							break;
 						case 's':
 							sty.height = warp.offsetHeight-12+dirY+"px";
-							document.getElementById('w').style.height = warp.offsetHeight-12-dirY+"px";
-							document.getElementById('e').style.height = warp.offsetHeight-12-dirY+"px";
 							if (warp.offsetHeight-12<150) {
 								sty.height = 150+"px";
 								document.onmouseup();
 							}
+							document.getElementById('w').style.height = warp.offsetHeight-12+"px";
+							document.getElementById('e').style.height = warp.offsetHeight-12+"px";
 							oldX = newX;
 							oldY = newY;
 							break;
 						case 'nw':
 							sty.width = warp.offsetWidth-12-dirX+"px";
 							sty.height = warp.offsetHeight-12-dirY+"px";
-							document.getElementById('w').style.height = warp.offsetHeight-12-dirY+"px";
-							document.getElementById('e').style.height = warp.offsetHeight-12-dirY+"px";
-							document.getElementById('n').style.width = warp.offsetWidth-12-dirX+"px";
-							document.getElementById('s').style.width = warp.offsetWidth-12-dirX+"px";
+							
 							sty.left = warp.offsetLeft+dirX+"px";
 							sty.top = warp.offsetTop+dirY+"px";
 							if (warp.offsetWidth-12<270) {
@@ -256,16 +253,16 @@
 								sty.height = 150+"px";
 								document.onmouseup();
 							}
+							document.getElementById('w').style.height = warp.offsetHeight-12+"px";
+							document.getElementById('e').style.height = warp.offsetHeight-12+"px";
+							document.getElementById('n').style.width = warp.offsetWidth-12+"px";
+							document.getElementById('s').style.width = warp.offsetWidth-12+"px";
 							oldX = newX;
 							oldY = newY;
 							break;
 						case 'ne':
 							sty.width = warp.offsetWidth-12+dirX+"px";
 							sty.height = warp.offsetHeight-12-dirY+"px";
-							document.getElementById('w').style.height = warp.offsetHeight-12-dirY+"px";
-							document.getElementById('e').style.height = warp.offsetHeight-12-dirY+"px";
-							document.getElementById('n').style.width = warp.offsetWidth-12-dirX+"px";
-							document.getElementById('s').style.width = warp.offsetWidth-12-dirX+"px";
 							sty.top = warp.offsetTop+dirY+"px";
 							if (warp.offsetWidth-12<270) {
 								sty.width = 270+"px";
@@ -275,16 +272,16 @@
 								sty.height = 150+"px";
 								document.onmouseup();
 							}
+							document.getElementById('w').style.height = warp.offsetHeight-12+"px";
+							document.getElementById('e').style.height = warp.offsetHeight-12+"px";
+							document.getElementById('n').style.width = warp.offsetWidth-12+"px";
+							document.getElementById('s').style.width = warp.offsetWidth-12+"px";
 							oldX = newX;
 							oldY = newY;
 							break;
 						case 'se':
 							sty.width = warp.offsetWidth-12+dirX+"px";
 							sty.height = warp.offsetHeight-12+dirY+"px";
-							document.getElementById('w').style.height = warp.offsetHeight-12-dirY+"px";
-							document.getElementById('e').style.height = warp.offsetHeight-12-dirY+"px";
-							document.getElementById('n').style.width = warp.offsetWidth-12-dirX+"px";
-							document.getElementById('s').style.width = warp.offsetWidth-12-dirX+"px";
 							if (warp.offsetWidth-12<270) {
 								sty.width = 270+"px";
 								document.onmouseup();
@@ -293,20 +290,16 @@
 								sty.height = 150+"px";
 								document.onmouseup();
 							}
+							document.getElementById('w').style.height = warp.offsetHeight-12+"px";
+							document.getElementById('e').style.height = warp.offsetHeight-12+"px";
+							document.getElementById('n').style.width = warp.offsetWidth-12+"px";
+							document.getElementById('s').style.width = warp.offsetWidth-12+"px";
 							oldX = newX;
 							oldY = newY;
 							break;
 						case 'sw':
 							sty.width = warp.offsetWidth-12-dirX+"px";
 							sty.height = warp.offsetHeight-12+dirY+"px";
-							document.getElementById('w').style.height = warp.offsetHeight-12
-							-dirY+"px";
-							document.getElementById('e').style.height = warp.offsetHeight-12
-							-dirY+"px";
-							document.getElementById('n').style.width = warp.offsetWidth-12
-							-dirX+"px";
-							document.getElementById('s').style.width = warp.offsetWidth-12
-							-dirX+"px";
 							sty.left = warp.offsetLeft+dirX+"px";
 							if (warp.offsetWidth-12<270) {
 								sty.width = 270+"px";
@@ -316,6 +309,14 @@
 								sty.height = 150+"px";
 								document.onmouseup();
 							}
+							document.getElementById('w').style.height = warp.offsetHeight-12
+							+"px";
+							document.getElementById('e').style.height = warp.offsetHeight-12
+						    +"px";
+							document.getElementById('n').style.width = warp.offsetWidth-12
+							+"px";
+							document.getElementById('s').style.width = warp.offsetWidth-12
+							+"px";
 							oldX = newX;
 							oldY = newY;
 							break;
