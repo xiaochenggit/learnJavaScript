@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>iphone滑动解锁效果</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		#warp{
+			width: 426px;
+			height: 640px;
+			background: url('../img/lock1.jpg') no-repeat;
+			margin: 20px auto;
+			overflow: hidden;
+		}
+		#content{
+			height: 62px;
+			margin-top:545px;
+			margin: 545px 35px 20px 35px;
+			position: relative;
+		}
+		#cont{
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 93px;
+			height: 62px;
+			background: url('../img/btn.jpg') no-repeat;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<div id="content">
+			<div id="cont">
+				
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var isMove = false;
+			var warp = document.getElementById("warp");
+			var content = document.getElementById("content");
+			var cont = document.getElementById("cont");
+			var oldX = 0;
+			var isMoveTime = '';
+			var maxLeft = 266;
+			cont.onmousedown = function (event){
+				var event = event||window.event;
+				isMove = true;
+				oldX = event.clientX;
+			}
+			cont.onmouseup = function (event){
+				if (isMoveTime) {
+					clearInterval(isMoveTime);
+				}
+				var event = event||window.event;
+				isMove = false;
+				var contLeft = cont.offsetLeft;
+				isMoveTime = setInterval(function(){
+					var speedX = contLeft>165?(maxLeft-contLeft)/5:(0-contLeft)/5;
+					var speedX = contLeft>165?Math.ceil(speedX):Math.floor(speedX);
+					cont.style.left = cont.offsetLeft+speedX+'px';
+					Keep();
+				},30)
+			}
+			cont.onmousemove = function (event){
+				if (isMove) {
+					var event = event||window.event;
+					var newX = event.clientX;
+					var dx = newX - oldX;
+					cont.style.left = cont.offsetLeft + dx +'px';
+					Keep();
+					oldX = newX;
+				}
+			}
+			function Keep(){
+				if (cont.offsetLeft<=0) {
+					cont.style.left = 0+'px';
+					clearInterval(isMoveTime);
+				}
+				if (cont.offsetLeft>=maxLeft) {
+					clearInterval(isMoveTime);
+					cont.style.left = maxLeft+'px';
+					warp.style.background = "url('../img/lock2.jpg')";
+					cont.style.display = 'none';
+				}
+			}
+		}
+	</script>
+</body>
+</html>

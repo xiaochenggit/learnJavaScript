@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽克隆</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		div{
+			width: 100px;
+			height: 100px;
+			background-color: #000;
+			border: 1px solid #888;
+			position: absolute;
+			cursor: move; 
+		}
+		#div1{
+			left: 100px;
+			top: 100px;
+		}
+		#div2{
+			left: 300px;
+			top: 100px;
+		}
+		body{
+			background-color: #3e3e3e;
+		}
+		#temp{
+			opacity: 0.3;
+			filter: (opacity=30);
+		}
+	</style>
+</head>
+<body>
+	<div id="div1">
+		
+	</div>
+	<div id="div2">
+		
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var isMove = false;
+			var divs = document.getElementsByTagName('div');
+			var dirX = 0;
+			var dirY = 0;
+			var moveDiv = ''; 
+			var zindex = 1;
+			for(var i = 0,len = divs.length;i<len;i++){
+				divs[i].onmousedown = function (event){
+					var event = event || window.event;
+					isMove = true;
+					var div = document.createElement('div');
+					div.id = 'temp';
+					div.style.left = this.offsetLeft+'px';
+					div.style.top = this.offsetTop +'px';
+					dirX = event.clientX;
+					dirY = event.clientY;
+					document.body.appendChild(div);
+					moveDiv = this;
+					return false;
+				}
+				document.onmousemove = function(event){
+					if (isMove) {
+						var event = event || window.event;
+						var temp = document.getElementById('temp');
+						var ex = event.clientX;
+						var ey = event.clientY;
+						var dx = ex - dirX;
+						var dy = ey - dirY;
+						temp.style.left = temp.offsetLeft + dx + "px";　
+						temp.style.top = temp.offsetTop + dy + "px";　
+						dirX = ex;
+						dirY = ey;
+						return false;
+					}
+				}
+				document.onmouseup = function(){
+					if (isMove) {
+						var temp = document.getElementById('temp');
+						moveDiv.style.left = temp.offsetLeft+'px';
+						moveDiv.style.top = temp.offsetTop+'px';
+						moveDiv.style.zIndex = zindex++;
+						document.body.removeChild(temp);
+						isMove = false;
+						return false;
+					}
+				}
+			}
+			//阻止事件冒泡
+			function stopPropagation(e) {  
+   			 	e = e || window.event;  
+    			if(e.stopPropagation) { //W3C阻止冒泡方法  
+        			e.stopPropagation();  
+    			} else {  
+        			e.cancelBubble = true; //IE阻止冒泡方法  
+    			}  
+			}  
+		}
+	</script>
+</body>
+</html>
