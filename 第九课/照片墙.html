@@ -73,31 +73,34 @@
 		 	var arr = [];
 		 	//随机打乱
 		 	a.onclick = function (){
+		 		//打乱数组
 		 		arr.sortRandom();
 		 		for(var i = 0,len = lis.length ; i < len; i++){
 		 			var ML = arr[i]%column*(Width+cWidth)+cWidth;
 		 			var MT = Math.floor(arr[i]/column)*(Height+cWidth)+cWidth; 
+		 			//定时器传参数
 		 			animeLi(lis[i],ML,MT);
 		 		}
 		 		return false;
 		 	}
-		 	// 每个
+		 	// 根据传入参数，设置定时器 li为变换标签，ML为目标left MT为目标top
 		 	function animeLi(li,ML,MT){ 
 		 		clearInterval(li.timer);
 		 		li.timer = setInterval(function(){
-		 			console.log("a");
 		 			li.speedX = (ML-li.offsetLeft)/5;
 		 			li.speedX = ML>li.offsetLeft?Math.ceil(li.speedX):Math.floor(li.speedX);
 		 			li.speedY = (MT-li.offsetTop)/5;
 		 			li.speedY = MT>li.offsetTop?Math.ceil(li.speedY):Math.floor(li.speedY);
 		 			li.style.left = li.offsetLeft + li.speedX+'px';
 		 			li.style.top = li.offsetTop + li.speedY+'px';
+		 			//清空定时器
 		 			if (ML == li.offsetLeft && MT==li.offsetTop) {
 		 				clearInterval(li.timer);
 		 			} 
 		 		},30)
 		 	}
 		 	reset();
+		 	//初始化
 		 	function reset(){
 		 		//宽度为 列数*li width + (列数+1)*间隔
 		 		warp.style.width = column*Width + cWidth*(column + 1) +"px";
