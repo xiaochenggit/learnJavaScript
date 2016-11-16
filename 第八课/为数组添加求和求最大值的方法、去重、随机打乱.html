@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>为数组添加方法</title>
+</head>
+<body>
+	<script type="text/javascript">
+		window.onload = function (){
+			//求和
+			Array.prototype.sum = function (){
+				var sum = 0;
+				for(var i = 0 ; i < this.length ; i++){
+					sum += this[i];
+				}
+				return sum;
+			}
+			//求最大值
+			Array.prototype.maxNum = function (){
+				var max = 0;
+				for(var i = 0 ; i < this.length ; i++){
+					if (this[i]>max){
+						max = this[i];
+					}
+				}
+				return max;
+			}
+			//去重
+			Array.prototype.unique = function (){
+				this.sort();
+				var arr = [this[1]];
+				for(var i = 1 ; i< this.length ; i++){
+					if (this[i]!= arr[arr.length-1]) {
+						arr.push(this[i]);
+					}
+				}
+				return arr;
+			}
+			//随机打乱
+			Array.prototype.sortRandom = function (){
+				this.sort(function(){
+					return 0.5 - Math.random();
+				})
+				return this;
+			}
+			var arr = [];
+			for(var i = 0;i<100;i++){
+				console.log('');
+				arr.push(i);
+			}
+			arr.sortRandom()
+			console.log(arr);
+			console.log([1,23,4,5,6,78,8,9].sum());
+			console.log([1,23,4,5,6,78,8,9].maxNum());
+			console.log([9,4,4,5,6,8,8,9].unique());
+		}
+	</script>
+</body>
+</html>
