@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽库</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+		body{
+			overflow: hidden;
+		}
+		#warp{
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			padding: 5px;
+			border: 1px solid #f60;
+			background-color: #FEF4EB;
+			left: 200px;
+			top: 100px;
+		}
+		h2{
+			height: 24px;
+			background-color: #f60;
+			cursor: move;
+		}
+		#bts button{
+			margin: 5px;
+		}
+		#bts p{
+			padding-left: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div id="bts">
+		<button>锁定范围</button><button>水平锁定</button><button>垂直锁定</button><button>锁定位置</button>
+		<p>拖放状态:<span id="panel">未开始</span></p>
+	</div>
+	<div id="warp">
+		<h2></h2>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var btns = document.getElementById('bts').getElementsByTagName('button');
+			var warp = document.getElementById('warp');
+			var h2 = warp.getElementsByTagName('h2')[0];
+			var panel = document.getElementById('panel');
+			//范围，x，y,位置
+			isMove = false;
+			var dirX = 0;
+			var dirX = 0;
+			h2.onmousedown = function (event){
+				if (btns[3].isT) {
+					var event = event || window.event;
+					isMove = true;
+					dirX = event.clientX;
+					dirY = event.clientY;
+					return false;
+				}
+			}
+			document.onmousemove = function(event){
+				if (isMove&&!btns[3].isT) {
+					var event = event || window.event;
+					var newX = event.clientX;
+					var newY = event.clientY;
+					var dx = newX - dirX;
+					var dy = newY - dirY;
+					warp.style.left = warp.offsetLeft + dx +'px';
+					warp.style.top = warp.offsetTop + dy +'px';
+					if (btns[0].isT) {
+						keep();
+					}
+					panel.innerHTML = 'left:'+warp.offsetLeft+",top:"+warp.offsetTop;
+					dirX = newX;
+					dirY = newY;
+				}
+			}
+			document.onmouseup = function (){
+				if (isMove) {
+					isMove = false;
+					panel.innerHTML = '结束拖拽';
+				}
+			}
+			for(var i = 0 ,len = btns.length ; i<len; i++){
+				btns[i].isT = false;
+				btns[i].onclick = function (){
+					if (!this.isT) {
+						this.isT = true;
+						this.innerHTML = "取消"+this.innerHTML;
+					}else{
+						this.isT = false;
+						this.innerHTML = this.innerHTML.replace("取消","")
+					}
+				}
+			}
+			//判断边界
+			function keep(){
+				var maxWidth = document.documentElement.clientWidth;
+				var maxHeight = document.documentElement.clientHeight;
+				if (warp.offsetLeft < 0) {
+					warp.style.left = 0;
+				}
+				if (warp.offsetTop < 0) {
+					warp.style.top = 0;
+				}
+				if (maxWidth < (warp.offsetLeft + warp.offsetWidth)) {
+					warp.style.left = maxWidth - warp.offsetWidth + "px";
+				}
+				if (maxHeight < (warp.offsetTop + warp.offsetHeight)) {
+					warp.style.top = maxHeight - warp.offsetHeight + "px";
+				}
+			}
+		}
+	</script>
+</body>
+</html>
