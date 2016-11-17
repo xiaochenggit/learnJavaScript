@@ -50,7 +50,7 @@
 			var dirX = 0;
 			var dirX = 0;
 			h2.onmousedown = function (event){
-				if (btns[3].isT) {
+				if (!btns[3].isT) {
 					var event = event || window.event;
 					isMove = true;
 					dirX = event.clientX;
@@ -65,8 +65,14 @@
 					var newY = event.clientY;
 					var dx = newX - dirX;
 					var dy = newY - dirY;
-					warp.style.left = warp.offsetLeft + dx +'px';
-					warp.style.top = warp.offsetTop + dy +'px';
+					//水平锁定
+					if (!btns[1].isT) {
+						warp.style.left = warp.offsetLeft + dx +'px';
+					}
+					if (!btns[2].isT) {
+						warp.style.top = warp.offsetTop + dy +'px';
+					}
+					//锁定范围
 					if (btns[0].isT) {
 						keep();
 					}
@@ -81,6 +87,7 @@
 					panel.innerHTML = '结束拖拽';
 				}
 			}
+			//设置每个按钮都有自己的isT 初始化为false 点击变成true 加上取消二字,再点击删除取消  它的isT控制滑块
 			for(var i = 0 ,len = btns.length ; i<len; i++){
 				btns[i].isT = false;
 				btns[i].onclick = function (){
