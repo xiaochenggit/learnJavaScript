@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝滚动</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style type="text/css">
+	body{
+		background-color: #062D01;
+	}
+		#warp{
+			display: inline-block;
+			border: 1px solid #ccc;
+			padding:70px 25px;
+			margin: 30px;
+			position: relative;
+		}
+		ul li{
+			width: 164px;
+			height: 180px;
+		}
+		ul li p{
+			font: 14px/24px '微软雅黑';
+			margin-top: -2px;
+			text-align: center;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+		}
+		ul li a{
+			text-decoration: none;
+		}
+		ul li img{
+			border: 2px solid #ccc;
+		}
+		#bandiv{
+			width: 164px;
+			height: 540px;
+			overflow: hidden;
+			position: relative;
+		}
+		ul{
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+		#up,#down{
+			width: 48px;
+			height: 48px;
+			background: url('../img/arrow.jpg') no-repeat;
+			position: absolute;
+			left: 50%;
+			margin-left: -24px;
+			cursor: pointer;
+		}
+		#up{
+			top: 12px;
+		}
+		#down{
+			bottom: 12px;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<div id="bandiv">
+			<ul id="banner">
+				<li>
+					<a href="#">
+						<img src="../img/1.jpeg">
+						<p>啦啦啦</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="../img/2.jpeg">
+						<p>啦啦啦</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="../img/3.jpeg">
+						<p>啦啦啦</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="../img/4.jpeg">
+						<p>啦啦啦</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="../img/5.jpeg">
+						<p>啦啦啦</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div id="up">
+			
+		</div>
+		<div id="down">
+			
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var banner = document.getElementById("banner");
+			var up = document.getElementById("up");
+			var down = document.getElementById("down");
+			var liheight = banner.getElementsByTagName('li')[0].offsetHeight;
+			var speed = 20;
+			var timer = '';
+			up.onclick = function (){
+				clearInterval(timer);
+				banner.style.top = banner.offsetTop - liheight + 'px';
+				lis = banner.getElementsByTagName('li');
+				banner.insertBefore(lis[lis.length-1],lis[0]);
+				timer = setInterval(function(){
+					banner.style.top = banner.offsetTop + speed + "px";
+					if (banner.offsetTop == 0) {
+						clearInterval(timer);
+					}
+				},20)
+			}
+			down.onclick = function(){
+				clearInterval(timer);
+				lis = banner.getElementsByTagName('li');
+				timer = setInterval(function(){
+					banner.style.top = banner.offsetTop - speed + "px";
+					if (banner.offsetTop == -liheight) {
+						banner.style.top = "0px";
+						banner.appendChild(lis[0]);
+						clearInterval(timer);
+					}
+				},30)
+			}
+		}
+	</script>
+</body>
+</html>
