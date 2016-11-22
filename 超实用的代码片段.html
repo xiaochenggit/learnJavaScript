@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>超实用的代码片段</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+		h2{
+			line-height: 40px;
+			font-size: 16px;
+			color: blue;
+		}
+		body{
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box1">
+		<h2>表单(字符串)过滤空格</h2>
+		<input type="" name="" id="part1">
+		<button>过滤</button>
+	</div>
+	<div id="box2">
+		<h2>不能输入中文</h2>
+		<input type="Eamil" name="" id="part2">
+	</div>
+	<div id="box3">
+		<h2>禁止复制粘贴</h2>
+		<p>紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴紧张复制黏贴</p>
+	</div>
+	<div id="box4">
+		<h2>只能输入数字</h2>
+		<input type="" name="" id="part4">
+	</div>
+	<div id="box5">
+		<h2>只能输入汉字</h2>
+		<input type="" name="" id="part5">
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			//过滤
+			var btn1 = document.getElementById('box1').getElementsByTagName('button')[0];
+			var input1 = document.getElementById('part1');
+			btn1.onclick = function (){
+				//^开头\s+ 至少一个 或者\s至少一个结尾 全局匹配
+				input1.value = input1.value.replace(/^(\s)+|(\s)+$/g,"");
+			}
+			//不能输入中文
+			var input2 = document.getElementById('part2');
+			part2.onkeyup = function (){
+				this.value = this.value.replace(/[\u4E00-\u9FA5]/g,"");
+			}
+			//禁止复制粘贴
+			var box3 = document.getElementById('box3');
+			box3.oncopy = function (){//禁止复制
+				console.log('不要复制');
+				return false;
+			}
+			box3.onpaste = function (){//禁止黏贴
+				console.log('不要粘贴');
+				return false;
+			}
+			//只能输入数字
+			var part4 = document.getElementById('part4');
+			part4.onkeyup = function (){
+				this.value = this.value.replace(/\D/g,'');
+			}
+			//只能输入汉字
+			var part5 = document.getElementById('part5');
+			part5.onblur = function (){
+				this.value = this.value.replace(/[^\u4E00-\u9FA5]/g,'');
+			}
+		}
+	</script>
+</body>
+</html>

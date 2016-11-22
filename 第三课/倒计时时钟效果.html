@@ -59,11 +59,13 @@
 			btn.onclick = function(){
 				if (this.className=="active") {
 					clearInterval(timer);
-					this.className="";
+					this.className = "";
+					this.innerHTML = '启动';
 					return false;
 				}else{
 					setTime();
 					this.className= "active";
+					this.innerHTML = '暂停';
 					return false;
 				}
 			}

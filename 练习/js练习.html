@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src='http://apps.bdimg.com/libs/jquery/1.6.4/jquery.js'></script>
+</head>
+<body>
+	<form id="test-form" action="test">
+    <legend>请选择想要学习的编程语言：</legend>
+    <fieldset>
+        <p><label class="selectAll"><input type="checkbox"> <span class="selectAll">全选</span><span class="deselectAll" style="display: none;">全不选</span></label> <a href="#0" class="invertSelect">反选</a></p>
+        <p><label><input type="checkbox" name="lang" value="javascript"> JavaScript</label></p>
+        <p><label><input type="checkbox" name="lang" value="python"> Python</label></p>
+        <p><label><input type="checkbox" name="lang" value="ruby"> Ruby</label></p>
+        <p><label><input type="checkbox" name="lang" value="haskell"> Haskell</label></p>
+        <p><label><input type="checkbox" name="lang" value="scheme"> Scheme</label></p>
+        <p><button type="submit">Submit</button></p>
+    </fieldset>
+	</form>
+	<script type="text/javascript">
+		function reTwo(num){
+			var num = Math.round(num*100)/100+'';
+			var arr = num.split('.');
+			if (!arr[1]) {
+				num = num +".00";
+			}else if(arr[1].length==1) {
+				num = num+'0';
+			}
+			return num;
+		}
+		$(function(){
+			var input = $("input[name = 'lang']");
+			var sz = $(".selectAll input");
+			sz.click(function(event) {
+				if (sz.is(":checked")) {
+					$("input[name = 'lang']").prop({
+						'checked': true
+					})
+					$(".selectAll .selectAll").hide().siblings('.deselectAll').show();
+				}else{
+					$("input[name = 'lang']").prop({
+						'checked': false
+					})
+					$(".selectAll .selectAll").show().siblings('.deselectAll').hide();
+				}
+			});
+			$(".invertSelect").click(function(event) {
+				input.each(function(index, el) {
+					input.eq(index).prop({
+						'checked':!input.eq(index).is(':checked')
+					})
+				});
+				return false;
+			});
+			input.click(function(event) {
+				sz.prop({'checked':false});
+				$(".selectAll .selectAll").show().siblings('.deselectAll').hide();
+			});
+			var name = '小吃城';
+			var length = name.length-1;
+			name = name.substring(0,1);
+			for(var i = 0;i<length;i++){
+				name+="*"
+			}
+			function Name(name){
+				var length = name.length-1;
+				name = name.substring(0,1);
+				for(var i = 0;i<length;i++){
+					name+="*"
+				}
+				return name;
+			}
+		});
+	</script>
+</body>
+</html>
