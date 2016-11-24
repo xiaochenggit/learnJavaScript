@@ -3,24 +3,30 @@
 <head>
 	<meta charset="UTF-8">
 	<title>自动播放幻灯js</title>
-	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<link rel="stylesheet" type="text/css" href="reset.css">
 	<style type="text/css">
 		body{
-			background-color: #000;
+			background-color: #fff;
 			text-align: center;
 		}
 		#banner{
 			display: inline-block;
 			overflow: hidden;
 			position: relative;
+			width: 510px;
 		}
 		#banner .list{
 			position: relative;
 			width: 490px;
 			height: 170px;
+			left: 0px;
 			border-radius: 8px;
 			border: 10px solid #fff;
 		}
+		*html+ #banner .list{
+			margin-left:-100px;
+		}
+
 		#banner .list img{
 		}
 		#banner .list li{
@@ -39,6 +45,7 @@
 			position: absolute;
 			bottom: 10px;
 			right: 10px;
+			z-index: 2;
 		}
 		.btn li{
 			float: left;
@@ -49,10 +56,26 @@
 			color: #f60;
 			cursor: pointer;
 			margin-right: 5px;
+
 		}
 		.btn li.active{
 			color: #fff;
 			background-color: #f60;
+		}
+		#left,#right{
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			background-color: #fff;
+			top: 80px;
+			cursor: pointer;
+			z-index: 2;
+		}
+		#left{
+			left:20px;
+		}
+		#right{
+			right:20px;
 		}
 	</style>
 </head>
@@ -92,6 +115,12 @@
 			<li>4</li>
 			<li>5</li>
 		</ul>
+		<div id="left">
+			
+		</div>
+		<div id="right">
+			
+		</div>
 	</div>
 	<script type="text/javascript">
 		window.onload = function (){
@@ -121,8 +150,9 @@
 			function returnM(index){
 				for(var i = 0,len = btns.length;i<len;i++){
 					btns[i].className = "";
-					lists[i].style.opacity = 0;
-					lists[i].style.filter = "alpha(opacity=0)";
+					lists[i].style.opacity = 0.1;
+					lists[i].style.filter = "alpha(opacity=10)";
+					lists[i].style.zIndex = 0;
 				}
 				btns[index].className = "active";
 				opacityR(index)//带动定时器
@@ -136,6 +166,7 @@
 					var opc = op/100;
 					lists[index].style.opacity = opc;
 					lists[index].style.filter = "alpha(opacity="+op+")";
+					lists[index].style.zIndex = 1;
 					if (op>=100) {
 						clearInterval(timeOp);
 					}
@@ -150,6 +181,18 @@
 				num++;
 				if (num>=btns.length) {
 					num = 0;
+				}
+				returnM(num);
+			}
+			var left = document.getElementById('left');
+			var right = document.getElementById('right');
+			right.onclick = function (){
+				btnqie();
+			}
+			left.onclick = function(){
+				num--;
+				if(num< 0){
+					num = btns.length-1;
 				}
 				returnM(num);
 			}

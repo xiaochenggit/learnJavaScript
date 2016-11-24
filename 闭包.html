@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js总结</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+		body{
+			padding-top: 1000px;
+		}
+		div{
+			padding: 100px;
+		}
+		#div{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<div>
+			<div id="div"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			var get = {
+				//网页大小
+				getViewport : function (){
+					//判断文档模式
+					if (document.compatMode == 'BackCompat') {
+						return {
+							width : document.body.clientWidth,
+							height : document.body.clientHeight
+						}
+					}else{
+						return {
+							width : document.documentElement.clientWidth,
+							height : document.documentElement.clientHeight
+						}
+					}
+				},
+				//网页大小的另一种算法
+				getPagearea : function (){
+					if ( document.compatMode == "BackCompat" ) {
+						return {
+							width : Math.max(document.body.scrollWidth,document.body.clientWidth),
+							height : Math.max(document.body.scrollHeight,document.body.clientHeight)
+						}
+					}else{
+						return {
+							width : Math.max(document.documentElement.scrollWidth,
+								document.documentElement.clientWidth),
+							height : Math.max(document.documentElement.scrollHeight,
+								document.documentElement.clientHeight)
+						}
+					}
+				},
+				//获得元素的绝对位置  相对于网页本身
+				getEleXy : function (ele){
+					var eleLeft = ele.offsetLeft;
+					var eleTop = ele.offsetTop;
+					var parent = ele.offsetParent;
+					while (parent) {
+						eleLeft += parent.offsetLeft;
+						eleTop += parent.offsetTop;
+						parent = parent.offsetParent;
+					}
+					return {
+						left : eleLeft,
+						top : eleTop
+					}
+				},
+				//获得元素的相对位置,相对于浏览器窗口
+				getVieXy : function (ele){
+					if ( document.compatMode == "BackCompat" ) {
+						scrollL = document.body.scrollLeft;
+						scrollT = document.body.scrollTop;
+						console.log(document.body.scrollTop);
+					}else{
+						scrollL = document.documentElement.scrollLeft;
+						scrollT = document.documentElement.scrollTop;
+						console.log(document.documentElement.scrollTop);
+					}
+					return {
+						//觉对位置减去滚动距离
+						left : this.getEleXy(ele).left - scrollL,
+						top : this.getEleXy(ele).top -scrollT
+					}
+				}
+			}
+			//获得网页大小
+			// alert("网页宽度:"+get.getViewport().width+"px/"+get.getPagearea().width+"网页高度"+get.getViewport().height+"px/"+get.getPagearea().height);
+			//获得元素的绝对位置
+			window.onscroll = function (){
+				var eleXy = document.getElementById("div");
+			eleXy.innerHTML = "绝对位置：Top"+get.getEleXy(eleXy).top+"px,"+"Left"+get.getEleXy(eleXy)
+			.left+"px"+"\n"+"相对位置：Top"+get.getVieXy(eleXy).top+"px,"+"left"+get.getVieXy(eleXy).left+"px";
+			}
+			
+		}
+	</script>
+</body>
+</html>

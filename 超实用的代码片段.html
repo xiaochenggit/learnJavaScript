@@ -14,6 +14,7 @@
 			padding: 20px;
 		}
 	</style>
+	<script type="text/javascript" src='dizhi.js'></script>
 </head>
 <body>
 	<div id="box1">
@@ -36,6 +37,125 @@
 	<div id="box5">
 		<h2>只能输入汉字</h2>
 		<input type="" name="" id="part5">
+	</div>
+	<div id="box6">
+		<h2>默认提示功能</h2>
+		<input type="" name="" id="part6" value="我是默认提示">
+	</div>
+	<div id="box7">
+		<h2>密码强度显示</h2>
+		<input type="password" name="" id="part7">
+		<p></p>
+	</div>
+	<div id="box8">
+		<h2>回车提交表单</h2>
+		<input type="" name="" id="part8">
+	</div>
+	<div id="box9">
+		<h2>光标永远在最后</h2>
+		<input type="" name="" id="part9">
+	</div>
+	<div id="box10">
+		<h2>默认选中状态</h2>
+		<textarea id="part10" rows="5" cols="20">默认选中状态的我默认选中状态的我默认选中状态的我默认选中状态的我
+		</textarea>
+	</div>
+	<div id="box11">
+		<h2>进行关键词过滤</h2>
+		<textarea id="part11" rows="5" cols="60">www.baidu.com是学习javascript的好地方,在这个地方我们可以找到外挂哦。
+		</textarea>
+	</div>
+	<div id="box12">
+		<h2>剔除html代码</h2>
+		<input type="" name="" id="part12">
+	</div>
+	<div id="box13">
+		<h2>多行文本自适应高度</h2>
+		<textarea id="part13" cols="60">
+		</textarea>
+	</div>
+	<div id="box14">
+		<h2>判断选择框是否选中</h2>
+		<label><input type="checkbox" checked="true" id="part14">选择我</label>
+	</div>
+	<div id="box15">
+		<h2>多选框至少选中两项哦</h2>
+		<div>
+			<label><input type="checkbox" name="">水果</label>
+			<label><input type="checkbox" name="">蔬菜</label>
+			<label><input type="checkbox" name="">足球</label>
+			<label><input type="checkbox" name="">篮球</label>
+			<label><input type="checkbox" name="">高尔夫</label>
+		</div>
+		<button>检测</button>
+	</div>
+	<div id="box16">
+		<h2>根据指定内容选择复选框</h2>
+		<textarea rows="10" cols="60"></textarea>
+		<div>
+			<label><input type="checkbox" name="">水果</label>
+			<label><input type="checkbox" name="">蔬菜</label>
+			<label><input type="checkbox" name="">足球</label>
+			<label><input type="checkbox" name="">篮球</label>
+			<label><input type="checkbox" name="">高尔夫</label>
+		</div>
+	</div>
+	<div id="box17">
+		<h2>获得已选中选择框的内容</h2>
+		<textarea rows="10" cols="60"></textarea>
+		<div>
+			<label><input type="checkbox" name="">水果</label>
+			<label><input type="checkbox" name="">蔬菜</label>
+			<label><input type="checkbox" name="">足球</label>
+			<label><input type="checkbox" name="">篮球</label>
+			<label><input type="checkbox" name="">高尔夫</label>
+		</div>
+	</div>
+	<div id="box18">
+		<h2>判断下拉框中是否选中了值</h2>
+		<select id="part18">
+			<option value="">请选择</option>
+			<option value="xc">肖成</option>
+			<option value="lsx">李世雄</option>
+			<option value="zq">赵强</option>
+		</select>
+	</div>
+	<div id="box19">
+		<h2>判断下拉框中是否选中值</h2>
+		<select id="part19">
+			
+		</select>
+	</div>
+	<div id="box20">
+		<h2>删除下拉框的值</h2>
+		<select id="part20">
+			<option>请选择</option>
+			<option value="xc">肖成</option>
+			<option value="lsx">李世雄</option>
+			<option value="zq">赵强</option>
+		</select>
+		<button>删除</button>
+	</div>
+	<div id="box21">
+		<h2>联动地址菜单</h2>
+		<select>
+			
+		</select>
+		<select>
+			
+		</select>
+		<select>
+			
+		</select>
+		<p></p>
+	</div>
+	<div id="box22">
+		<form id="part22">
+			<h2>清空表单数据</h2>
+			<input type="text" name="" value="清空">
+			<textarea>清空</textarea>
+			<button>清空</button>
+		</form>
 	</div>
 	<script type="text/javascript">
 		window.onload = function (){
@@ -71,6 +191,283 @@
 			part5.onblur = function (){
 				this.value = this.value.replace(/[^\u4E00-\u9FA5]/g,'');
 			}
+			var part6 = document.getElementById('part6');
+			part6.onblur = function (){
+				var val = this.value;
+				if (istrim(val)=='') {
+					this.value = '我是默认提示';
+				}
+			}
+			function istrim(val){
+				var val = val.replace(/^(\s)+|(\s)+$/g,"");
+				return val;
+			}
+			//密码强度
+			var part7 = document.getElementById('part7');
+			var p = document.getElementById('box7').getElementsByTagName('p')[0];
+			part7.onkeyup = function (){
+				var colors = ['red','blue','orange','green'],
+					msg = ['太短','弱','中','强'],
+					val = istrim(this.value),
+					len = 0;
+				var charlength = function (char){
+					if (char>=48&&char<=57) {
+						return 1;
+					}
+					if (char>=97&&char<=122) {
+						return 2;
+					}else{
+						return 3;
+					}
+				}
+				for(var i = 0;i<val.length;i++){
+					len += charlength(val.toLowerCase().charCodeAt(i));
+				}
+				if (val.length<6) {
+					console.log('a');
+					p.innerHTML = msg[0];
+					p.style.color = colors[0];
+				}else{
+					if (len<10) {
+						p.innerHTML = msg[1];
+						p.style.color = colors[1];
+					}
+					if (len>=10&&len<=15) {
+						p.innerHTML = msg[2];
+						p.style.color = colors[2];
+					}
+					if (len>15) {
+						p.innerHTML = msg[3];
+						p.style.color = colors[3];
+					}
+				}
+			}
+			//回车键提交表单
+			var part8 = document.getElementById("part8");
+			part8.onkeyup = function (event){
+				var event = event||window.event;
+				console.log(event);
+				if (event.keyCode == 13) {//回车键码是13
+					alert('回车提交成功');
+					//form.submit() 就好了
+				}
+			}
+			//光标永远在最后
+			var part9 = document.getElementById('part9');
+			part9.onclick = part9.onkeyup = function (){
+				var len = this.value.length;
+				if (this.setSelectionRange) {
+					this.setSelectionRange(len,len);
+				}else{
+					var a = this.createTextRange();
+					a.moveStart('character',len);
+					a.collapse(true);
+					a.select();
+				}
+			}
+			//禁用文本框的记忆功能
+			//document.getElementById('id').setAttribute('autocomplete',"off");
+			//多行文本域,默认选中状态
+			var part10 = document.getElementById('part10');
+			part10.select();
+			//关键词过滤效果 主要用正则
+			var part11 = document.getElementById('part11');
+			part11.onkeyup = function (){
+				//过滤词库
+				var mainval = ['javascript','美女','骚货',/[外]{1}.{0,3}[挂]{1}/,'妹妹'];
+				for( var i = 0 , len = mainval.length ; i < len ; i++ ){
+					//运用正则替换字段
+					this.value = this.value.replace(mainval[i],'***');
+				}
+			}
+			//剔除所有HTML代码
+			var part12 = document.getElementById('part12');
+			part12.onblur = function (){
+				this.value = this.value.replace(/<[\/\!]*[^<>]*>/ig,'');
+			}
+			//检测是不是数字函数
+			function isnumber(number){
+				if (typeof number == "number") {
+					return true;
+				}else {
+					return false;
+				}
+			}
+			console.log(isnumber('2')+'\n'+isnumber(2));
+			//多行文本高度自适应
+			var part13 = document.getElementById('part13');
+			part13.style.overflowY = 'hidden';
+			part13.onkeyup = function (){
+				part13.style.height = part13.scrollHeight + 'px';
+			}
+			//判断选择框是否选中
+			var part14 = document.getElementById("part14");
+			part14.onclick = function (){
+				part14.checked ? console.log("已经选择") : console.log("未选中");
+			}
+			//判断至少选中几项的多选框
+			var inp15 = document.getElementById('box15').getElementsByTagName('input');
+			var btn15 = document.getElementById('box15').getElementsByTagName('button')[0];
+			btn15.onclick = function (){
+				var sum = 0;
+				for( var i = 0 , len = inp15.length ; i < len ; i++ ){
+					if (inp15[i].checked) {
+						sum ++ ;
+					}
+				}
+				if (sum < 2) {
+					alert("至少选择两项");		
+				}
+			}
+			// 根据指定内容选择复选框
+			var box16 = document.getElementById('box16');
+			var inps16 = box16.getElementsByTagName('input');
+			var text16 = box16.getElementsByTagName('textarea')[0];
+			for( var i = 0 , len = inps16.length ; i < len ; i ++ ){
+				inps16[i].setAttribute('data-target',inps16[i].parentNode.innerText);
+			}
+			text16.onkeyup = function (){
+				for( var i = 0 , len = inps16.length ; i < len ; i++ ){
+					//在内容中是否可以找到字段,找到返回位置,找不到返回-1
+					if (this.value.indexOf(inps16[i].getAttribute('data-target')) != -1) {
+						inps16[i].checked = true;
+					}else{
+						inps16[i].checked = false;
+					}
+				}
+			}
+			//获得已选中选择框的内容
+			var box17 = document.getElementById('box17');
+			var inps17 = box17.getElementsByTagName('input');
+			var text17 = box17.getElementsByTagName('textarea')[0];
+			for( var i = 0 , len = inps17.length ; i < len ; i ++ ){
+				inps17[i].onclick = function(){
+					var val = "";
+					for(var j = 0 , len = inps17.length ; j < len ; j++ ){
+						if ( inps17[j].checked ) {
+							val  += inps17[j].parentNode.innerText;
+						}
+					}
+					text17.innerHTML = val;
+				}
+			}
+			//判断下拉框是否选中值
+			var part18 = document.getElementById('part18');
+			part18.onchange = function (){
+				if (this.value == '') {
+					console.log('值不能为空');
+				}else {
+					console.log('选中的值为'+this.value);
+				}
+			}
+			//为下拉框赋值
+			var part19 = document.getElementById('part19');
+			for (variable in str) {
+				var option = document.createElement('option');
+				option.innerHTML = str[variable].name;
+				part19.appendChild(option);
+			}
+			//删除下拉框的值
+			var part20 = document.getElementById('part20');
+			var btn20 = document.getElementById('box20').getElementsByTagName("button")[0];
+			btn20.style.color = 'red';
+			btn20.onclick = function (){
+				var ops = part20.getElementsByTagName("option");
+				part20.removeChild(ops[ops.length-1]);
+			}
+			//联动菜单
+			var box21 = document.getElementById('box21');
+			var select21 = box21.getElementsByTagName("select")
+			for (variable in str) {
+				var option = document.createElement("option");
+				option.innerHTML = str[variable].name;
+				select21[0].appendChild(option);
+			}
+			select21[0].onchange = function (){
+				select21[1].innerHTML = "";
+				select21[2].innerHTML = "";
+				for (sheng in str){
+					if (this.value == str[sheng].name) {
+						for (shi in str[sheng].sub) {
+							var option = document.createElement("option");
+							option.innerHTML = str[sheng].sub[shi].name;
+							select21[1].appendChild(option);
+						}
+					}
+				}
+			}
+			select21[1].onchange = function (){
+				select21[2].innerHTML = "";
+				for (sheng in str){
+					if (select21[0].value == str[sheng].name) {
+						for (shi in str[sheng].sub) {
+							if (select21[1].value == str[sheng].sub[shi].name) {
+								for (xian in str[sheng].sub[shi].sub) {
+									var option = document.createElement("option");
+									option.innerHTML = str[sheng].sub[shi].sub[xian].name;
+									select21[2].appendChild(option);
+								}
+							}
+						}
+					}
+				}
+			}
+			select21[2].onchange = function (){
+				var p = box21.getElementsByTagName('p')[0];
+
+				p.innerHTML = select21[0].value + select21[1].value + select21[2].value;
+			}
+			//简单数字及字符操作
+			var get = {
+				getLowerCase : function(str){
+					if (typeof str === "string") {
+						return str.toLowerCase();
+					}
+				},
+				getString : function (number){
+					return number.toString();
+				},
+				getNumber : function (str){
+					var num = parseInt(str,10);
+					if (num!=num) {//NaN 不等于自身
+						return 0;
+					}else {
+						return num;
+					}
+				}
+			}
+			console.log(get.getLowerCase("A"));
+			console.log(get.getString(1));
+			console.log(get.getNumber(".1"));
+			//清空表单数据
+			var part22 = document.getElementById("part22");
+			var ele22 = part22.getElementsByTagName("*");
+			var btn22 = part22.getElementsByTagName("button")[0];
+			btn22.onclick = function (){
+				var msg = confirm("请确定清空表单数据?");
+				if (msg) {
+                     for( var i = 0 , len = ele22.length ; i < len ; i++ ){
+                     	if (ele22[i].type == "text") {
+                     		ele22[i].value = "";
+                     	}
+                     	if (ele22[i].type == "textarea") {
+                     		ele22[i].innerHTML = "";
+                     	}
+                     }
+				}
+				return false;
+			} 
+			//
+			var set = {
+				css : function(_this,obj){
+					if (_this.style) {
+						for( i in obj){
+							_this.style[i] = obj[i];
+						}
+					}
+				}
+			}
+			set.css(part22,{'color':'red','width':"200px"});
 		}
 	</script>
 </body>
