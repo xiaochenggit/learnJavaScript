@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<title></title>
+	<style type="text/css">
+		body{
+			padding: 100px;
+			font:  16px/30px "微软雅黑";
+			color: #f60;	
+		}
+		#demo,#text {
+			height: 30px;
+		}
+	</style>
+</head>
+<body>
+	<p id="demo">今天给大家带来的效果是javascript打字机效果</p>
+	<p id="text">我是来测试javascript打字机效果的</p>
+	<script type="text/javascript">
+		var typing = {
+			arr : [],
+			init : function (ops){
+				this.arr[ops.id] = {
+					id : ops.id,
+					time : ops.time || 1000,
+					isLoop : ops.isLoop || "true",
+					color : ops.color || "#f60"
+				}
+				this.show(this.arr[ops.id]);
+			},
+			show : function (obj){
+				obj.demo = document.getElementById(obj.id);
+				obj.demo.style.color = obj.color ;
+				obj.html = obj.demo.innerHTML;
+				obj.demo.innerHTML = "";
+				this.createTimer(obj);
+			},
+			createTimer : function (obj){
+				obj.maxlength = obj.html.length;
+				// 位置初始化为0 
+				obj.index = 0;
+				obj.timer = setInterval(function (){
+					// 当前html中抛去最后一位,在加上对应的选项在加上_ 组成新的 html
+					obj.demo.innerHTML = obj.demo.innerHTML.substring(0,obj.demo.innerHTML.length-1) + obj.html.charAt(obj.index) + "_";
+					obj.index ++;
+					if (obj.index > obj.maxlength) {
+						if (obj.isLoop == "true") {
+							obj.demo.innerHTML = "";
+							obj.index = 0;
+						}else{
+							clearInterval(obj.timer);
+							obj.demo.innerHTML = obj.html;
+						}
+					}
+				},obj.time)
+			}
+		}
+		window.onload = function (){
+			// 使用方法
+			// id 必填
+			// time 打字速度单位毫秒/个 默认每1000毫秒/个 
+			// isLoop 是否重复, 默认为true 是重复的。 
+			// color 颜色，默认#f60
+			typing.init({id:"demo",time :200,color:"red"});
+			typing.init({id:"text",time:500,isLoop:"false"});
+			console.log(typing.arr);
+		}
+	</script>
+</body>
+</html>

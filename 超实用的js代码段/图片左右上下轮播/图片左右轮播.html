@@ -73,9 +73,12 @@
 		}
 		#xc-banner1 img{
 			float: left;
-		}
-		#xc-banner1 ul li{
 			overflow: hidden;
+			zoom: 1;
+		}
+		#xc-banner1 ul li,#xc-banner1 ul li a{
+			overflow: hidden;
+			zoom: 1;
 		}
 		#xc-banner1 .hor{
 			position: absolute;
@@ -247,7 +250,6 @@
 			btnclick : function (obj){
 				var that = this;
 				var a = obj.buttons.getElementsByTagName("a");
-				console.log(a);
 				a[0].onclick = function (){
 					obj.index -- ;
 					if (obj.index < 0 ) {
