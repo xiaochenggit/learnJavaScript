@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟弹出层</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+</head>
+<style type="">
+	.part{
+		width: 450px;
+		margin: 20px auto;
+	}
+	ul{
+		width: 450px;
+	}
+	li{
+		width: 80px;
+		line-height: 30px;
+		text-align: center;
+		float: left;
+		background-color: #ccc;
+		margin-right: 10px;
+		margin-bottom: 10px;	
+	}
+	.active{
+		width: 170px;
+		height: 70px;
+		line-height: 70px;
+	}
+</style>
+<body>
+	<div class="part">
+		<ul>
+			<li class="active">
+				解读
+			</li>
+			<li>
+				新游
+			</li>
+			<li>
+				嘟嘟
+			</li>
+			<li>
+				解读
+			</li>
+			<li>
+				游戏前线
+			</li>
+			<li>
+				策划
+			</li>
+			<li>
+				嗨平
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+	    window.onload = function(){
+	    	var lis = document.getElementsByTagName('li');
+	    	for( var i = 0 , len = lis.length ; i<len ; i++ ){
+	    		lis[i].onclick = function (){
+	    			imgDolig.init({
+						path : "http://jzwl.duoqu.com/v16/images/startActiveXObject.png",
+						imgWidth: 726,
+						imgHeight :299,
+						padding : 10
+						}).show();
+	    			console.log(imgDolig);
+	    		}
+	    	} 
+	    }
+		var imgDolig = {
+			path :'',
+			imgId :'img',
+			imgWidth :"",
+			imgHeight :"",
+			padding :"",
+			divId :'div',
+			init : function (ops){
+				for (var i in ops) {
+					this[i] = ops[i];
+				}
+				return this;
+			},
+			show : function (){
+				var ele = this.createDom();
+				ele.id = this.divId;
+				ele.style.position = "absolute";
+				ele.style.width = this.imgWidth + 2*this.padding + "px";
+				ele.style.height = this.imgHeight + 30 + this.padding + "px";
+				ele.style.left = "50%";
+				ele.style.top = "50%";
+				ele.style.marginLeft = - ( this.imgWidth + 2 * this.padding ) / 2 + 'px';
+				ele.style.marginTop = - (( this.imgHeight + 30 + this.padding ) /2) + "px";
+				ele.innerHTML = '<p style="height: 30px;line-height: 30px;text-align: center;font-size: 18px;color: #FF0000;">点击图片关闭</p><img id="' + this.imgId + '" src="' + this.path + '" width="' + this.imgWidth + '" height="' + this.imgHeight + '" style="padding-left: ' + this.padding + 'px;" onclick="imgDolig.hide();" />';
+			},
+			hide : function (){
+				var el = document.getElementById(this.divId);
+				if (el && el.parentNode) {
+					el.parentNode.removeChild(el);
+				}
+			},
+			createDom : function (){
+				var el = document.createElement("div");
+				var parent = document.body;
+				parent.appendChild(el);
+				return el;
+			}
+		};
+	</script>
+</body>
+</html>

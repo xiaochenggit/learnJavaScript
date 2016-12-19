@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象</title>
+</head>
+<body>
+	<script type="text/javascript">
+		window.onload = function (){
+			function Person(name,age){
+				this.name = name,
+				this.age = age
+			}
+			Person.prototype.da = '行走';
+			Person.prototype.eat = function (){
+				alert('吃食物');
+			}
+			var xiaocheng = new Person('xiaocheng',23);
+			var zhaoqiang = new Person('zhaoqiang',24);
+			// console.log(xiaocheng.hasOwnProperty('name'));
+			// for (var i in xiaocheng ){
+			// 	console.log(i+""+xiaocheng[i]);
+			// }
+			// 构造函数的继承
+			//http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html
+			function animal(){
+				this.species = "动物"
+			}
+			function Cat(name,color){
+				// animal.apply(this,arguments);
+				this.name = name;
+				this.color = color;
+			}
+			Cat.prototype = new animal();
+			Cat.prototype.constructor = Cat;
+			var cat1 = new Cat('花花',"黑");
+			console.log(cat1.species)
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片上下轮播 插件</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+		/* 设置一些基本样式 */
+		/* 很多小的位置问题都在style里设置 */
+		#xc-banner{
+			position: relative;
+			margin: 0 auto;
+		}
+		#xc-banner img{
+			float: left;
+		}
+		#xc-banner ul li{
+			overflow: hidden;
+		}
+		#xc-banner .hor{
+			position: absolute;
+			left: 50%;
+			bottom: 15px;
+			margin-left: -52px;
+		}
+		#xc-banner .hor li{
+			width: 15px;
+			height: 15px;
+			background-color: #fff;
+			float: left;
+			border-radius: 15px;
+			margin: 0 3px;
+			cursor: pointer;
+		}
+		#xc-banner .hor li.active{
+			background-color: #f60;
+		}
+		#xc-banner .ver{
+			position: absolute;
+			right: 20px;
+			top: 20px;
+			width: 20px;
+		}
+		#xc-banner .ver li{
+			width: 15px;
+			height: 15px;
+			background-color: #fff;
+			float: left;
+			margin: 3px 0px;
+			cursor: pointer;
+		}
+		#xc-banner .ver li.active{
+			background-color: #f60;
+		}
+		.xc-banner a{
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			display: inline-block;
+			background-color: red;
+			top: 50%;
+			margin-top: -20px;
+		}
+		.xc-banner .left {
+			left: 20px;
+		}
+		.xc-banner .right {
+			right: 20px;
+		}
+		#xc-banner1{
+			position: relative;
+			margin: 0 auto;
+		}
+		#xc-banner1 img{
+			float: left;
+		}
+		#xc-banner1 ul li{
+			overflow: hidden;
+		}
+		#xc-banner1 .hor{
+			position: absolute;
+			left: 50%;
+			bottom: 15px;
+			margin-left: -52px;
+		}
+		#xc-banner1 .hor li{
+			width: 15px;
+			height: 15px;
+			background-color: #fff;
+			float: left;
+			border-radius: 15px;
+			margin: 0 3px;
+			cursor: pointer;
+		}
+		#xc-banner1 .hor li.active{
+			background-color: #f60;
+		}
+		#xc-banner1 .ver{
+			position: absolute;
+			right: 20px;
+			top: 20px;
+			width: 20px;
+		}
+		#xc-banner1 .ver li{
+			width: 15px;
+			height: 15px;
+			background-color: #fff;
+			float: left;
+			margin: 3px 0px;
+			cursor: pointer;
+		}
+		#xc-banner1 .ver li.active{
+			background-color: #f60;
+		}
+		.xc-banner1 a{
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			display: inline-block;
+			background-color: red;
+			top: 50%;
+			margin-top: -20px;
+		}
+		.xc-banner1 .left {
+			left: 20px;
+		}
+		.xc-banner1 .right {
+			right: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="xc-banner">
+		<ul>
+			<li>
+				<a href="#"><img src="images/11.jpg"></a>
+			</li>
+			<li>
+				<a href="#"><img src="images/12.jpg"></a>
+			</li>
+			<li>
+				<a href="#"><img src="images/13.jpg"></a>
+			</li>
+			<li>
+				<a href="#"><img src="images/14.jpg"></a>
+			</li>
+			<li>
+				<a href="#"><img src="images/15.jpg"></a>
+			</li>
+		</ul>
+	</div>
+	<div id="xc-banner1">
+		<ul>
+			<li>
+				<a href="#"><img src="images/11.jpg"></a>
+			</li>
+			<li>
+				<a href="#"><img src="images/12.jpg"></a>
+			</li>
+			<li>
+				<a href="#"><img src="images/13.jpg"></a>
+			</li>
+			<li>
+				<a href="#"><img src="images/14.jpg"></a>
+			</li>
+			<li>
+				<a href="#"><img src="images/15.jpg"></a>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var bannerGroup = {
+			arr : [], //创建数组
+			// 初始化参数
+			init : function (ops){
+				this.arr[ops.id] = {
+					id:ops.id,
+					direction : ops.direction || "hor",// 方向 默认hor
+					button : ops.button||'true',// 按钮 默认为true
+					index : 0,
+					isTime : ops.isTime || 'true',
+					time : ops.time || 3000
+				}
+				this.show(this.arr[ops.id]);
+			},
+
+			show : function(obj){
+				var that = this;
+				obj.banner = document.getElementById(obj.id);
+				obj.banner.onmouseover = function (){
+					clearInterval(obj.timer);
+				}
+				obj.banner.onmouseout = function (){
+					that.setTime(obj);
+				}
+				obj.banner.style.overflow = "hidden";
+				obj.ul = obj.banner.getElementsByTagName("ul")[0];
+			    obj.list  = obj.ul.getElementsByTagName("li");
+				obj.img = obj.banner.getElementsByTagName("img");
+				obj.maxlength = obj.list.length;
+				// 设置宽度高度 
+				obj.banner.style.width = obj.img[0].offsetWidth + "px";
+				obj.banner.style.height = obj.img[0].offsetHeight + "px";
+				// 横向怎么办
+				if (obj.direction == "hor") {
+					obj.ul.style.width = obj.img[0].offsetWidth * obj.img.length + "px";
+					for( var i = 0 ; i < obj.list.length ; i ++ ){
+						obj.list[i].style.float = "left";
+					}
+					// 横向且 button 为true 创建button
+					if (obj.button == "true") {
+						this.createButtons(obj);
+					}
+				}
+				this.createList(obj);
+				this.bgclick(obj);
+				if (obj.isTime == "true") {
+					this.setTime(obj);
+				}
+			},
+			// 创建小导航 classname 为 id
+			createList : function (obj){
+				obj.listUl = document.createElement("ul");
+				obj.listUl.className = obj.direction;
+				for( var i = 0 ; i < obj.maxlength ; i ++　){
+					var li = document.createElement("li");
+					obj.listUl.appendChild(li);
+				}
+				obj.banner.appendChild(obj.listUl);
+				this.changeIndex(obj);
+			},
+			// 左右按钮 创建
+			createButtons : function (obj){
+				var div = document.createElement("div");
+				div.className = obj.id;
+				var a1 = document.createElement("a");
+				a1.className = "left";
+				var a2 = document.createElement("a");
+				a2.className = "right";
+				div.appendChild(a1);
+				div.appendChild(a2);
+				obj.buttons = div;
+				obj.banner.appendChild(obj.buttons);
+				this.btnclick(obj);
+			},
+			// 左右按钮事件绑定
+			btnclick : function (obj){
+				var that = this;
+				var a = obj.buttons.getElementsByTagName("a");
+				console.log(a);
+				a[0].onclick = function (){
+					obj.index -- ;
+					if (obj.index < 0 ) {
+						obj.index = obj.maxlength - 1;
+					}
+					that.changeIndex(obj);
+				}
+				a[1].onclick = function (){
+					obj.index ++ ;
+					if (obj.index >= obj.maxlength) {
+						obj.index = 0;
+					}
+					that.changeIndex(obj);
+				}
+			},
+			// 改变位置
+			changeIndex : function (obj){
+				var list = obj.listUl.getElementsByTagName("li");
+				for ( var i = 0 ; i < list.length ; i ++ ){
+					list[i].className = "";
+				}
+				list[obj.index].className = "active";
+				this.changeMargin(obj);
+			},
+			// 小导航点击事件绑定
+			bgclick : function (obj){
+				var that = this;
+				var list = obj.listUl.getElementsByTagName("li");
+				for ( var i = 0 ; i < list.length ; i ++ ){
+					list[i].index = i ;
+					list[i].onclick = function (){
+						obj.index = this.index;
+						that.changeIndex(obj);
+					}
+				}
+			},
+			// 改变位置 hor 改变 marginLeft  其他改变 marginTtop
+			changeMargin : function (obj){
+				clearInterval(obj.listTimer);
+				var target = obj.direction == "hor"?- obj.img[0].offsetWidth * obj.index:- obj.img[0].offsetHeight * obj.index;
+				obj.listTimer = setInterval(function (){
+					var speed = obj.direction == "hor"?(target - obj.ul.offsetLeft)/8:(target - obj.ul.offsetTop)/8;
+					speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+					if (obj.direction == "hor") {
+						obj.ul.style.marginLeft = obj.ul.offsetLeft + speed + "px";
+						if (obj.ul.offsetLeft == target) {
+							clearInterval(obj.listTimer);
+						}
+					}else{
+						obj.ul.style.marginTop = obj.ul.offsetTop + speed + "px";
+						if (obj.ul.offsetTop == target) {
+							clearInterval(obj.listTimer);
+						}
+					}
+				},30)
+			},
+			// 定时器 默认的是3000
+			setTime : function (obj){
+				var that = this;
+				obj.timer = setInterval(function(){
+					obj.index ++;
+					if (obj.index >= obj.maxlength) {
+						obj.index = 0;
+					}
+					that.changeIndex(obj);
+				},obj.time)
+			}
+		}
+		window.onload = function (){
+			// 使用方法
+			// id 为必传, 简单设置一下style 即可使用
+			//direction 两个参数 hor 为横向 ver 为纵向 
+			// isTime 和button 分别有两个参数 'true' 、'false' 意思是 开启定时器 和 创建左右按钮，其中 direction 为hor 不能创建按钮 默认值都为true
+			// time 时间 单位毫秒，默认值为3000  与isTime 配合使用 
+			bannerGroup.init({id:"xc-banner",direction :"ver",time:1000});
+			bannerGroup.init({id:"xc-banner1",direction :"hor",button:'true',isTime : "false"});
+		}
+	</script>
+</body>
+</html>
