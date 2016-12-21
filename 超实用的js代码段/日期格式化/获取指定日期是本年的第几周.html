@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取指定日期是第几周</title>
+</head>
+<body>
+	<h2>今天是今年的第几周</h2>
+	<p id="demo"></p>
+	<script type="text/javascript">
+		window.onload = function (){
+			// 年月日
+			function getWeeks (Y,M,D){
+				function getDays(Y,M){
+					// 获得指定月份的天数
+					return new Date(Y,M,0).getDate();
+				}
+				var days = 0 ;
+				// 获得 1 - M-1 月份的总天数
+				for(var i = 1 ; i < M ; i ++ ){
+					console.log(getDays(Y,i));
+					days += getDays(Y,i);
+				}
+				// 加上本月日期
+				days = days + parseInt(D);
+				// 向上取整
+				return Math.ceil(days/7);
+			}
+			console.log(getWeeks("2016","12","21"));
+			var demo = document.getElementById("demo");
+			var date = new Date();
+			demo.innerHTML = "第" +getWeeks(date.getFullYear(),date.getMonth()+1,date.getDate()) + "周";
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>比较日期的大小</title>
+</head>
+<body>
+	<h2>比较2016年10月11日 和 今天</h2>
+	<p id="demo"></p>
+	<script type="text/javascript">
+		window.onload = function (){
+			var date = new Date(2016,10,11);
+			function getDateVs(date1,date2){
+				function getTime(date){
+							console.log(new Date(date.Y,date.M-1,date.D));
+					return  new Date(date.Y,date.M-1,date.D).getTime();
+				}
+				document.getElementById("demo").innerHTML = getTime(date1)>getTime(date2)?'大':'小';
+			}
+			getDateVs({Y:2016,M:10,D:11},{Y:2016,M:11,D:21})
+		}
+	</script>
+</body>
+</html>

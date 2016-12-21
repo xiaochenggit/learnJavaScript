@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟qq消息提示功能</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+		html,body{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		#demo1,#demo2{
+			width: 300px;
+			padding: 10px;
+			border: 1px solid #ccc;
+			line-height: 24px;
+			position: absolute;
+			right: 0px;
+		}
+	</style>
+</head>
+<body>
+	<button onclick="QQbox.showTime('demo1')">
+		弹出demo1
+	</button>
+	<button onclick="QQbox.showTime('demo2')">
+		弹出demo2
+	</button>
+	<div id="demo1">
+		<h2>qqx消息弹出框功能1</h2>
+		<div class="conten">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dignissimos, consectetur illum voluptates, dolorum sit praesentium! Odit dolore, rem iusto quisquam, exercitationem accusantium quas quis deleniti earum, officiis dolor fugit!</p>
+		</div>
+	</div>
+	<div id="demo2">
+		<h2>qqx消息弹出框功能2</h2>
+		<div class="conten">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dignissimos, consectetur illum voluptates, dolorum sit praesentium! Odit dolore, rem iusto quisquam, exercitationem accusantium quas quis deleniti earum, officiis dolor fugit!</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var QQbox = {
+			arr : [],
+			init : function (id){
+				this.arr[id] = {
+					id : id,
+					isT : false // 判断是否点击过了
+				}
+				this.show(this.arr[id]);
+			},
+			show : function (obj){
+				obj.demo = document.getElementById(obj.id);
+				obj.demo.style.top = this.height() + "px";
+				obj.demo.onclick = function (){
+					this.style.display = "none";
+				}
+			},
+			showTime : function (id){
+				var obj = this.arr[id];
+				if (!obj.isT) {
+					obj.isT = true;
+					var target = obj.demo.offsetTop - obj.demo.offsetHeight;
+					obj.timer = setInterval(function(){
+						var speed = (target - obj.demo.offsetTop)/8;
+						speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+						obj.demo.style.top = obj.demo.offsetTop + speed + "px";
+						if (obj.demo.offsetTop == target) {
+							clearInterval(obj.timer);
+						}
+					},30)
+				}
+			},
+			height : function (){
+				return document.body.clientHeight || document.document.clientHeight;
+			}
+		}
+		window.onload = function (){
+			QQbox.init("demo1");
+			QQbox.init("demo2");
+		}
+	</script>
+</body>
+</html>

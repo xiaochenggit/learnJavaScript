@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字幕上下滚动</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+		a{
+			text-decoration: none;
+			line-height: 30px;
+		}
+		#demo,#text{
+			width: 400px;
+			overflow: hidden;
+			margin: 20px auto;
+			border:  1px solid #ccc;
+			padding:5px 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo">
+		<ul>
+			<li><a href="#">我是连接1</a></li>
+			<li><a href="#">我是连接2</a></li>
+			<li><a href="#">我是连接3</a></li>
+			<li><a href="#">我是连接4</a></li>
+			<li><a href="#">我是连接5</a></li>
+		</ul>
+	</div>
+	<div id="text">
+		<ul>
+			<li><a href="#">我是连接1</a></li>
+			<li><a href="#">我是连接2</a></li>
+			<li><a href="#">我是连接3</a></li>
+			<li><a href="#">我是连接4</a></li>
+			<li><a href="#">我是连接5</a></li>
+			<li><a href="#">我是连接1</a></li>
+			<li><a href="#">我是连接2</a></li>
+			<li><a href="#">我是连接3</a></li>
+			<li><a href="#">我是连接4</a></li>
+			<li><a href="#">我是连接5</a></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var marquee = {
+			arr : [],
+			init : function (ops){
+				this.arr[ops.id] = {
+					id : ops.id,
+					number : ops.number || 1,//显示几个,默认为一个
+					time : ops.time || 2000 //切换时间默认为2s
+				}
+				this.show(this.arr[ops.id]);
+			},
+			show : function (obj){
+				var that = this;
+				obj.demo = document.getElementById(obj.id);
+				obj.demo.onmouseover = function (){
+					clearInterval(obj.timer);
+				}
+				obj.demo.onmouseout = function (){
+					that.createTime(obj);
+				}
+				obj.ul = obj.demo.getElementsByTagName("ul")[0];
+				obj.list = obj.demo.getElementsByTagName("li");
+				obj.length = obj.list.length;
+				obj.listH = obj.list[0].offsetHeight;
+				obj.demo.style.height = obj.listH * obj.number + "px";
+				obj.ul.innerHTML += obj.ul.innerHTML;
+				obj.UMT = parseInt(this.css(obj.ul,"marginTop"));
+				this.createTime(obj);
+			},
+			createTime : function (obj){
+				var that = this;
+				clearInterval(obj.timer);
+				clearInterval(obj.xTimer);
+				obj.timer = setInterval(function (){
+					obj.xTimer = setInterval(function (){
+						var speed = -obj.listH*obj.number/5;
+						speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+						obj.UMT += speed;
+						obj.ul.style.marginTop = obj.UMT + "px";
+						if (-obj.UMT%obj.listH == 0) {
+							clearInterval(obj.xTimer);
+						}
+						if (obj.UMT == -obj.listH*obj.length) {
+							obj.UMT  = 0;
+							obj.ul.style.marginTop = obj.UMT +"px"; 
+						}
+					},30)	
+				},3000)
+			},
+			css: function(ele,attr){
+                if (ele.currentStyle) {
+                    return ele.currentStyle[attr];
+                }else{
+                    return getComputedStyle(ele, null)[attr];
+                }
+            }
+		}
+		window.onload = function (){
+			marquee.init({id:"demo"});
+			marquee.init({id:"text",time:1000,number:2});
+		}
+	</script>
+</body>
+</html>

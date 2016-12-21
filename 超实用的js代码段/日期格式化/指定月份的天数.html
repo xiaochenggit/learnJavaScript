@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>指定月份的天数</title>
+	<script type="text/javascript" src=""></script>
+</head>
+<body>
+	<div id="demo">
+		
+	</div>
+	<script type="text/javascript">
+		window.onload = function (){
+			// 参数为 年份和月份
+			function MonthNum (Y,M){
+              	var num = new Date(Y,M,0).getDate();
+              	return num;
+			}
+			document.getElementById("demo").innerHTML = MonthNum("2016","1");
+		}
+	</script>
+</body>
+</html>

@@ -92,7 +92,7 @@
 				ele.style.top = "50%";
 				ele.style.marginLeft = - ( this.imgWidth + 2 * this.padding ) / 2 + 'px';
 				ele.style.marginTop = - (( this.imgHeight + 30 + this.padding ) /2) + "px";
-				ele.innerHTML = '<p style="height: 30px;line-height: 30px;text-align: center;font-size: 18px;color: #FF0000;">点击图片关闭</p><img id="' + this.imgId + '" src="' + this.path + '" width="' + this.imgWidth + '" height="' + this.imgHeight + '" style="padding-left: ' + this.padding + 'px;" onclick="imgDolig.hide();" />';
+				ele.innerHTML = '<img id="' + this.imgId + '" src="' + this.path + '" width="' + this.imgWidth + '" height="' + this.imgHeight + '" style="padding-left: ' + this.padding + 'px;" onclick="imgDolig.hide();" />';
 			},
 			hide : function (){
 				var el = document.getElementById(this.divId);

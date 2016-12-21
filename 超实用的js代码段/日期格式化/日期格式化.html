@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>日期格式化方法</title>
+</head>
+<body>
+	<h2>日期格式化</h2>
+	<div id="date1"></div>
+	<script type="text/javascript">
+		window.onload = function (){
+			function dateFormat(){
+				Date.prototype.format = function (f){
+					var date  = {
+						"Y" : this.getFullYear(),
+						"M" : this.getMonth() + 1,
+						"D" : this.getDate(),
+						"h" : this.getHours(),
+						"m" : this.getMinutes(),
+						"s" : this.getSeconds()
+					},
+					d = "",
+					r = false,
+					reg = null,
+					_d = "";
+					for( d in date){
+						reg = new RegExp("["+d+"]{1,}","g");
+						r = reg.test(f);
+						if (r) {
+							_d = date[d];
+							f = f.replace(reg,_d<10? "0"+_d : _d);
+						}
+					}
+					return f;
+				}
+			}
+			dateFormat();
+			function create(){
+				var date = new Date();
+				document.getElementById("date1").innerHTML = date.format("Y:M:D h/m/s");
+			}
+			create();
+			setInterval(function(){
+				create();
+			},1000)
+		}
+	</script>
+</body>
+</html>
