@@ -6,6 +6,9 @@
 	<link rel="stylesheet" type="text/css" href="reset.css">
 </head>
 <style type="">
+	body{
+		height: 3000px;
+	}
 	.part{
 		width: 450px;
 		margin: 20px auto;
@@ -60,12 +63,11 @@
 	    	for( var i = 0 , len = lis.length ; i<len ; i++ ){
 	    		lis[i].onclick = function (){
 	    			imgDolig.init({
-						path : "http://jzwl.duoqu.com/v16/images/startActiveXObject.png",
-						imgWidth: 726,
-						imgHeight :299,
-						padding : 10
-						}).show();
-	    			console.log(imgDolig);
+						path : "bg.png",
+						imgWidth: 979,
+						imgHeight :483,
+						href :"http:www.duoqu.com"
+					}).show();
 	    		}
 	    	} 
 	    }
@@ -85,20 +87,24 @@
 			show : function (){
 				var ele = this.createDom();
 				ele.id = this.divId;
-				ele.style.position = "absolute";
-				ele.style.width = this.imgWidth + 2*this.padding + "px";
-				ele.style.height = this.imgHeight + 30 + this.padding + "px";
+				ele.style.position = "fixed";
+				ele.style.width = this.imgWidth  + "px";
+				ele.style.height = this.imgHeight + "px";
 				ele.style.left = "50%";
 				ele.style.top = "50%";
-				ele.style.marginLeft = - ( this.imgWidth + 2 * this.padding ) / 2 + 'px';
-				ele.style.marginTop = - (( this.imgHeight + 30 + this.padding ) /2) + "px";
-				ele.innerHTML = '<img id="' + this.imgId + '" src="' + this.path + '" width="' + this.imgWidth + '" height="' + this.imgHeight + '" style="padding-left: ' + this.padding + 'px;" onclick="imgDolig.hide();" />';
+				ele.style.marginLeft = - this.imgWidth/ 2 + 'px';
+				ele.style.marginTop = - this.imgHeight /2 + "px";
+				ele.innerHTML = '<a href="'+this.href+'"><img id="' + this.imgId + '" src="' + this.path + '" width="' + this.imgWidth + '" height="' + this.imgHeight + '" style ="border-radius : 10px"/></a>';
+				this.hide();
 			},
 			hide : function (){
-				var el = document.getElementById(this.divId);
-				if (el && el.parentNode) {
-					el.parentNode.removeChild(el);
-				}
+				var that = this;
+				setTimeout(function (){
+					var el = document.getElementById(that.divId);
+					if (el && el.parentNode) {
+						el.parentNode.removeChild(el);
+					}
+				}, 3000)
 			},
 			createDom : function (){
 				var el = document.createElement("div");
