@@ -1,118 +1,1067 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>模拟弹出层</title>
-	<link rel="stylesheet" type="text/css" href="reset.css">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="http://s0.static.duoqu.com/favicon.ico" rel="bookmark" type="image/x-icon">  
+<link href="http://s0.static.duoqu.com/favicon.ico" rel="icon" type="image/x-icon">
+<link href="http://s0.static.duoqu.com/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="http://s0.static.duoqu.com/favicon.png" rel="apple-touch-icon">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<link href="http://s0.static.duoqu.com/www/v2/css/global.v3.css?_t=20150109" rel="stylesheet" type="text/css">
+<link href="http://s0.static.duoqu.com/www/v2/css/common.v3.css?_t=20150109" rel="stylesheet" type="text/css">
+<title>多趣网-专注于你的快乐-精品网页游戏平台，玩游戏，上duoqu.com</title>
+<meta name="keywords" content="多趣网,三国网页游戏,好玩的页游,SLG,最新三国页游,三国网页游戏排行榜">
+<meta name="description" content="多趣游戏平台是专业的网页游戏娱乐平台,汇集了最好玩的网页游戏；多趣致力于游戏精细化运营与优质的客户服务，成为深受玩家喜爱游戏运营商。玩精品webgame游戏尽在 duoqu.com">
+<script src="http://s0.static.duoqu.com/www/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://s0.static.duoqu.com/www/base/dj.js"></script>
+<script type="text/javascript" src="http://s0.static.duoqu.com/www/v2/js/platform.v3.js?_t=20150109"></script>
+<script src="http://s0.static.duoqu.com/www/v2/js/game_info.js"></script>
+<script type="text/javascript">
+if( self != top ) top.location = self.location;
+dj.apiRoot = '';
+</script>
+<!--[if lt IE 9]>
+<script src="http://s0.static.duoqu.com/www/js/html5shiv.js"></script>
+<![endif]-->
+<!--[if IE 6]>
+<script type="text/javascript" src="http://s0.static.duoqu.com/www/v2/js/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script type="text/javascript">
+    DD_belatedPNG.fix('.rec-corn, .m-list-more, .game-con img, .game-con-name i, .corn, .open-bd-wrap, .log-lnk a, .gift-bd-img img, .mask, .login-open-bd a');
+	DD_belatedPNG.fix('.mod_login, .mod_login_hd h2, .mod_login_btn a, .hot_ico, .rec_ico, .mod_login_joint a');
+</script>
+<![endif]-->
 </head>
-<style type="">
-	body{
-		height: 3000px;
-	}
-	.part{
-		width: 450px;
-		margin: 20px auto;
-	}
-	ul{
-		width: 450px;
-	}
-	li{
-		width: 80px;
-		line-height: 30px;
-		text-align: center;
-		float: left;
-		background-color: #ccc;
-		margin-right: 10px;
-		margin-bottom: 10px;	
-	}
-	.active{
-		width: 170px;
-		height: 70px;
-		line-height: 70px;
-	}
-</style>
 <body>
-	<div class="part">
-		<ul>
-			<li class="active">
-				解读
+<noscript>对不起！您的浏览器不支持JS，将无法查看JS实现的效果</noscript>
+<!-- <header> -->
+<header class="header">
+	<div class="wrapper">
+		<div class="mod_header clearfix">
+			<h1 class="mod_header_logo">
+				<a href="http://www.duoqu.com/" title="多趣网">多趣网</a>
+			</h1>
+			<nav class="mod_header_nav clearfix">
+				<a href="http://www.duoqu.com" title="首页" class="active">首页</a>
+				<span><i></i></span>
+				<a href="http://www.duoqu.com/game/list/index" title="游戏">游戏</a>
+				<span><i></i></span>
+				<a href="http://www.duoqu.com/mall/gift/index" title="礼品">礼品</a>
+				<span><i></i></span>
+				<a href="http://www.duoqu.com/game/prize/mission" title="奖金">奖金</a>
+				<span><i></i></span>
+				<a href="http://www.duoqu.com/pay/charge/index" title="充值">充值</a>
+				<span><i></i></span>
+				<a href="http://www.duoqu.com/user/vip/index" title="VIP">VIP</a>
+				<span><i></i></span>
+				<a href="http://www.duoqu.com/game/service/index" title="客服">客服</a>
+				<span><i></i></span>
+				<a href="http://www.duoqu.com/api/bbs/index" target="_blank" title="论坛">论坛</a>
+			</nav>
+		</div>
+	</div>
+</header>
+<!-- </header> -->
+<!-- <content> -->
+<div class="content">
+	<!-- 轮播&登录 -->
+	<div class="slider_login">
+		<!-- <slider> -->
+				
+<div id="dj-ban" class="slider">
+			<a title="多趣《范伟打天下》12月第四周开服计划" style="height: 390px; display: none; background: url(&quot;http://s1.static.duoqu.com/2016/12/t9pAcMCqhz.jpg&quot;) center top no-repeat;" href="http://dtx.duoqu.com/news/201612/22-36736.html" target="_blank" class="slide"></a>
+			<a title="多趣《天书世界》12月第四周开服计划" style="height: 390px; display: none; background: url(&quot;http://s1.static.duoqu.com/2016/12/BHRJRYDI2n.jpg&quot;) center top no-repeat;" href="http://ts.duoqu.com/news/201612/22-36735.html" target="_blank" class="slide"></a>
+			<a title="双线S6-S10 12月第四周开服计划" style="height: 390px; opacity: 1; background: url(&quot;http://s1.static.duoqu.com/2016/12/TASrCUxH9D.jpg&quot;) center top no-repeat;" href="http://mfwz.duoqu.com/news/201612/23-36742.html" target="_blank" class="slide"></a>
+			<a title="双线S133-S137 12月第四周开服计划" style="height: 390px; display: none; background: url(&quot;http://s1.static.duoqu.com/2016/12/RX3F4GVRkh.jpg&quot;) center top no-repeat;" href="http://jy.duoqu.com/open/" target="_blank" class="slide"></a>
+		<div class="slider_page">
+		<div class="slider_page_bd" id="dj-ban-thb">
+						<a class="">多趣《范伟打天下》12月第四周开服计划</a>
+						<a class="">多趣《天书世界》12月第四周开服计划</a>
+						<a class="on">双线S6-S10 12月第四周开服计划</a>
+						<a class="">双线S133-S137 12月第四周开服计划</a>
+					</div>
+	</div>
+</div>		<!-- </slider> -->
+		<!-- <login> -->
+		<div class="layout_login">
+			<div class="mod_login">
+				<div id="dj-login" class="mod_login_con">
+					<form id="login-form" method="post" class="mod_login_form"><div class="mod_login_hd pdl10"><span>欢迎您：</span><a title="肖成121" class="usrname high" href="/user/info/index#home" style="background-image:url(http://s0.static.duoqu.com/www/img/vip/0.gif)">肖成121</a></div></form>
+										<div id="dj-login-n" class="mod_login_fail" style="display:none">
+	<div id="dj-login-open" class="" onmouseover="dj.addClass( this, 'extend' )" onmouseout="dj.removeClass( this, 'extend' )">
+		<p class="mod_login_fail_hd clearfix"><b class="fl">合作平台登录</b><b class="fr">&gt;&gt;</b></p>
+		<!-- <合作登录> -->
+		<ul class="mod_login_joint clearfix">
+			<li class="item1">
+				<a rel="nofollow" href="/user/open/request?flag=sina&amp;refer=" title="使用新浪微博帐号登录">新浪</a>
 			</li>
-			<li>
-				新游
+			<li class="item2">
+				<a rel="nofollow" href="/user/open/request?flag=tb&amp;refer=" title="使用淘宝帐号登录">淘宝</a>
 			</li>
-			<li>
-				嘟嘟
+			<li class="item3">
+				<a rel="nofollow" href="/user/open/request?flag=baidu&amp;refer=" title="使用百度帐号登录">百度</a>
 			</li>
-			<li>
-				解读
+			<li class="item4">
+				<a rel="nofollow" href="/user/open/request?flag=163&amp;refer=" title="使用网易帐号登录">网易</a>
 			</li>
-			<li>
-				游戏前线
+			<li class="item5">
+				<a rel="nofollow" href="/user/open/request?flag=renren&amp;refer=" title="使用人人网帐号登录">人人网</a>
 			</li>
-			<li>
-				策划
-			</li>
-			<li>
-				嗨平
+			<li class="item6">
+				<a rel="nofollow" href="/user/open/request?flag=9wee&amp;refer=" title="使用九维网帐号登录">九维网</a>
 			</li>
 		</ul>
+		<!-- </合作登录> -->
 	</div>
-	<script type="text/javascript">
-	    window.onload = function(){
-	    	var lis = document.getElementsByTagName('li');
-	    	for( var i = 0 , len = lis.length ; i<len ; i++ ){
-	    		lis[i].onclick = function (){
-	    			imgDolig.init({
-						path : "bg.png",
-						imgWidth: 979,
-						imgHeight :483,
-						href :"http:www.duoqu.com"
-					}).show();
-	    		}
-	    	} 
-	    }
-		var imgDolig = {
-			path :'',
-			imgId :'img',
-			imgWidth :"",
-			imgHeight :"",
-			padding :"",
-			divId :'div',
-			init : function (ops){
-				for (var i in ops) {
-					this[i] = ops[i];
+</div>
+<div id="dj-login-y" class="mod_login_succ">
+	<ul id="login-usr-info" class="mod_login_user_info">
+		<li><a href="/user/info/index#home">账户信息</a></li>
+		<li><a href="/user/info/index#password">修改密码</a></li>
+		<li><a href="javascript:dj.login.logout();">安全退出</a></li>
+		<li id="usr-money" class="wide">趣币：<span id="money" class="high">0</span></li>
+		<li><a href="/pay/charge/index">充值</a></li>
+		<li id="usr-credit" class="wide">积分：<span id="credit" class="high">200</span></li>
+		<li><a href="/mall/gift/index">兑换礼品</a></li>
+	</ul>
+	<h4 class="mod_login_recent">最近登录 &amp; 推荐游戏区</h4>
+	<ul id="login-server" class="mod_login_server"><li class="wide"><a href="/game/play/index/g/57/s/5" target="_blank">魔法王座 5服</a></li><li><a href="/game/play/index/g/57/s/5" target="_blank" class="yellow">立即进入</a></li><li class="wide"><a href="/game/play/index/g/57/s/1" target="_blank">魔法王座 1服</a></li><li><a href="/game/play/index/g/57/s/1" target="_blank" class="yellow">立即进入</a></li><li class="wide"><a href="/game/play/index/g/43/s/0" target="_blank">暗黑契约 不删档体验服</a></li><li><a href="/game/play/index/g/43/s/0" target="_blank" class="yellow">立即进入</a></li><li class="wide"><a href="/game/play/index/g/50/s/365" target="_blank">范伟打天下 365服</a></li><li><a href="/game/play/index/g/50/s/365" target="_blank" class="yellow">立即进入</a></li><li class="wide"><a href="/game/play/index/g/50/s/364" target="_blank">范伟打天下 364服</a></li><li><a href="/game/play/index/g/50/s/364" target="_blank" class="yellow">立即进入</a></li></ul>
+</div>				</div>
+			</div>
+		</div>
+		<!-- </login> -->
+	</div>
+	<!-- 推荐游戏&最新开服 -->
+	<div class="panelA bgc1">
+		<div class="wrapper clearfix">
+			<!-- <recgame> -->
+			<div class="layout_left recgame">
+								<div class="recgame_hd">
+		<h2 class="recgame_hd_title">推荐游戏</h2>
+<div class="recgame_hd_rolling">
+	<b class="notice_ico"></b>
+	<div id="J_RollingBox" class="rolling_box">
+				
+		<ul class="m-list" style="height: auto; margin-top: -55px;">
+							<li><a href="http://www.duoqu.com/game/article/view?id=3964" target="_self" title="【活动】缘定三生，返利翻倍专题活动">【活动】缘定三生，返利翻倍专题活动</a></li>
+							<li><a href="http://www.duoqu.com/game/article/view?id=3466" target="_self" title="3月30日机房维护通知">3月30日机房维护通知</a></li>
+							<li><a href="http://act.duoqu.com/2015/youxijie/" target="_blank" title="《多趣页游节》趣币、积分、实物送送送">《多趣页游节》趣币、积分、实物送送送</a></li>
+							<li><a href="http://www.duoqu.com/game/article/view?id=2984" target="_self" title="Flash播放按钮自助解决方案">Flash播放按钮自助解决方案</a></li>
+							<li><a href="http://www.duoqu.com/game/article/view?id=2949" target="_self" title="微博开启公告">微博开启公告</a></li>
+					
+							<li><a href="http://www.duoqu.com/game/article/view?id=3964" target="_self" title="【活动】缘定三生，返利翻倍专题活动">【活动】缘定三生，返利翻倍专题活动</a></li>
+							<li><a href="http://www.duoqu.com/game/article/view?id=3466" target="_self" title="3月30日机房维护通知">3月30日机房维护通知</a></li>
+							<li><a href="http://act.duoqu.com/2015/youxijie/" target="_blank" title="《多趣页游节》趣币、积分、实物送送送">《多趣页游节》趣币、积分、实物送送送</a></li>
+							<li><a href="http://www.duoqu.com/game/article/view?id=2984" target="_self" title="Flash播放按钮自助解决方案">Flash播放按钮自助解决方案</a></li>
+							<li><a href="http://www.duoqu.com/game/article/view?id=2949" target="_self" title="微博开启公告">微博开启公告</a></li>
+					</ul>
+	</div>
+</div>	<!--<div class="recgame_hd_card"></div>-->
+</div>
+<div class="recgame_bd">
+	
+	<ul class="clearfix">
+				<li>
+			<div class="img_box">
+				<img src="http://s0.static.duoqu.com/www/v2/img/global/game_photo_57.jpg" height="280" width="219">
+								<i class="hot_ico"></i>
+								<p class="tit moved falling" id="rec-name-57">魔法王座</p>
+				<div class="img_hover moved up">
+					<p class="clearfix">
+						<span class="name">
+							<a target="_blank" href="">魔法王座</a>
+						</span>
+						<span class="role" id="rec-role-57">角色扮演</span>
+					</p>
+					<p class="clearfix">
+						<span class="links">
+							<a target="_blank" href="http://mfwz.duoqu.com/" id="rec-url-57">官网</a>
+							<em>|</em>
+							<a target="_blank" href="http://bbs.9wee.com/forum-426-1.html" id="rec-bbs-57">论坛</a>
+						</span>
+						<a class="enter_new" target="_blank" href="http://www.duoqu.com/game/play/index/g/57/s/ *" id="rec-server-57">进入新区</a>
+					</p>
+				</div>
+			</div>
+			<a target="_blank" href="" class="img_link"></a>
+		</li>
+				<li>
+			<div class="img_box">
+				<img src="http://s0.static.duoqu.com/www/v2/img/global/game_photo_51.jpg" height="280" width="219">
+								<i class="rec_ico"></i>
+								<p class="tit moved" id="rec-name-51">决战武林</p>
+				<div class="img_hover moved">
+					<p class="clearfix">
+						<span class="name">
+							<a target="_blank" href="http://jzwl.duoqu.com/">决战武林</a>
+						</span>
+						<span class="role" id="rec-role-51">角色扮演</span>
+					</p>
+					<p class="clearfix">
+						<span class="links">
+							<a target="_blank" href="http://jzwl.duoqu.com/" id="rec-url-51">官网</a>
+							<em>|</em>
+							<a target="_blank" href="http://bbs.9wee.com/forum-414-1.html" id="rec-bbs-51">论坛</a>
+						</span>
+						<a class="enter_new" target="_blank" href="http://www.duoqu.com/game/play/index/g/51/s/ *" id="rec-server-51">进入新区</a>
+					</p>
+				</div>
+			</div>
+			<a target="_blank" href="http://jzwl.duoqu.com/" class="img_link"></a>
+		</li>
+				<li>
+			<div class="img_box">
+				<img src="http://s0.static.duoqu.com/www/v2/img/global/game_photo_50.jpg" height="280" width="219">
+								<i class="rec_ico"></i>
+								<p class="tit moved" id="rec-name-50">范伟打天下</p>
+				<div class="img_hover moved">
+					<p class="clearfix">
+						<span class="name">
+							<a target="_blank" href="">范伟打天下</a>
+						</span>
+						<span class="role" id="rec-role-50">角色扮演</span>
+					</p>
+					<p class="clearfix">
+						<span class="links">
+							<a target="_blank" href="http://dtx.duoqu.com/" id="rec-url-50">官网</a>
+							<em>|</em>
+							<a target="_blank" href="http://bbs.duoqu.com/forum-410-1.html" id="rec-bbs-50">论坛</a>
+						</span>
+						<a class="enter_new" target="_blank" href="http://www.duoqu.com/game/play/index/g/50/s/*" id="rec-server-50">进入新区</a>
+					</p>
+				</div>
+			</div>
+			<a target="_blank" href="" class="img_link"></a>
+		</li>
+				<li>
+			<div class="img_box">
+				<img src="http://s0.static.duoqu.com/www/v2/img/global/game_photo_37.jpg" height="280" width="219">
+								<i class="rec_ico"></i>
+								<p class="tit moved" id="rec-name-37">天书世界</p>
+				<div class="img_hover moved">
+					<p class="clearfix">
+						<span class="name">
+							<a target="_blank" href="http://ts.duoqu.com/">天书世界</a>
+						</span>
+						<span class="role" id="rec-role-37">角色扮演</span>
+					</p>
+					<p class="clearfix">
+						<span class="links">
+							<a target="_blank" href="http://ts.duoqu.com/" id="rec-url-37">官网</a>
+							<em>|</em>
+							<a target="_blank" href="http://bbs.9wee.com/forum-366-1.html" id="rec-bbs-37">论坛</a>
+						</span>
+						<a class="enter_new" target="_blank" href="http://www.duoqu.com/game/play/index/g/37/s/*" id="rec-server-37">进入新区</a>
+					</p>
+				</div>
+			</div>
+			<a target="_blank" href="http://ts.duoqu.com/" class="img_link"></a>
+		</li>
+			</ul>
+</div>
+<script>
+	var recPrefix = {
+		name: 'rec-name-',
+		role: 'rec-role-',
+		url: 'rec-url-',
+		bbs: 'rec-bbs-',
+		server: 'rec-server-'
+	},
+	elems = {};
+
+	if ( GameInfo ) {
+		for ( var i in GameInfo ) {
+			elems[i] = {};
+
+			// 名称
+			elems[i]["name"] = document.getElementById(recPrefix["name"] + i);
+			if ( elems[i]["name"] ) {
+				if ( trim(elems[i]["name"].innerHTML) == "" ) {
+					elems[i]["name"].innerHTML = GameInfo[i]["name"];
 				}
-				return this;
-			},
-			show : function (){
-				var ele = this.createDom();
-				ele.id = this.divId;
-				ele.style.position = "fixed";
-				ele.style.width = this.imgWidth  + "px";
-				ele.style.height = this.imgHeight + "px";
-				ele.style.left = "50%";
-				ele.style.top = "50%";
-				ele.style.marginLeft = - this.imgWidth/ 2 + 'px';
-				ele.style.marginTop = - this.imgHeight /2 + "px";
-				ele.innerHTML = '<a href="'+this.href+'"><img id="' + this.imgId + '" src="' + this.path + '" width="' + this.imgWidth + '" height="' + this.imgHeight + '" style ="border-radius : 10px"/></a>';
-				this.hide();
-			},
-			hide : function (){
-				var that = this;
-				setTimeout(function (){
-					var el = document.getElementById(that.divId);
-					if (el && el.parentNode) {
-						el.parentNode.removeChild(el);
-					}
-				}, 3000)
-			},
-			createDom : function (){
-				var el = document.createElement("div");
-				var parent = document.body;
-				parent.appendChild(el);
-				return el;
 			}
-		};
+
+			// 角色
+			elems[i]["role"] = document.getElementById(recPrefix["role"] + i);
+			if ( elems[i]["role"] ) {
+				if ( trim(elems[i]["role"].innerHTML) == "" ) {
+					elems[i]["role"].innerHTML = GameInfo[i]["type"];
+				}
+			}
+
+			// 官网
+			elems[i]["url"] = document.getElementById(recPrefix["url"] + i);
+			if ( elems[i]["url"] && elems[i]["url"].getAttribute("href") == "#" ) {
+				elems[i]["url"].setAttribute("href", GameInfo[i]["url"]);
+			}
+
+			// 论坛
+			elems[i]["bbs"] = document.getElementById(recPrefix["bbs"] + i);
+			if ( elems[i]["bbs"] && elems[i]["bbs"].getAttribute("href") == "#" ) {
+				elems[i]["bbs"].setAttribute("href", GameInfo[i]["bbsUrl"]);
+			}
+		}
+	}
+
+	function trim( str ) {
+		return str.replace(/^\s*|\s*$/g, "");	
+	}
+</script>			</div>
+			<!-- </recgame> -->
+			<!-- <openserv> -->
+			<div class="layout_right openserv">
+								<div class="openserv_hd">
+	<h2>最新开服</h2>
+</div>
+<div class="openserv_bd">
+	
+	<ul class="openserv_ul">
+						<li>
+																		<div class="list" style="">
+									<table>
+						<tbody><tr valign="top">
+							<td style="width: 70px;" class="gold">天书世界</td>
+							<td style="width: 50px;">312服</td>
+							<td style="position: relative;">12/24 10:00<a href="http://qzs.qq.com/snsapp/app/bee/widget/open.htm#content=%E5%A4%9A%E8%B6%A3%E7%BD%91%E6%8F%90%E9%86%92%E6%82%A8%E3%80%8A%E5%A4%A9%E4%B9%A6%E4%B8%96%E7%95%8C%E3%80%8B%E5%8F%8C%E7%BA%BF312%E5%8C%BA%E5%B0%86%E4%BA%8E2016%E5%B9%B412%E6%9C%8824%E6%97%A510%E6%97%B600%E5%88%86%E5%BC%80%E5%90%AF%EF%BC%8C%E8%B5%B6%E5%BF%AB%E6%9D%A5%E4%BD%93%E9%AA%8C%E5%90%A7%EF%BC%81&amp;time=2016-12-24 10:00&amp;advance=0&amp;url=http://www.duoqu.com/game/play/index?g=37&amp;s=312" target="_blank" rel="nofollow"><img src="http://s0.static.duoqu.com/www/v2/img/global/qqtx.gif" width="63" height="21" style="border:0px;position:absolute;right:10px;top:15px;" class="qqtip"></a></td>
+						</tr>
+					</tbody></table>
+							</div>
+			<div class="detail" style="display: none;">
+					
+					<div class="detail_left">
+						<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_37.jpg" class="photo_item">
+					</div>
+					<div class="detail_right">
+						<p class="detail_name gold">天书世界</p>
+						<p class="detail_serv clearfix">
+							<span class="fl">312服</span>
+							<span class="fr" style="position: relative;">12/24 10:00</span>
+						</p>
+						<a href="http://qzs.qq.com/snsapp/app/bee/widget/open.htm#content=%E5%A4%9A%E8%B6%A3%E7%BD%91%E6%8F%90%E9%86%92%E6%82%A8%E3%80%8A%E5%A4%A9%E4%B9%A6%E4%B8%96%E7%95%8C%E3%80%8B%E5%8F%8C%E7%BA%BF312%E5%8C%BA%E5%B0%86%E4%BA%8E2016%E5%B9%B412%E6%9C%8824%E6%97%A510%E6%97%B600%E5%88%86%E5%BC%80%E5%90%AF%EF%BC%8C%E8%B5%B6%E5%BF%AB%E6%9D%A5%E4%BD%93%E9%AA%8C%E5%90%A7%EF%BC%81&amp;time=2016-12-24 10:00&amp;advance=0&amp;url=http://www.duoqu.com/game/play/index?g=37&amp;s=312" target="_blank" rel="nofollow"><img src="http://s0.static.duoqu.com/www/v2/img/global/qqtx.gif" width="63" height="21" style="border:0px;position:absolute;right:0;top:0;"></a>					</div>
+							</div>
+		</li>
+						<li>
+																		<div class="list">
+									<table>
+						<tbody><tr valign="top">
+							<td style="width: 70px;" class="gold">范伟打天下</td>
+							<td style="width: 50px;">390服</td>
+							<td style="position: relative;">12/24 10:00<a href="http://qzs.qq.com/snsapp/app/bee/widget/open.htm#content=%E5%A4%9A%E8%B6%A3%E7%BD%91%E6%8F%90%E9%86%92%E6%82%A8%E3%80%8A%E8%8C%83%E4%BC%9F%E6%89%93%E5%A4%A9%E4%B8%8B%E3%80%8B%E5%8F%8C%E7%BA%BF390%E5%8C%BA%E5%B0%86%E4%BA%8E2016%E5%B9%B412%E6%9C%8824%E6%97%A510%E6%97%B600%E5%88%86%E5%BC%80%E5%90%AF%EF%BC%8C%E8%B5%B6%E5%BF%AB%E6%9D%A5%E4%BD%93%E9%AA%8C%E5%90%A7%EF%BC%81&amp;time=2016-12-24 10:00&amp;advance=0&amp;url=http://www.duoqu.com/game/play/index?g=50&amp;s=390" target="_blank" rel="nofollow"><img src="http://s0.static.duoqu.com/www/v2/img/global/qqtx.gif" width="63" height="21" style="border:0px;position:absolute;right:10px;top:15px;" class="qqtip"></a></td>
+						</tr>
+					</tbody></table>
+							</div>
+			<div class="detail" style="display: none;">
+					
+					<div class="detail_left">
+						<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_50.jpg" class="photo_item">
+					</div>
+					<div class="detail_right">
+						<p class="detail_name gold">范伟打天下</p>
+						<p class="detail_serv clearfix">
+							<span class="fl">390服</span>
+							<span class="fr" style="position: relative;">12/24 10:00</span>
+						</p>
+						<a href="http://qzs.qq.com/snsapp/app/bee/widget/open.htm#content=%E5%A4%9A%E8%B6%A3%E7%BD%91%E6%8F%90%E9%86%92%E6%82%A8%E3%80%8A%E8%8C%83%E4%BC%9F%E6%89%93%E5%A4%A9%E4%B8%8B%E3%80%8B%E5%8F%8C%E7%BA%BF390%E5%8C%BA%E5%B0%86%E4%BA%8E2016%E5%B9%B412%E6%9C%8824%E6%97%A510%E6%97%B600%E5%88%86%E5%BC%80%E5%90%AF%EF%BC%8C%E8%B5%B6%E5%BF%AB%E6%9D%A5%E4%BD%93%E9%AA%8C%E5%90%A7%EF%BC%81&amp;time=2016-12-24 10:00&amp;advance=0&amp;url=http://www.duoqu.com/game/play/index?g=50&amp;s=390" target="_blank" rel="nofollow"><img src="http://s0.static.duoqu.com/www/v2/img/global/qqtx.gif" width="63" height="21" style="border:0px;position:absolute;right:0;top:0;"></a>					</div>
+							</div>
+		</li>
+						<li>
+																		<div class="list">
+									<table>
+						<tbody><tr valign="top">
+							<td style="width: 70px;" class="gold">决战武林</td>
+							<td style="width: 50px;">57服</td>
+							<td style="position: relative;">12/24 10:00<a href="http://qzs.qq.com/snsapp/app/bee/widget/open.htm#content=%E5%A4%9A%E8%B6%A3%E7%BD%91%E6%8F%90%E9%86%92%E6%82%A8%E3%80%8A%E5%86%B3%E6%88%98%E6%AD%A6%E6%9E%97%E3%80%8B%E5%8F%8C%E7%BA%BF57%E5%8C%BA%E5%B0%86%E4%BA%8E2016%E5%B9%B412%E6%9C%8824%E6%97%A510%E6%97%B600%E5%88%86%E5%BC%80%E5%90%AF%EF%BC%8C%E8%B5%B6%E5%BF%AB%E6%9D%A5%E4%BD%93%E9%AA%8C%E5%90%A7%EF%BC%81&amp;time=2016-12-24 10:00&amp;advance=0&amp;url=http://www.duoqu.com/game/play/index?g=51&amp;s=57" target="_blank" rel="nofollow"><img src="http://s0.static.duoqu.com/www/v2/img/global/qqtx.gif" width="63" height="21" style="border:0px;position:absolute;right:10px;top:15px;" class="qqtip"></a></td>
+						</tr>
+					</tbody></table>
+							</div>
+			<div class="detail" style="display: none;">
+					
+					<div class="detail_left">
+						<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_51.jpg" class="photo_item">
+					</div>
+					<div class="detail_right">
+						<p class="detail_name gold">决战武林</p>
+						<p class="detail_serv clearfix">
+							<span class="fl">57服</span>
+							<span class="fr" style="position: relative;">12/24 10:00</span>
+						</p>
+						<a href="http://qzs.qq.com/snsapp/app/bee/widget/open.htm#content=%E5%A4%9A%E8%B6%A3%E7%BD%91%E6%8F%90%E9%86%92%E6%82%A8%E3%80%8A%E5%86%B3%E6%88%98%E6%AD%A6%E6%9E%97%E3%80%8B%E5%8F%8C%E7%BA%BF57%E5%8C%BA%E5%B0%86%E4%BA%8E2016%E5%B9%B412%E6%9C%8824%E6%97%A510%E6%97%B600%E5%88%86%E5%BC%80%E5%90%AF%EF%BC%8C%E8%B5%B6%E5%BF%AB%E6%9D%A5%E4%BD%93%E9%AA%8C%E5%90%A7%EF%BC%81&amp;time=2016-12-24 10:00&amp;advance=0&amp;url=http://www.duoqu.com/game/play/index?g=51&amp;s=57" target="_blank" rel="nofollow"><img src="http://s0.static.duoqu.com/www/v2/img/global/qqtx.gif" width="63" height="21" style="border:0px;position:absolute;right:0;top:0;"></a>					</div>
+							</div>
+		</li>
+						<li>
+																		<div class="list" style="display: none;">
+								<a href="http://www.duoqu.com/game/play/index?g=37&amp;s=311" target="_blank">
+									<table>
+						<tbody><tr valign="top">
+							<td style="width: 70px;" class="gold">天书世界</td>
+							<td style="width: 50px;">311服</td>
+							<td style="position: relative;">12/23 10:00</td>
+						</tr>
+					</tbody></table>
+								</a>
+							</div>
+			<div class="detail" style="">
+								<a href="http://www.duoqu.com/game/play/index?g=37&amp;s=311" target="_blank">
+					
+					<div class="detail_left">
+						<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_37.jpg" class="photo_item">
+					</div>
+					<div class="detail_right">
+						<p class="detail_name gold">天书世界</p>
+						<p class="detail_serv clearfix">
+							<span class="fl">311服</span>
+							<span class="fr" style="position: relative;">12/23 10:00</span>
+						</p>
+											</div>
+								</a>
+							</div>
+		</li>
+						</ul>
+		<ul class="openserv_ul" style="display: none;">
+		<li>
+																		<div class="list" style="display: none;">
+								<a href="http://www.duoqu.com/game/play/index?g=46&amp;s=132" target="_blank">
+									<table>
+						<tbody><tr valign="top">
+							<td style="width: 70px;" class="gold">九阴绝学</td>
+							<td style="width: 50px;">132服</td>
+							<td style="position: relative;">12/23 10:00</td>
+						</tr>
+					</tbody></table>
+								</a>
+							</div>
+			<div class="detail">
+								<a href="http://www.duoqu.com/game/play/index?g=46&amp;s=132" target="_blank">
+					
+					<div class="detail_left">
+						<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_46.jpg" class="photo_item">
+					</div>
+					<div class="detail_right">
+						<p class="detail_name gold">九阴绝学</p>
+						<p class="detail_serv clearfix">
+							<span class="fl">132服</span>
+							<span class="fr" style="position: relative;">12/23 10:00</span>
+						</p>
+											</div>
+								</a>
+							</div>
+		</li>
+						<li>
+																		<div class="list">
+								<a href="http://www.duoqu.com/game/play/index?g=50&amp;s=389" target="_blank">
+									<table>
+						<tbody><tr valign="top">
+							<td style="width: 70px;" class="gold">范伟打天下</td>
+							<td style="width: 50px;">389服</td>
+							<td style="position: relative;">12/23 10:00</td>
+						</tr>
+					</tbody></table>
+								</a>
+							</div>
+			<div class="detail" style="display: none;">
+								<a href="http://www.duoqu.com/game/play/index?g=50&amp;s=389" target="_blank">
+					
+					<div class="detail_left">
+						<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_50.jpg" class="photo_item">
+					</div>
+					<div class="detail_right">
+						<p class="detail_name gold">范伟打天下</p>
+						<p class="detail_serv clearfix">
+							<span class="fl">389服</span>
+							<span class="fr" style="position: relative;">12/23 10:00</span>
+						</p>
+											</div>
+								</a>
+							</div>
+		</li>
+						<li>
+																		<div class="list">
+								<a href="http://www.duoqu.com/game/play/index?g=51&amp;s=56" target="_blank">
+									<table>
+						<tbody><tr valign="top">
+							<td style="width: 70px;" class="gold">决战武林</td>
+							<td style="width: 50px;">56服</td>
+							<td style="position: relative;">12/23 10:00</td>
+						</tr>
+					</tbody></table>
+								</a>
+							</div>
+			<div class="detail" style="display: none;">
+								<a href="http://www.duoqu.com/game/play/index?g=51&amp;s=56" target="_blank">
+					
+					<div class="detail_left">
+						<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_51.jpg" class="photo_item">
+					</div>
+					<div class="detail_right">
+						<p class="detail_name gold">决战武林</p>
+						<p class="detail_serv clearfix">
+							<span class="fl">56服</span>
+							<span class="fr" style="position: relative;">12/23 10:00</span>
+						</p>
+											</div>
+								</a>
+							</div>
+		</li>
+						<li>
+																		<div class="list">
+								<a href="http://www.duoqu.com/game/play/index?g=57&amp;s=5" target="_blank">
+									<table>
+						<tbody><tr valign="top">
+							<td style="width: 70px;" class="gold">魔法王座</td>
+							<td style="width: 50px;">5服</td>
+							<td style="position: relative;">12/23 10:00</td>
+						</tr>
+					</tbody></table>
+								</a>
+							</div>
+			<div class="detail" style="display: none;">
+								<a href="http://www.duoqu.com/game/play/index?g=57&amp;s=5" target="_blank">
+					
+					<div class="detail_left">
+						<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_57.jpg" class="photo_item">
+					</div>
+					<div class="detail_right">
+						<p class="detail_name gold">魔法王座</p>
+						<p class="detail_serv clearfix">
+							<span class="fl">5服</span>
+							<span class="fr" style="position: relative;">12/23 10:00</span>
+						</p>
+											</div>
+								</a>
+							</div>
+		</li>
+			</ul>
+
+	<div class="openserv_page clearfix" data-index="0">
+		<a class="openserv_page_left" id="J_Prev_Btn">&lt;</a>
+		<a class="openserv_page_right" id="J_Next_Btn">&gt;</a>
+	</div>
+</div>			</div>
+			<!-- </openserv> -->
+		</div>
+	</div>
+	<!-- 精品游戏&热门礼包 -->
+	<div class="wrapper">
+		<!-- <goodgame> -->
+		<div class="layout_left goodgame mgt8">
+						<div class="goodgame_hd">
+	<h2>精品<i>游戏</i></h2>
+	<a href="http://www.duoqu.com/game/list/index" target="_blank" class="more">查看更多游戏&gt;&gt;</a>
+</div>
+<div class="goodgame_bd">
+	
+	<ul class="clearfix">
+				<li style="background: url(http://s0.static.duoqu.com/www/v2/img/global/game_pic_57.jpg) top right no-repeat;">
+			<h3 id="gg-name-57">魔法王座</h3>
+			<p class="role" id="gg-role-57">[角色扮演]</p>
+			<p class="desc" id="gg-desc-57">魔法王座</p>
+			<p class="link">
+				<a href="http://mfwz.duoqu.com/" target="_blank" id="gg-url-57">官网</a>
+				<span>|</span>
+				<a href="http://bbs.9wee.com/forum-426-1.html" target="_blank" id="gg-bbs-57">论坛</a>
+			</p>
+			<a href="http://www.duoqu.com/game/play/index/g/57/s/  *" title="进入新区" class="enter" target="_blank" id="gg-server-57">进入新区</a>
+		</li>
+				<li style="background: url(http://s0.static.duoqu.com/www/v2/img/global/game_pic_50.jpg) top right no-repeat;">
+			<h3 id="gg-name-50">范伟打天下</h3>
+			<p class="role" id="gg-role-50">[角色扮演]</p>
+			<p class="desc" id="gg-desc-50">范伟打天下</p>
+			<p class="link">
+				<a href="http://dtx.duoqu.com/" target="_blank" id="gg-url-50">官网</a>
+				<span>|</span>
+				<a href="http://bbs.duoqu.com/forum-410-1.html" target="_blank" id="gg-bbs-50">论坛</a>
+			</p>
+			<a href="http://www.duoqu.com/game/play/index/g/50/s/*" title="进入新区" class="enter" target="_blank" id="gg-server-50">进入新区</a>
+		</li>
+				<li style="background: url(http://s0.static.duoqu.com/www/v2/img/global/game_pic_51.jpg) top right no-repeat;">
+			<h3 id="gg-name-51">决战武林</h3>
+			<p class="role" id="gg-role-51">[角色扮演]</p>
+			<p class="desc" id="gg-desc-51">决战武林</p>
+			<p class="link">
+				<a href="http://jzwl.duoqu.com/" target="_blank" id="gg-url-51">官网</a>
+				<span>|</span>
+				<a href="http://bbs.9wee.com/forum-414-1.html" target="_blank" id="gg-bbs-51">论坛</a>
+			</p>
+			<a href="http://www.duoqu.com/game/play/index/g/51/s/ *" title="进入新区" class="enter" target="_blank" id="gg-server-51">进入新区</a>
+		</li>
+				<li style="background: url(http://s0.static.duoqu.com/www/v2/img/global/game_pic_53.jpg) top right no-repeat;">
+			<h3 id="gg-name-53">蓝月传奇</h3>
+			<p class="role" id="gg-role-53">[角色扮演]</p>
+			<p class="desc" id="gg-desc-53">蓝月传奇</p>
+			<p class="link">
+				<a href="http://lycq.duoqu.com/" target="_blank" id="gg-url-53">官网</a>
+				<span>|</span>
+				<a href="http://bbs.duoqu.com/forum-418-1.html" target="_blank" id="gg-bbs-53">论坛</a>
+			</p>
+			<a href="http://www.duoqu.com/game/play/index/g/53/s/ *" title="进入新区" class="enter" target="_blank" id="gg-server-53">进入新区</a>
+		</li>
+				<li style="background: url(http://s0.static.duoqu.com/www/v2/img/global/game_pic_46.jpg) top right no-repeat;">
+			<h3 id="gg-name-46">九阴绝学</h3>
+			<p class="role" id="gg-role-46">[角色扮演]</p>
+			<p class="desc" id="gg-desc-46">九阴绝学</p>
+			<p class="link">
+				<a href="http://jy.duoqu.com/" target="_blank" id="gg-url-46">官网</a>
+				<span>|</span>
+				<a href="http://bbs.9wee.com/forum-394-1.html" target="_blank" id="gg-bbs-46">论坛</a>
+			</p>
+			<a href="http://www.duoqu.com/game/play/index/g/46/s/*" title="进入新区" class="enter" target="_blank" id="gg-server-46">进入新区</a>
+		</li>
+				<li style="background: url(http://s0.static.duoqu.com/www/v2/img/global/game_pic_37.jpg) top right no-repeat;">
+			<h3 id="gg-name-37">天书世界</h3>
+			<p class="role" id="gg-role-37">[角色扮演]</p>
+			<p class="desc" id="gg-desc-37">天书世界</p>
+			<p class="link">
+				<a href="http://ts.duoqu.com/" target="_blank" id="gg-url-37">官网</a>
+				<span>|</span>
+				<a href="http://bbs.9wee.com/forum-366-1.html" target="_blank" id="gg-bbs-37">论坛</a>
+			</p>
+			<a href="http://www.duoqu.com/game/play/index/g/37/s/*" title="进入新区" class="enter" target="_blank" id="gg-server-37">进入新区</a>
+		</li>
+			</ul>
+</div>
+<script>
+	var ggPrefix = {
+		name: 'gg-name-',
+		role: 'gg-role-',
+		url: 'gg-url-',
+		bbs: 'gg-bbs-',
+		server: 'gg-server-'
+	},
+	elems = {};
+
+	if ( GameInfo ) {
+		for ( var i in GameInfo ) {
+			elems[i] = {};
+
+			// 名称
+			elems[i]["name"] = document.getElementById(ggPrefix["name"] + i);
+			if ( elems[i]["name"] ) {
+				if ( trim(elems[i]["name"].innerHTML) == "" ) {
+					elems[i]["name"].innerHTML = GameInfo[i]["name"];
+				}
+			}
+
+			// 角色
+			elems[i]["role"] = document.getElementById(ggPrefix["role"] + i);
+			if ( elems[i]["role"] ) {
+				if ( trim(elems[i]["role"].innerHTML) == "" ) {
+					elems[i]["role"].innerHTML = "[" + GameInfo[i]["type"] + "]";
+				}
+			}
+
+			// 说明
+			elems[i]["desc"] = document.getElementById(ggPrefix["desc"] + i);
+			if ( elems[i]["desc"] ) {
+				if ( trim(elems[i]["desc"].innerHTML) == "" ) {
+					elems[i]["desc"].innerHTML = GameInfo[i]["description"];
+				}
+			}
+
+			// 官网
+			elems[i]["url"] = document.getElementById(ggPrefix["url"] + i);
+			if ( elems[i]["url"] && elems[i]["url"].getAttribute("href") == "#" ) {
+				elems[i]["url"].setAttribute("href", GameInfo[i]["url"]);
+			}
+
+			// 论坛
+			elems[i]["bbs"] = document.getElementById(ggPrefix["bbs"] + i);
+			if ( elems[i]["bbs"] && elems[i]["bbs"].getAttribute("href") == "#" ) {
+				elems[i]["bbs"].setAttribute("href", GameInfo[i]["bbsUrl"]);
+			}
+		}
+	}
+</script>		</div>
+		<!-- </goodgame> -->
+		<!-- <hotgift> -->
+		<div class="layout_right hotgift mgt8">
+						<div class="hotgift_hd">
+	<h2>热门<i>礼包</i></h2>
+	<a href="http://www.duoqu.com/game/card/index" target="_blank">&gt;&gt;</a>
+</div>
+<div class="hotgift_bd">
+	
+	<ul>
+				<li class="detail">
+			<div class="detail_left">
+				<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_57.jpg" class="photo_item">
+			</div>
+			<div class="detail_right">
+				<p class="detail_name">魔法王座礼包</p>
+				<a href="http://www.duoqu.com/game/card/index?g=57&amp;type=0" title="立即领取" target="_blank">立即领取</a>
+			</div>
+		</li>
+				<li class="detail">
+			<div class="detail_left">
+				<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_50.jpg" class="photo_item">
+			</div>
+			<div class="detail_right">
+				<p class="detail_name">范伟打天下礼包</p>
+				<a href="http://www.duoqu.com/game/card/index?g=50&amp;type=0" title="立即领取" target="_blank">立即领取</a>
+			</div>
+		</li>
+				<li class="detail">
+			<div class="detail_left">
+				<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_51.jpg" class="photo_item">
+			</div>
+			<div class="detail_right">
+				<p class="detail_name">决战武林礼包</p>
+				<a href="http://www.duoqu.com/game/card/index?g=51&amp;type=0" title="立即领取" target="_blank">立即领取</a>
+			</div>
+		</li>
+				<li class="detail">
+			<div class="detail_left">
+				<img src="http://s0.static.duoqu.com/www/v2/img/global/game_icon_37.jpg" class="photo_item">
+			</div>
+			<div class="detail_right">
+				<p class="detail_name">天书世界礼包</p>
+				<a href="http://www.duoqu.com/game/card/index?g=37&amp;type=0" title="立即领取" target="_blank">立即领取</a>
+			</div>
+		</li>
+			</ul>
+</div>		</div>
+		<!-- </hotgift> -->
+	</div>
+
+	<!-- 游戏新闻&积分兑换 -->
+	<div class="wrapper">
+		<!-- gamenews /s -->
+		<div class="layout_left game_news mgt8">
+						<div class="game_news_hd">
+	<h2>游戏<i>新闻</i></h2>
+</div>
+<div class="game_news_bd">
+	
+	<ul class="clearfix">
+				<li class="news_list">
+			<div class="news_item" id="news1">
+				<div class="news_item_hd clearfix">
+					<h2>范伟打天下</h2>
+					<span><a href="http://dtx.duoqu.com" target="_blank">&gt;&gt;</a></span>
+					<ul class="clearfix">
+						<li class="news_item_hd_tab active" index="0"><a href="javascript:;">综合新闻</a></li>
+						<li><b>|</b></li>
+						<li class="news_item_hd_tab" index="1"><a href="javascript:;">精品攻略</a></li>
+					</ul>
+				</div>
+				<div class="news_item_bd">
+					
+					<ul class="news_item_bd_ul">
+												<li>
+							<a href="http://dtx.duoqu.com/news/201612/22-36736.html" target="_blank" title="多趣《范伟打天下》12月第四周开服计划">多趣《范伟打天下》12月第四周开服计划</a>
+							<span>12/22</span>
+						</li>
+												<li>
+							<a href="http://dtx.duoqu.com/news/201612/08-36632.html" target="_blank" title="多趣《范伟打天下》12月第二周开服计划">多趣《范伟打天下》12月第二周开服计划</a>
+							<span>12/09</span>
+						</li>
+												<li>
+							<a href="http://dtx.duoqu.com/news/201612/01-36595.html" target="_blank" title="【公告】多趣《范伟打天下》12月第一周开服计划">【公告】多趣《范伟打天下》12月第一周开服计划</a>
+							<span>12/01</span>
+						</li>
+												<li>
+							<a href="http://dtx.duoqu.com/act/201611/08-36359.html" target="_blank" title="【活动】多趣助热双十一.页游返利玩尽兴！">【活动】多趣助热双十一.页游返利玩尽兴！</a>
+							<span>11/08</span>
+						</li>
+												<li>
+							<a href="http://dtx.duoqu.com/news/201610/26-36235.html" target="_blank" title="【公告】多趣《范伟打天下》11月第一周开服计划">【公告】多趣《范伟打天下》11月第一周开服计划</a>
+							<span>10/26</span>
+						</li>
+											</ul>
+					
+					<ul class="news_item_bd_ul" style="overflow: hidden; display: none;">
+											</ul>
+				</div>
+			</div>
+		</li>
+				<li class="news_list">
+			<div class="news_item" id="news2">
+				<div class="news_item_hd clearfix">
+					<h2>九阴绝学</h2>
+					<span><a href="http://jy.duoqu.com/" target="_blank">&gt;&gt;</a></span>
+					<ul class="clearfix">
+						<li class="news_item_hd_tab active" index="0"><a href="javascript:;">综合新闻</a></li>
+						<li><b>|</b></li>
+						<li class="news_item_hd_tab" index="1"><a href="javascript:;">精品攻略</a></li>
+					</ul>
+				</div>
+				<div class="news_item_bd">
+					
+					<ul class="news_item_bd_ul">
+												<li>
+							<a href="http://jy.duoqu.com/news/201612/16-36700.html" target="_blank" title="【新服】12月第三周开服计划">【新服】12月第三周开服计划</a>
+							<span>12/16</span>
+						</li>
+												<li>
+							<a href="http://jy.duoqu.com/news/201612/08-36630.html" target="_blank" title="【新服】12月第二周开服计划">【新服】12月第二周开服计划</a>
+							<span>12/08</span>
+						</li>
+												<li>
+							<a href="http://jy.duoqu.com/news/201612/07-36627.html" target="_blank" title="【维护】12.8 合服公告">【维护】12.8 合服公告</a>
+							<span>12/07</span>
+						</li>
+												<li>
+							<a href="http://jy.duoqu.com/news/201612/02-36602.html" target="_blank" title="【新服】12月第一周开服计划">【新服】12月第一周开服计划</a>
+							<span>12/02</span>
+						</li>
+												<li>
+							<a href="http://ts.duoqu.com/act/201609/26-36015.html" target="_blank" title="【活动】多趣游戏九月末充值真情回馈！">【活动】多趣游戏九月末充值真情回馈！</a>
+							<span>09/26</span>
+						</li>
+											</ul>
+					
+					<ul class="news_item_bd_ul" style="overflow: hidden; display: none;">
+												<li>
+							<a href="http://jy.duoqu.com/str/201606/15-35229.html" target="_blank" title="【攻略】九阴绝学转生修为（1-9）">【攻略】九阴绝学转生修为（1-9）</a>
+							<span>07/05</span>
+						</li>
+												<li>
+							<a href="http://jy.duoqu.com/str/201606/15-35231.html" target="_blank" title="【攻略】新手PK攻略介绍">【攻略】新手PK攻略介绍</a>
+							<span>07/05</span>
+						</li>
+												<li>
+							<a href="http://jy.duoqu.com/str/201606/15-35230.html" target="_blank" title="【攻略】恶人谷升层攻略秘籍">【攻略】恶人谷升层攻略秘籍</a>
+							<span>07/05</span>
+						</li>
+												<li>
+							<a href="http://jy.duoqu.com/str/201606/15-35233.html" target="_blank" title="【攻略】黄金战场攻略">【攻略】黄金战场攻略</a>
+							<span>07/05</span>
+						</li>
+												<li>
+							<a href="http://jy.duoqu.com/str/201606/15-35232.html" target="_blank" title="【攻略】BOSS东方教主击杀攻略">【攻略】BOSS东方教主击杀攻略</a>
+							<span>07/05</span>
+						</li>
+											</ul>
+				</div>
+			</div>
+		</li>
+				<li class="news_list">
+			<div class="news_item" id="news3">
+				<div class="news_item_hd clearfix">
+					<h2>天书世界</h2>
+					<span><a href="http://ts.duoqu.com/" target="_blank">&gt;&gt;</a></span>
+					<ul class="clearfix">
+						<li class="news_item_hd_tab active" index="0"><a href="javascript:;">综合新闻</a></li>
+						<li><b>|</b></li>
+						<li class="news_item_hd_tab" index="1"><a href="javascript:;">精品攻略</a></li>
+					</ul>
+				</div>
+				<div class="news_item_bd">
+					
+					<ul class="news_item_bd_ul">
+												<li>
+							<a href="http://ts.duoqu.com/news/201612/22-36735.html" target="_blank" title="多趣《天书世界》12月第四周开服计划">多趣《天书世界》12月第四周开服计划</a>
+							<span>12/22</span>
+						</li>
+												<li>
+							<a href="http://ts.duoqu.com/news/201612/08-36631.html" target="_blank" title="多趣《天书世界》12月第二周开服计划">多趣《天书世界》12月第二周开服计划</a>
+							<span>12/09</span>
+						</li>
+												<li>
+							<a href="http://ts.duoqu.com/news/201612/01-36594.html" target="_blank" title="【公告】多趣《天书世界》12月第一周开服计划">【公告】多趣《天书世界》12月第一周开服计划</a>
+							<span>12/01</span>
+						</li>
+												<li>
+							<a href="http://ts.duoqu.com/news/201611/18-36446.html" target="_blank" title="【公告】多趣《范伟打天下》11月第四周开服计划">【公告】多趣《范伟打天下》11月第四周开服计划</a>
+							<span>11/18</span>
+						</li>
+												<li>
+							<a href="http://ts.duoqu.com/act/201611/18-36445.html" target="_blank" title="【活动】《天书世界》11.18 兽图法印活动">【活动】《天书世界》11.18 兽图法印活动</a>
+							<span>11/18</span>
+						</li>
+											</ul>
+					
+					<ul class="news_item_bd_ul" style="overflow: hidden; display: none;">
+												<li>
+							<a href="http://ts.duoqu.com/str/201508/11-32997.html" target="_blank" title="【攻略】坐骑升阶消耗">【攻略】坐骑升阶消耗</a>
+							<span>10/19</span>
+						</li>
+												<li>
+							<a href="http://ts.duoqu.com/str/201507/27-32904.html" target="_blank" title="【攻略】一天200级">【攻略】一天200级</a>
+							<span>10/19</span>
+						</li>
+												<li>
+							<a href="http://ts.duoqu.com/str/201507/06-32768.html" target="_blank" title="【攻略】每日福利攻略">【攻略】每日福利攻略</a>
+							<span>10/19</span>
+						</li>
+												<li>
+							<a href="http://ts.duoqu.com/str/201507/06-32767.html" target="_blank" title="【攻略】如何快速升级">【攻略】如何快速升级</a>
+							<span>10/19</span>
+						</li>
+												<li>
+							<a href="http://ts.duoqu.com/str/201507/06-32766.html" target="_blank" title="【攻略】200级角色成长攻略">【攻略】200级角色成长攻略</a>
+							<span>10/19</span>
+						</li>
+											</ul>
+				</div>
+			</div>
+		</li>
+			</ul>
+	<script>
+		dj.tab.set('news1','news_item_hd_tab','news_item_bd_ul','active','mouseover',200);
+		dj.tab.set('news2','news_item_hd_tab','news_item_bd_ul','active','mouseover',200);
+		dj.tab.set('news3','news_item_hd_tab','news_item_bd_ul','active','mouseover',200);
 	</script>
+</div>		</div>
+		<!-- gamenews /e -->
+		<!-- creditexchange /s -->
+		<div class="layout_right creditexchange">
+						
+<div id="layout-Gift" class="c-box gift">
+    <div class="c-box-hd gift-hd">
+        <h2>积分<i>兑换</i></h2>
+        <a href="http://www.duoqu.com/mall/gift/index" class="m-list-more">&gt;&gt;</a>
+    </div>
+    <div class="c-box-bd gift-bd">
+        <ul class="m-list">
+                        <li class="b-bt2 clearfix">
+                <div class="c-fl gift-bd-img">
+                    <img alt="微软Surface3 128G" src="http://s0.static.duoqu.com/www/v2/img/global/pixel.gif" class="gift-bd-photo wimg" data-url="">
+                </div>
+                <div class="c-fr gift-bd-con">
+                    <p class="b-bt1">
+                        <a title="微软Surface3 128G" href="http://www.duoqu.com/mall/gift/view?id=103">微软Surface3 128G</a><br>
+                        市场价 <span class="cYellow"> 4,688</span>
+                    </p>
+                    <a href="http://www.duoqu.com/mall/gift/view?id=103">立即使用积分兑换</a>
+                </div>
+            </li>
+                        <li class="b-bt2 clearfix">
+                <div class="c-fl gift-bd-img">
+                    <img alt="Apple Watch SPORT系列【38 毫米腕表】" src="http://s0.static.duoqu.com/www/v2/img/global/pixel.gif" class="gift-bd-photo wimg" data-url="">
+                </div>
+                <div class="c-fr gift-bd-con">
+                    <p class="b-bt1">
+                        <a title="Apple Watch SPORT系列【38 毫米腕表】" href="http://www.duoqu.com/mall/gift/view?id=102">Apple Watch SPORT系列【38 毫米腕表】</a><br>
+                        市场价 <span class="cYellow"> 2,588</span>
+                    </p>
+                    <a href="http://www.duoqu.com/mall/gift/view?id=102">立即使用积分兑换</a>
+                </div>
+            </li>
+                    </ul>
+    </div>
+</div>
+		</div>
+		<!-- creditexchange /e -->
+	</div>
+
+	<!-- VIP专区 -->
+	<div class="wrapper vslider">
+				<div class="vslider_hd">
+	<h2>VIP<i>专区</i></h2>
+</div>
+<div class="vslider_bd">
+	
+	<ul class="vslider_btn" id="J_VSlider_Btn">
+				<li class="hover" data-id="0">
+			<span style="width: 100%;" class="bar0"></span>
+			<a target="_blank" href="http://www.duoqu.com/user/vip/index#p1" title="快速升级"><i>快速升级</i></a>
+		</li>
+				<li data-id="1">
+			<span style="width: 3px;" class="bar1"></span>
+			<a target="_blank" href="http://act.duoqu.com/2015/vip/51/" title="专属活动"><i>专属活动</i></a>
+		</li>
+				<li data-id="2">
+			<span style="width: 3px;" class="bar2"></span>
+			<a target="_blank" href="http://www.duoqu.com/user/vip/index#p2" title="尊贵特权"><i>尊贵特权</i></a>
+		</li>
+			</ul>
+	<div class="vslider_pic" id="J_VSlider_Pic">
+				<a target="_blank" href="http://www.duoqu.com/user/vip/index#p1" style="display: block;">
+			<img src="http://s1.static.duoqu.com/2015/02/HEyt4pLqGm.jpg" alt="" width="1015" height="175">
+		</a>
+				<a target="_blank" href="http://act.duoqu.com/2015/vip/51/" style="display: none;">
+			<img src="http://s1.static.duoqu.com/2015/01/fXSixAzrKu.jpg" alt="" width="1015" height="175">
+		</a>
+				<a target="_blank" href="http://www.duoqu.com/user/vip/index#p2" style="display: none;">
+			<img src="http://s1.static.duoqu.com/2015/01/EeZzFG7qgB.jpg" alt="" width="1015" height="175">
+		</a>
+			</div>
+</div>	</div>
+	<!-- 友情链接 -->
+	<div class="wrapper friendlink">
+				<div class="friendlink_hd">
+	<h2>友情<i>链接</i></h2>
+</div>
+<div class="friendlink_bd">
+		<a href="http://www.duoqu.com" target="_blank" title="多趣网">多趣网</a>
+		<a href="http://www.yuu1.com" target="_blank" title="优易网">优易网</a>
+		<a href="http://www.e3ol.com" target="_blank" title="三国在线">三国在线</a>
+		<a href="http://www.43999.cn" target="_blank" title=" 43999小游戏"> 43999小游戏</a>
+		<a href="http://www.ledouwan.com/ " target="_blank" title="乐豆玩玩游戏赚钱">乐豆玩玩游戏赚钱</a>
+		<a href="http://www.82g.net" target="_blank" title="手机网游">手机网游</a>
+		<a href="http://www.linuxgamebase.com" target="_blank" title="linux游戏基地">linux游戏基地</a>
+		<a href="http://www.1youxi.com" target="_blank" title="网页游戏大全">网页游戏大全</a>
+		<a href="http://kf.juxia.com/" target="_blank" title="聚侠网开服表">聚侠网开服表</a>
+		<a href="http://www.qingsongwan.com/" target="_blank" title="手游">手游</a>
+		<a href="http://web.ali213.net/" target="_blank" title="游侠网页游戏">游侠网页游戏</a>
+		<a href="http://www.anzhuostore.com/" target="_blank" title="安卓市场">安卓市场</a>
+		<a href="http://chanye.07073.com/" target="_blank" title="07073产业频道">07073产业频道</a>
+		<a href="http://www.99xyx.com/" target="_blank" title="99小游戏">99小游戏</a>
+		<a href="http://www.bamuyu.com/" target="_blank" title="八目鱼游戏网 ">八目鱼游戏网 </a>
+		<a href="http://kf.bamuyu.com/" target="_blank" title="网页游戏开服表">网页游戏开服表</a>
+		<a href="http://game.longhoo.net/" target="_blank" title="龙虎游戏">龙虎游戏</a>
+		<a href="http://www.ghjie.com" target="_blank" title="公会界">公会界</a>
+		<a href="http://www.876g.com " target="_blank" title="876g网页游戏">876g网页游戏</a>
+		<a href="http://kf.duowan.com/" target="_blank" title="多玩开服网">多玩开服网</a>
+		<a href="http://www.1688wan.com" target="_blank" title="1688wan游戏网">1688wan游戏网</a>
+		<a href="http://www.8uka.com" target="_blank" title="巴游网">巴游网</a>
+		<a href="http://www.guan5.com/" target="_blank" title="Guan5页游网">Guan5页游网</a>
+		<a href="http://www.guan5.com/  " target="_blank" title="Guan5页游网">Guan5页游网</a>
+		<a href="http://17dong.com.cn/" target="_blank" title="一起动">一起动</a>
+		<a href="http://www.1y2y.com/" target="_blank" title="1Y2Y网页游戏">1Y2Y网页游戏</a>
+		<a href="http://www.9u8u.com" target="_blank" title="9u8u网页游戏">9u8u网页游戏</a>
+		<a href="http://www.9wee.com" target="_blank" title="九维网">九维网</a>
+		<a href="http://www.duoqu.com/game/list/index" target="_blank" title="三国网页游戏">三国网页游戏</a>
+		<a href="http://web.92wy.com" target="_blank" title="万宇在线">万宇在线</a>
+	</div>	</div>
+</div>
+<!-- </content> -->
+
+<!-- <footer> -->
+<footer class="wrapper bt1">
+	<div class="mod_footer">
+		<p><a href="http://www.duoqu.com/" class="mod_footer_logo" title="多趣网">多趣网</a></p>
+		<div>
+			<ul class="mod_footer_nav clearfix">
+				<li><a href="http://www.duoqu.com/game/service/index">客户服务</a></li>
+				<li><span>|</span></li>
+				<li><a href="http://www.duoqu.com/game/article/view?id=2796">商务合作</a></li>
+				<li><span>|</span></li>
+				<li><a href="http://www.duoqu.com/game/article/view/id/254">家长监护</a></li>
+				<li><span>|</span></li>
+				<li><a href="http://bbs.duoqu.com/forum.php">会员社区</a></li>
+			</ul>
+		</div>
+		<p>抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活 ——《健康游戏忠告》</p>
+		<p>多趣客服电话：021-52509998 | 客服信箱：kf@duoqu.com | 沪B2-20120121 沪ICP备12025459号 沪网文[2012]0498-072号</p>
+		<div class="mod_footer_gs" style="margin-top:10px">
+			<a target="_blank" href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&amp;entyId=20130312112326265"><img border="0" src="http://s0.static.duoqu.com/www/v2/img/global/sgs_bg.gif"></a><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010702001330" style="margin: 10px 0px 0px 20px;"><img border="0" src="http://s0.static.duoqu.com/www/v2/img/global/picp_bg.gif"></a><a href="http://webscan.360.cn/index/checkwebsite/url/www.duoqu.com" style="margin-left:16px"><img border="0" style="height:39px;" src="http://img.webscan.360.cn/status/pai/hash/fa0bfcce1e369061f39fb42b9b57931d"></a>    
+		</div>
+
+	</div>
+</footer>
+<!-- </footer> -->
+<script type="text/javascript">
+	dj.platform.setUserInfo( {"uid":1268939,"username":"\u8096\u6210121","money":"0","credit":"200","level":"0","trade_msg":0} );
+</script>
+<script type="text/javascript">
+function __zp_tag_send(ext)
+{
+	if(ext == undefined) ext = '';
+	else ext = '?' + ext;
+
+	(function(param){
+	var c = {query:[], args:param||{}};
+	c.query.push(["_setAccount","447"]);
+	(window.__zpSMConfig = window.__zpSMConfig||[]).push(c);
+	var zp = document.createElement("script"); zp.type = "text/javascript"; zp.async = true;
+	zp.src = ("https:" == document.location.protocol ? "https:" : "http:") + "//cdn.zampda.net/s.js" + ext;
+	var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(zp, s);
+	})(window.__zp_tag_params);
+}
+
+//__zp_tag_send();
+</script>
+<script type="text/javascript" src="imgDolig.js">
+
+</script>
 </body>
 </html>
